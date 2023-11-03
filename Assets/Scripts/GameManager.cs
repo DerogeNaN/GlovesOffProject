@@ -1,4 +1,5 @@
 using System.Linq;
+using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -10,22 +11,36 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] Clock timer;
     [SerializeField] Clock countdown;
+
+    //Testing
+    bool textShouldAppear = false;
+    public TextMeshProUGUI currentPhaseText;
+
+    public TextMeshProUGUI player1Stamina;
+    public TextMeshProUGUI player2Stamina;
+    public TextMeshProUGUI player1Wager;
+    public TextMeshProUGUI player2Wager;
+
     enum Phase
     {
-        MatchEnd,
         RPS,
         Wager,
-        Action
+        Action,
+        MatchEnd
     }
     Phase currentPhase;
 
     void Start()
     {
+        //Testing
+        currentPhaseText.text = "";
         ResetRound();
     }
 
     void Update()
     {
+        UpdateText();
+
         switch (currentPhase)
         {
             case Phase.RPS:
@@ -35,6 +50,9 @@ public class GameManager : MonoBehaviour
                     player1.RPSPhase();
                     player2.RPSPhase();
                     timer.StartClock();
+
+                    //Testing
+                    textShouldAppear = true;
                 }
 
                 if (timer.IsZero())
@@ -47,10 +65,12 @@ public class GameManager : MonoBehaviour
                 break;
 
             case Phase.Wager:
-                //Disable RPS Action Map
-                //Enable Wager Action Map
+                //Testing
+                textShouldAppear = true;
+
                 player1.WagerPhase();
                 player2.WagerPhase();
+
                 //Wager Logic goes here
 
                 if (timer.IsZero())
@@ -63,10 +83,13 @@ public class GameManager : MonoBehaviour
                 break;
 
             case Phase.Action:
-                //Disable Wager Action Map
+                //Testing
+                textShouldAppear = true;
+
                 player1.ActionPhase();
                 player2.ActionPhase();
-                //Action Logic goes here
+
+                //Determine Round Winner
                 int player1Value = (int)player1.ChosenAction + ((int)player2.ChosenAction / 3) * 3 * ((int)player1.ChosenAction % 2);
                 int player2Value = (int)player2.ChosenAction + ((int)player1.ChosenAction / 3) * 3 * ((int)player2.ChosenAction % 2);
 
@@ -96,19 +119,33 @@ public class GameManager : MonoBehaviour
                         }
 
                     }
-                    if (player1.playerStamina.CurrentStamina == player1.playerStamina.staminaPoints)
+                    if (player1.playerStamina.CurrentStamina == player1.playerStamina.staminaPoints || player2.playerStamina.CurrentStamina == player1.playerStamina.staminaPoints)
                     {
-                        MatchWin(player1);
-                    }
-                    if (player2.playerStamina.CurrentStamina == player1.playerStamina.staminaPoints)
-                    {
-                        MatchWin(player2);
+                        timer.ResetClock();
+                        timer.StartClock();
+                        currentPhase = Phase.MatchEnd;
                     }
                     else
                     {
                         ResetRound();
                         Debug.Log($"Phase Finished. Current Phase: {currentPhase}");
                     }
+
+                }
+                break;
+
+            case Phase.MatchEnd:
+                if (player1.playerStamina.CurrentStamina == player1.playerStamina.staminaPoints)
+                {
+                    MatchWin(player1);
+                }
+                if (player2.playerStamina.CurrentStamina == player1.playerStamina.staminaPoints)
+                {
+                    MatchWin(player2);
+                }
+                if (timer.IsZero())
+                {
+                    Application.Quit();
                 }
                 break;
         }
@@ -116,6 +153,8 @@ public class GameManager : MonoBehaviour
 
     void ResetRound()
     {
+        player1.playerStamina.resetWager();
+        player2.playerStamina.resetWager();
         countdown.ResetClock();
         timer.ResetClock();
 
@@ -124,6 +163,9 @@ public class GameManager : MonoBehaviour
         currentPhase = Phase.RPS;
         player1.ResetChosenAction();
         player2.ResetChosenAction();
+
+        //testing
+        textShouldAppear = false;
     }
 
     void RoundWin(PlayerController winner, PlayerController loser)
@@ -133,11 +175,6 @@ public class GameManager : MonoBehaviour
         Debug.Log($"Winner: {winner}");
     }
 
-    void RoundLose(PlayerController player)
-    {
-
-    }
-
     void RoundTie()
     {
         Debug.Log($"Tie");
@@ -145,6 +182,7 @@ public class GameManager : MonoBehaviour
 
     void MatchWin(PlayerController winner)
     {
+
         currentPhase = Phase.MatchEnd;
     }
 
@@ -155,5 +193,21 @@ public class GameManager : MonoBehaviour
         player1 = playerSpawner._players[0].GetComponent<PlayerController>();
         player2 = playerSpawner._players[1].GetComponent<PlayerController>();
         this.enabled = true;
+    }
+    
+    public void UpdateText()
+    {
+        player1Stamina.text = $"Player 1 Stamina: {player1.playerStamina.CurrentStamina}";
+        player2Stamina.text = $"Player 2 Stamina: {player2.playerStamina.CurrentStamina}";
+        player1Wager.text = $"Player 1 Wager: {player1.playerStamina.CurrentWager}";
+        player2Wager.text = $"Player 2 Wager: {player2.playerStamina.CurrentWager}";
+        if (!textShouldAppear)
+        {
+            currentPhaseText.text = "";
+        }
+        else
+        {
+            currentPhaseText.text = $"Current Phase:  {currentPhase}";
+        }
     }
 }
