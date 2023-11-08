@@ -13,13 +13,19 @@ public class GameManager : MonoBehaviour
     [SerializeField] Clock countdown;
 
     //Testing
-    bool textShouldAppear = false;
+    bool phaseTextShouldAppear = false;
     public TextMeshProUGUI currentPhaseText;
 
-    public TextMeshProUGUI player1Stamina;
-    public TextMeshProUGUI player2Stamina;
-    public TextMeshProUGUI player1Wager;
-    public TextMeshProUGUI player2Wager;
+    bool staminaTextShouldAppear = false;
+    public TextMeshProUGUI player1StaminaText;
+    public TextMeshProUGUI player2StaminaText;
+    public TextMeshProUGUI player1WagerText;
+    public TextMeshProUGUI player2WagerText;
+
+    bool roundWinnerTextShouldAppear = false;
+    public TextMeshProUGUI roundWinnerText;
+
+    PlayerController roundWinner;
 
     enum Phase
     {
@@ -52,7 +58,7 @@ public class GameManager : MonoBehaviour
                     timer.StartClock();
 
                     //Testing
-                    textShouldAppear = true;
+                    phaseTextShouldAppear = true;
                 }
 
                 if (timer.IsZero())
@@ -66,7 +72,7 @@ public class GameManager : MonoBehaviour
 
             case Phase.Wager:
                 //Testing
-                textShouldAppear = true;
+                phaseTextShouldAppear = true;
 
                 player1.WagerPhase();
                 player2.WagerPhase();
@@ -84,7 +90,7 @@ public class GameManager : MonoBehaviour
 
             case Phase.Action:
                 //Testing
-                textShouldAppear = true;
+                phaseTextShouldAppear = true;
 
                 player1.ActionPhase();
                 player2.ActionPhase();
@@ -165,7 +171,7 @@ public class GameManager : MonoBehaviour
         player2.ResetChosenAction();
 
         //testing
-        textShouldAppear = false;
+        phaseTextShouldAppear = false;
     }
 
     void RoundWin(PlayerController winner, PlayerController loser)
@@ -182,7 +188,6 @@ public class GameManager : MonoBehaviour
 
     void MatchWin(PlayerController winner)
     {
-
         currentPhase = Phase.MatchEnd;
     }
 
@@ -197,11 +202,22 @@ public class GameManager : MonoBehaviour
     
     public void UpdateText()
     {
-        player1Stamina.text = $"Player 1 Stamina: {player1.playerStamina.CurrentStamina}";
-        player2Stamina.text = $"Player 2 Stamina: {player2.playerStamina.CurrentStamina}";
-        player1Wager.text = $"Player 1 Wager: {player1.playerStamina.CurrentWager}";
-        player2Wager.text = $"Player 2 Wager: {player2.playerStamina.CurrentWager}";
-        if (!textShouldAppear)
+        if (!staminaTextShouldAppear)
+        {
+            player1StaminaText.text = "";
+            player2StaminaText.text = "";
+            player1WagerText.text = "";
+            player2WagerText.text = "";
+        }
+        else
+        {
+            player1StaminaText.text = $"Player 1 Stamina: {player1.playerStamina.CurrentStamina}";
+            player2StaminaText.text = $"Player 2 Stamina: {player2.playerStamina.CurrentStamina}";
+            player1WagerText.text = $"Player 1 Wager: {player1.playerStamina.CurrentWager}";
+            player2WagerText.text = $"Player 2 Wager: {player2.playerStamina.CurrentWager}";
+        }
+
+        if (!phaseTextShouldAppear)
         {
             currentPhaseText.text = "";
         }
