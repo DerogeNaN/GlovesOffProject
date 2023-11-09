@@ -56,13 +56,6 @@ public class PlayerController : MonoBehaviour
         // Testing
         Debug.Log(playerInput.playerIndex.ToString() + " Block Selected");
     }
-
-    public void RandomiseAction()
-    {
-        chosenAction = (Actions)Random.Range(1, 3);
-        // Testing
-        Debug.Log(playerInput.playerIndex.ToString() + $" Randomised Action selected: {chosenAction}");
-    }
     #endregion
     #region Wager
     void WagerUp(InputAction.CallbackContext callback)
