@@ -5,7 +5,7 @@ public class Clock : MonoBehaviour
 {
     public TextMeshProUGUI clockText;
     /// <summary>
-    /// Calculated in seconds
+    /// Calculated in seconds.
     /// </summary>
     public float totalTime;
 
