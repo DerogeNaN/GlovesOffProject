@@ -5,11 +5,11 @@ public class Clock : MonoBehaviour
 {
     public TextMeshProUGUI clockText;
     /// <summary>
-    /// Calculated in seconds.
+    /// Calculated in seconds
     /// </summary>
     public float totalTime;
 
-    public float currentTime;
+    private float currentTime;
     private bool isCounting = false;
     private bool isZero = false;
 
@@ -51,6 +51,12 @@ public class Clock : MonoBehaviour
     {
         isZero = false;
         currentTime = totalTime;
+    }
+
+    public void RestartClock()
+    {
+        ResetClock();
+        StartClock();
     }
 
     public bool IsZero()

@@ -38,29 +38,6 @@ public class PlayerStamina : MonoBehaviour
             currentWager = minWager;
         if (currentWager > maxWager)
             currentWager = maxWager;
-
-        //Testing
-        if (Input.GetKeyDown(KeyCode.PageDown))
-        {
-            LoseStamina(currentWager);
-            currentWager = 1;
-        }
-
-        if (Input.GetKeyDown(KeyCode.PageUp))
-        {
-            GainStamina(currentWager);
-            currentWager = 1;
-        }
-
-        if (Input.GetKeyDown(KeyCode.End))
-            resetStamina();
-
-        if (Input.GetKeyDown(KeyCode.UpArrow))
-            increaseWager();
-
-        if (Input.GetKeyDown(KeyCode.DownArrow))
-            decreaseWager();
-
     }
 
     public void LoseStamina(int staminaLost)
