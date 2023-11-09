@@ -7,6 +7,9 @@ public class AutoAddPlayerToVcamTargets : MonoBehaviour
 {
     [TagField]
     public string Tag = "Player";
+
+    public CinemachineTargetGroup targetGroup;
+
     // Update is called once per frame
     void Update()
     {
@@ -19,6 +22,11 @@ public class AutoAddPlayerToVcamTargets : MonoBehaviour
                 if (targets.Length > 0)
                 targetGroup.m_Targets[i].target = targets[i].transform;
             }
+        }
+
+        if (targets[1] != null)
+        {
+            targetGroup.enabled = true ;
         }
     }
 }
