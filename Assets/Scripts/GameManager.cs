@@ -1,11 +1,10 @@
-using System.Linq;
 using TMPro;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 public class GameManager : MonoBehaviour
 {
     PlayerSpawner playerSpawner;
+    PlayerController[] players;
     PlayerController player1;
     PlayerController player2;
 
@@ -13,28 +12,40 @@ public class GameManager : MonoBehaviour
     [SerializeField] Clock countdown;
 
     //Testing
-    bool textShouldAppear = false;
+    bool currentPhaseTextShouldAppear = false;
     public TextMeshProUGUI currentPhaseText;
 
-    public TextMeshProUGUI player1Stamina;
-    public TextMeshProUGUI player2Stamina;
-    public TextMeshProUGUI player1Wager;
-    public TextMeshProUGUI player2Wager;
+    bool staminaTextShouldAppear = true;
+    public TextMeshProUGUI player1StaminaText;
+    public TextMeshProUGUI player2StaminaText;
+    public TextMeshProUGUI player1WagerText;
+    public TextMeshProUGUI player2WagerText;
+
+    bool roundWinnerTextShouldAppear = false;
+    public TextMeshProUGUI roundWinnerText;
+
+    bool matchWinnerTextShouldAppear = false;
+    public TextMeshProUGUI matchWinnerText;
+
+    PlayerController roundWinner;
 
     enum Phase
     {
+        MatchEnd,
         RPS,
         Wager,
-        Action,
-        MatchEnd
+        Action
     }
     Phase currentPhase;
 
     void Start()
     {
+        players = new PlayerController[] { player1, player2 };
+        ResetRound();
+
         //Testing
         currentPhaseText.text = "";
-        ResetRound();
+        roundWinnerText.text = "";
     }
 
     void Update()
@@ -44,108 +55,79 @@ public class GameManager : MonoBehaviour
         switch (currentPhase)
         {
             case Phase.RPS:
-                //RPS Logic goes here
                 if (countdown.IsZero())
                 {
-                    player1.RPSPhase();
-                    player2.RPSPhase();
+                    foreach (PlayerController player in players)
+                    {
+                        player.RPSPhase();
+                    }
                     timer.StartClock();
 
                     //Testing
-                    textShouldAppear = true;
+                    currentPhaseTextShouldAppear = true;
+                    roundWinnerTextShouldAppear = false;
                 }
 
-                if (timer.IsZero())
+                if (!timer.IsZero())
                 {
-                    currentPhase = Phase.Wager;
-                    timer.ResetClock();
-                    timer.StartClock();
-                    Debug.Log($"Phase Finished. Current Phase: {currentPhase}");
+                    break;
                 }
+                foreach (PlayerController player in players)
+                {
+                    if (player.ChosenAction == PlayerController.Actions.None)
+                    {
+                        player.RandomiseAction();
+                    }
+                }
+
+                currentPhase = Phase.Wager;
+                timer.RestartClock();
+
+                //Testing
+                Debug.Log($"Phase Finished. Current Phase: {currentPhase}");
                 break;
 
             case Phase.Wager:
+
+                foreach (PlayerController player in players)
+                {
+                    player.WagerPhase();
+                }
+
                 //Testing
-                textShouldAppear = true;
-
-                player1.WagerPhase();
-                player2.WagerPhase();
-
-                //Wager Logic goes here
+                currentPhaseTextShouldAppear = true;
 
                 if (timer.IsZero())
                 {
                     currentPhase = Phase.Action;
-                    timer.ResetClock();
-                    timer.StartClock();
+                    timer.RestartClock();
+
+                    //Testing
                     Debug.Log($"Phase Finished. Current Phase: {currentPhase}");
                 }
                 break;
 
             case Phase.Action:
-                //Testing
-                textShouldAppear = true;
 
-                player1.ActionPhase();
-                player2.ActionPhase();
-
-                //Determine Round Winner
-                int player1Value = (int)player1.ChosenAction + ((int)player2.ChosenAction / 3) * 3 * ((int)player1.ChosenAction % 2);
-                int player2Value = (int)player2.ChosenAction + ((int)player1.ChosenAction / 3) * 3 * ((int)player2.ChosenAction % 2);
-
-                if (timer.IsZero())
+                foreach (PlayerController player in players)
                 {
-                    if (player1Value > player2Value)
-                    {
-                        RoundWin(player1, player2);
-                    }
-                    else if (player2Value > player1Value)
-                    {
-                        RoundWin(player2, player1);
-                    }
-                    else
-                    {
-                        if (player1.playerStamina.CurrentWager > player2.playerStamina.CurrentWager)
-                        {
-                            RoundWin(player1, player2);
-                        }
-                        else if (player2.playerStamina.CurrentWager > player1.playerStamina.CurrentWager)
-                        {
-                            RoundWin(player2, player1);
-                        }
-                        else
-                        {
-                            RoundTie();
-                        }
-
-                    }
-                    if (player1.playerStamina.CurrentStamina == player1.playerStamina.staminaPoints || player2.playerStamina.CurrentStamina == player1.playerStamina.staminaPoints)
-                    {
-                        timer.ResetClock();
-                        timer.StartClock();
-                        currentPhase = Phase.MatchEnd;
-                    }
-                    else
-                    {
-                        ResetRound();
-                        Debug.Log($"Phase Finished. Current Phase: {currentPhase}");
-                    }
-
+                    player.ActionPhase();
                 }
+
+                //Testing
+                currentPhaseTextShouldAppear = true;
+
+                RoundOver();
                 break;
 
             case Phase.MatchEnd:
-                if (player1.playerStamina.CurrentStamina == player1.playerStamina.staminaPoints)
+                foreach (PlayerController player in players)
                 {
-                    MatchWin(player1);
-                }
-                if (player2.playerStamina.CurrentStamina == player1.playerStamina.staminaPoints)
-                {
-                    MatchWin(player2);
-                }
-                if (timer.IsZero())
-                {
-                    Application.Quit();
+                    if (player.playerStamina.CurrentStamina == player.playerStamina.staminaPoints)
+                    {
+                        MatchWin(player);
+                        break;
+                    }
                 }
                 break;
         }
@@ -153,37 +135,89 @@ public class GameManager : MonoBehaviour
 
     void ResetRound()
     {
-        player1.playerStamina.resetWager();
-        player2.playerStamina.resetWager();
-        countdown.ResetClock();
+        foreach (PlayerController player in players)
+        {
+            player.playerStamina.resetWager();
+            player.ResetChosenAction();
+        }
+
+        countdown.RestartClock();
         timer.ResetClock();
 
-        countdown.StartClock();
-
         currentPhase = Phase.RPS;
-        player1.ResetChosenAction();
-        player2.ResetChosenAction();
 
         //testing
-        textShouldAppear = false;
+        currentPhaseTextShouldAppear = false;
+        roundWinnerTextShouldAppear = true;
     }
 
+    void RoundOver()
+    {
+        //Determine Round Winner
+        int player1Value = (int)player1.ChosenAction + ((int)player2.ChosenAction / 3) * 3 * ((int)player1.ChosenAction % 2);
+        int player2Value = (int)player2.ChosenAction + ((int)player1.ChosenAction / 3) * 3 * ((int)player2.ChosenAction % 2);
+
+        if (!timer.IsZero())
+        {
+            return;
+        }
+        if (player1Value > player2Value)
+        {
+            RoundWin(player1, player2);
+        }
+        else if (player2Value > player1Value)
+        {
+            RoundWin(player2, player1);
+        }
+        else if (player1.playerStamina.CurrentWager > player2.playerStamina.CurrentWager)
+        {
+            RoundWin(player1, player2);
+        }
+        else if (player2.playerStamina.CurrentWager > player1.playerStamina.CurrentWager)
+        {
+            RoundWin(player2, player1);
+        }
+        else
+        {
+            RoundTie();
+        }
+
+
+        if (player1.playerStamina.CurrentStamina == player1.playerStamina.staminaPoints || player2.playerStamina.CurrentStamina == player1.playerStamina.staminaPoints)
+        {
+            currentPhase = Phase.MatchEnd;
+        }
+        else
+        {
+            ResetRound();
+            Debug.Log($"Phase Finished. Current Phase: {currentPhase}");
+        }
+    }
     void RoundWin(PlayerController winner, PlayerController loser)
     {
         winner.playerStamina.GainStamina(loser.playerStamina.CurrentWager);
         loser.playerStamina.LoseStamina(loser.playerStamina.CurrentWager);
-        Debug.Log($"Winner: {winner}");
+        roundWinner = winner;
+
+        //Testing
+        roundWinnerTextShouldAppear = true;
     }
 
     void RoundTie()
     {
-        Debug.Log($"Tie");
+        roundWinnerText.text = $"Round Winner: Tie!";
     }
 
     void MatchWin(PlayerController winner)
     {
+        //todo: Declare the match winner
+        //todo: Go to main menu after a trigger
 
-        currentPhase = Phase.MatchEnd;
+        //testing
+        staminaTextShouldAppear = false;
+        matchWinnerText.text = $"{winner.name} wins!";
+        currentPhaseTextShouldAppear = false;
+        roundWinnerTextShouldAppear = false;
     }
 
     public void EnableGameManager()
@@ -194,20 +228,45 @@ public class GameManager : MonoBehaviour
         player2 = playerSpawner._players[1].GetComponent<PlayerController>();
         this.enabled = true;
     }
-    
+
     public void UpdateText()
     {
-        player1Stamina.text = $"Player 1 Stamina: {player1.playerStamina.CurrentStamina}";
-        player2Stamina.text = $"Player 2 Stamina: {player2.playerStamina.CurrentStamina}";
-        player1Wager.text = $"Player 1 Wager: {player1.playerStamina.CurrentWager}";
-        player2Wager.text = $"Player 2 Wager: {player2.playerStamina.CurrentWager}";
-        if (!textShouldAppear)
+        if (!staminaTextShouldAppear)
+        {
+            player1StaminaText.text = "";
+            player2StaminaText.text = "";
+            player1WagerText.text = "";
+            player2WagerText.text = "";
+        }
+        else
+        {
+            player1StaminaText.text = $"Player 1 Stamina: {player1.playerStamina.CurrentStamina}";
+            player2StaminaText.text = $"Player 2 Stamina: {player2.playerStamina.CurrentStamina}";
+            player1WagerText.text = $"Player 1 Wager: {player1.playerStamina.CurrentWager}";
+            player2WagerText.text = $"Player 2 Wager: {player2.playerStamina.CurrentWager}";
+        }
+
+        if (!roundWinnerTextShouldAppear)
+        {
+            roundWinnerText.text = "";
+        }
+        else if (roundWinner != null)
+        {
+            roundWinnerText.text = $"Round Winner: {roundWinner.name}!";
+        }
+
+        if (!currentPhaseTextShouldAppear)
         {
             currentPhaseText.text = "";
         }
         else
         {
-            currentPhaseText.text = $"Current Phase:  {currentPhase}";
+            currentPhaseText.text = $"Current Phase: {currentPhase}";
+        }
+
+        if (!matchWinnerTextShouldAppear)
+        {
+            matchWinnerText.text = "";
         }
     }
 }
