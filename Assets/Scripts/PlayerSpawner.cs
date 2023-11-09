@@ -29,7 +29,7 @@ public class PlayerSpawner : MonoBehaviour
         players[playerInput.playerIndex] = playerInput;
 
         playerInput.transform.position = spawnPoints[playerInput.playerIndex].position;
-        playerInput.name = "Player" + (playerInput.playerIndex + 1).ToString();
+        playerInput.name = "Player " + (playerInput.playerIndex + 1).ToString();
 
         if (players[1] != null)
         {
