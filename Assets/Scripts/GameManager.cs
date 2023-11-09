@@ -16,7 +16,7 @@ public class GameManager : MonoBehaviour
     bool phaseTextShouldAppear = false;
     public TextMeshProUGUI currentPhaseText;
 
-    bool staminaTextShouldAppear = false;
+    bool staminaTextShouldAppear = true;
     public TextMeshProUGUI player1StaminaText;
     public TextMeshProUGUI player2StaminaText;
     public TextMeshProUGUI player1WagerText;
@@ -29,10 +29,10 @@ public class GameManager : MonoBehaviour
 
     enum Phase
     {
+        MatchEnd,
         RPS,
         Wager,
-        Action,
-        MatchEnd
+        Action
     }
     Phase currentPhase;
 
@@ -40,6 +40,7 @@ public class GameManager : MonoBehaviour
     {
         //Testing
         currentPhaseText.text = "";
+        roundWinnerText.text = "";
         ResetRound();
     }
 
@@ -59,10 +60,21 @@ public class GameManager : MonoBehaviour
 
                     //Testing
                     phaseTextShouldAppear = true;
+                    roundWinnerTextShouldAppear = false;
                 }
 
                 if (timer.IsZero())
                 {
+                    if(player1.ChosenAction == PlayerController.Actions.None)
+                    {
+                        player1.RandomiseAction();
+                    }
+
+                    if (player2.ChosenAction == PlayerController.Actions.None)
+                    {
+                        player2.RandomiseAction();
+                    }
+
                     currentPhase = Phase.Wager;
                     timer.ResetClock();
                     timer.StartClock();
@@ -172,23 +184,28 @@ public class GameManager : MonoBehaviour
 
         //testing
         phaseTextShouldAppear = false;
+        roundWinnerTextShouldAppear = true;
     }
 
     void RoundWin(PlayerController winner, PlayerController loser)
     {
         winner.playerStamina.GainStamina(loser.playerStamina.CurrentWager);
         loser.playerStamina.LoseStamina(loser.playerStamina.CurrentWager);
-        Debug.Log($"Winner: {winner}");
+        roundWinner = winner;
+        roundWinnerTextShouldAppear = true;
     }
 
     void RoundTie()
     {
-        Debug.Log($"Tie");
+        roundWinnerText.text = $"Round Winner: Tie!";
     }
 
     void MatchWin(PlayerController winner)
     {
         currentPhase = Phase.MatchEnd;
+
+        //testing
+        staminaTextShouldAppear = false;
     }
 
     public void EnableGameManager()
@@ -217,13 +234,25 @@ public class GameManager : MonoBehaviour
             player2WagerText.text = $"Player 2 Wager: {player2.playerStamina.CurrentWager}";
         }
 
+        if(!roundWinnerTextShouldAppear)
+        {
+            roundWinnerText.text = "";
+        }
+        else
+        {
+            if (roundWinner != null)
+            {
+                roundWinnerText.text = $"Round Winner: {roundWinner.name}!";
+            }
+        }
+
         if (!phaseTextShouldAppear)
         {
             currentPhaseText.text = "";
         }
         else
         {
-            currentPhaseText.text = $"Current Phase:  {currentPhase}";
+            currentPhaseText.text = $"Current Phase: {currentPhase}";
         }
     }
 }
