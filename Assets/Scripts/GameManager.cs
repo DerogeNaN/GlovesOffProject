@@ -25,6 +25,9 @@ public class GameManager : MonoBehaviour
     bool roundWinnerTextShouldAppear = false;
     public TextMeshProUGUI roundWinnerText;
 
+    bool matchWinnerTextShouldAppear = false;
+    public TextMeshProUGUI matchWinnerText;
+
     PlayerController roundWinner;
 
     enum Phase
@@ -139,8 +142,6 @@ public class GameManager : MonoBehaviour
                     }
                     if (player1.playerStamina.CurrentStamina == player1.playerStamina.staminaPoints || player2.playerStamina.CurrentStamina == player1.playerStamina.staminaPoints)
                     {
-                        timer.ResetClock();
-                        timer.StartClock();
                         currentPhase = Phase.MatchEnd;
                     }
                     else
@@ -202,10 +203,11 @@ public class GameManager : MonoBehaviour
 
     void MatchWin(PlayerController winner)
     {
-        currentPhase = Phase.MatchEnd;
-
         //testing
         staminaTextShouldAppear = false;
+        matchWinnerText.text = $"{winner.name} wins!";
+        phaseTextShouldAppear = false;
+        roundWinnerTextShouldAppear = false;
     }
 
     public void EnableGameManager()
@@ -253,6 +255,11 @@ public class GameManager : MonoBehaviour
         else
         {
             currentPhaseText.text = $"Current Phase: {currentPhase}";
+        }
+
+        if (!matchWinnerTextShouldAppear)
+        {
+            matchWinnerText.text = "";
         }
     }
 }
