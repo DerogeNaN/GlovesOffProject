@@ -1,5 +1,6 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
@@ -26,6 +27,9 @@ public class GameManager : MonoBehaviour
 
     bool matchWinnerTextShouldAppear = false;
     public TextMeshProUGUI matchWinnerText;
+
+    public Button mainMenuButton;
+    public TextMeshProUGUI mainMenuButtonText;
 
     PlayerController roundWinner;
 
@@ -129,6 +133,9 @@ public class GameManager : MonoBehaviour
                         break;
                     }
                 }
+
+                mainMenuButton.image.enabled = true;
+                mainMenuButtonText.enabled = true;
                 break;
         }
     }

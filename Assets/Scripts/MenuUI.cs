@@ -6,10 +6,10 @@ using UnityEngine.SceneManagement;
 
 public class MenuUI : MonoBehaviour
 {
-    [SerializeField] Canvas mainMenuUI;
-    [SerializeField] Canvas optionsMenuUI;
-    [SerializeField] Canvas creditsUI;
-    [SerializeField] Canvas levelSelectUI;
+    [SerializeField] Canvas mainMenuUI = null;
+    [SerializeField] Canvas optionsMenuUI = null;
+    [SerializeField] Canvas creditsUI = null;
+    [SerializeField] Canvas levelSelectUI = null;
 
     void Start()
     {
@@ -22,9 +22,17 @@ public class MenuUI : MonoBehaviour
         
     }
 
+    public void LoadLevelSelect()
+    {
+        mainMenuUI.gameObject.SetActive(false);
+        creditsUI.gameObject.SetActive(false);
+        optionsMenuUI.gameObject.SetActive(false);
+        levelSelectUI.gameObject.SetActive(true);
+    }
+
     public void LoadCharacterSelect()
     {
-        SceneManager.LoadScene(sceneName: "TestingScene");
+        SceneManager.LoadScene(sceneName: "Temple_Scene2");
     }
 
     public void LoadOptionsMenu()
@@ -46,6 +54,11 @@ public class MenuUI : MonoBehaviour
         mainMenuUI.gameObject.SetActive(false);
         creditsUI.gameObject.SetActive(true);
         optionsMenuUI.gameObject.SetActive(false);
+    }
+
+    public void ReturnToMainMenu()
+    {
+        SceneManager.LoadScene(sceneName: "MainMenu");
     }
 
     public void ExitButton()
