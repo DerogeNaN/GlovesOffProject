@@ -1,6 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using System.Text;
 using UnityEngine;
 
@@ -10,18 +7,17 @@ public class AnimationHandler : MonoBehaviour
     private GameManager gameManager;
     private PlayerController playerController;
     private PlayerController.Actions actionChoice = PlayerController.Actions.None;
+    private bool rpsTie;
 
 
     private GameManager.Phase oldPhase;
-    
+
     // Start is called before the first frame update
     void Start()
     {
         animator = GetComponent<Animator>();
         gameManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
         playerController = GetComponent<PlayerController>();
-
-
     }
 
     // Update is called once per frame
@@ -32,16 +28,9 @@ public class AnimationHandler : MonoBehaviour
             oldPhase = gameManager.GetPhase();
             if (oldPhase == GameManager.Phase.Action)
             {
-                animator.SetBool("Action Phase Start", true);
-            }
-            if (oldPhase != GameManager.Phase.Action)
-            {
-                animator.SetBool("Action Phase Start", false);
+                animator.SetTrigger("ActionPhaseStart");
             }
         }
-
-
-
     }
 
     void RPSAnimationTrigger(PlayerController player, PlayerController.Actions actionSelected, string animationState)
@@ -65,48 +54,58 @@ public class AnimationHandler : MonoBehaviour
     public void SetChoice(PlayerController.Actions choice)
     {
         actionChoice = choice;
-    }  
+    }
 
+    public void SetRPSTie(bool rpsResult)
+    {
+        rpsTie = rpsResult;
+    }
     public void SetResult(GameManager.MatchResult matchResult)
     {
-        StringBuilder buildMeAString = new StringBuilder(16);
+        StringBuilder animationTrigger = new StringBuilder(16);
 
         switch (actionChoice)
         {
             case PlayerController.Actions.Block:
-                buildMeAString.Append("Block");
+                animationTrigger.Append("Block");
                 break;
 
             case PlayerController.Actions.Kick:
-                buildMeAString.Append("Kick");
+                animationTrigger.Append("Kick");
                 break;
 
             case PlayerController.Actions.Punch:
-                buildMeAString.Append("Punch");
+                animationTrigger.Append("Punch");
                 break;
 
             default:
 
                 break;
         }
+
+        if (rpsTie)
+        {
+            animationTrigger.Append("SameAction");
+        }
+
         switch (matchResult)
         {
             case GameManager.MatchResult.Win:
-                buildMeAString.Append("Win");
+                animationTrigger.Append("Win");
                 break;
 
             case GameManager.MatchResult.Lose:
-                buildMeAString.Append("Lose");
+                animationTrigger.Append("Lose");
                 break;
 
             case GameManager.MatchResult.Tie:
-                buildMeAString.Append("Tie");
+                animationTrigger.Append("Tie");
                 break;
 
             default:
                 break;
         }
 
-        animator.SetTrigger(buildMeAString.ToString());
+        animator.SetTrigger(animationTrigger.ToString());
     }
 }

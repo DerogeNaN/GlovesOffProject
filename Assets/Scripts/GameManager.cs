@@ -1,6 +1,5 @@
 using TMPro;
 using UnityEngine;
-using static UnityEditor.Experimental.GraphView.GraphView;
 
 public class GameManager : MonoBehaviour
 {
@@ -100,6 +99,11 @@ public class GameManager : MonoBehaviour
                 for (int i = 0; i < players.Length; i++)
                 {
                     animationHandlers[i].SetChoice(players[i].ChosenAction);
+                    animationHandlers[i].SetRPSTie(false);
+                    if (players[0].ChosenAction == players[1].ChosenAction)
+                    {
+                        animationHandlers[i].SetRPSTie(true);
+                    }
                 }
 
                 currentPhase = Phase.Wager;
@@ -130,24 +134,27 @@ public class GameManager : MonoBehaviour
                     player.ActionPhase();
                 }
 
-                RoundOver();
-                for (int i = 0; i < players.Length; i++)
+                if (timer.IsZero())
                 {
-                    if (roundWinner == null)
-                        animationHandlers[i].SetResult(MatchResult.Tie);
-                    else if(roundWinner == players[i])
-                        animationHandlers[i].SetResult(MatchResult.Win);
-                    else
-                        animationHandlers[i].SetResult(MatchResult.Lose);
-                }
+                    RoundOver();
+                    for (int i = 0; i < players.Length; i++)
+                    {
+                        if (roundWinner == null)
+                            animationHandlers[i].SetResult(MatchResult.Tie);
+                        else if (roundWinner == players[i])
+                            animationHandlers[i].SetResult(MatchResult.Win);
+                        else
+                            animationHandlers[i].SetResult(MatchResult.Lose);
+                    }
 
-                if (HasWonMatch(players[0]) || HasWonMatch(players[1]))
-                {
-                    currentPhase = Phase.MatchEnd;
-                }
-                else
-                {
-                    ResetRound();
+                    if (HasWonMatch(players[0]) || HasWonMatch(players[1]))
+                    {
+                        currentPhase = Phase.MatchEnd;
+                    }
+                    else
+                    {
+                        ResetRound();
+                    }
                 }
 
                 break;
@@ -231,7 +238,7 @@ public class GameManager : MonoBehaviour
         roundWinnerText.text = $"Round Winner: Tie!";
         roundWinner = null;
         roundLoser = null;
-        
+
     }
 
     void MatchWin(PlayerController winner)
@@ -257,11 +264,11 @@ public class GameManager : MonoBehaviour
 
         players = new PlayerController[]
         {
-            playerSpawner._players[0].GetComponent<PlayerController>(), 
-            playerSpawner._players[1].GetComponent<PlayerController>() 
+            playerSpawner._players[0].GetComponent<PlayerController>(),
+            playerSpawner._players[1].GetComponent<PlayerController>()
         };
 
-        animationHandlers = new AnimationHandler[] 
+        animationHandlers = new AnimationHandler[]
         {
             players[0].GetComponent<AnimationHandler>(),
             players[1].GetComponent<AnimationHandler>()
