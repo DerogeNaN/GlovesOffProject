@@ -10,6 +10,7 @@ public class PlayerSpawner : MonoBehaviour
     [SerializeField] Transform[] spawnPoints = new Transform[2];
 
     public GameManager gameManager;
+    [SerializeField] Canvas inGameOverlay;
 
     void Start()
     {
@@ -35,6 +36,7 @@ public class PlayerSpawner : MonoBehaviour
         if (players[1] != null)
         {
             gameManager.EnableGameManager();
+            inGameOverlay.gameObject.SetActive(true);
         }
     }
 
