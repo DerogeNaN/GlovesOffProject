@@ -33,7 +33,6 @@ public class PlayerSpawner : MonoBehaviour
         players[playerInput.playerIndex] = playerInput;
 
         playerInput.transform.position = spawnPoints[playerInput.playerIndex].position;
-        //players[playerInput.playerIndex].gameObject = playerPrefabs[playerInput.playerIndex];
         playerInput.name = "Player " + (playerInput.playerIndex + 1).ToString();
 
         if (players[1] != null)

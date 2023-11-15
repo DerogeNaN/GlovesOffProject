@@ -1,5 +1,6 @@
 using System.Text;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class AnimationHandler : MonoBehaviour
 {
@@ -18,6 +19,7 @@ public class AnimationHandler : MonoBehaviour
         animator = GetComponent<Animator>();
         gameManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
         playerController = GetComponent<PlayerController>();
+
     }
 
     // Update is called once per frame
@@ -29,18 +31,6 @@ public class AnimationHandler : MonoBehaviour
             if (oldPhase == GameManager.Phase.Action)
             {
                 animator.SetTrigger("ActionPhaseStart");
-            }
-        }
-    }
-
-    void RPSAnimationTrigger(PlayerController player, PlayerController.Actions actionSelected, string animationState)
-    {
-        if (player.ChosenAction == actionSelected/* && Player loses round*/)
-        {
-            animator.SetBool(animationState, true);
-            if (oldPhase != GameManager.Phase.Action)
-            {
-                animator.SetBool(animationState, false);
             }
         }
     }
@@ -79,7 +69,6 @@ public class AnimationHandler : MonoBehaviour
                 break;
 
             default:
-
                 break;
         }
 
@@ -107,5 +96,10 @@ public class AnimationHandler : MonoBehaviour
         }
 
         animator.SetTrigger(animationTrigger.ToString());
+    }
+
+    void EndRound()
+    {
+        gameManager.EndRound();
     }
 }

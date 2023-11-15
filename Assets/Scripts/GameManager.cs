@@ -54,7 +54,7 @@ public class GameManager : MonoBehaviour
     void Start()
     {
 
-        ResetRound();
+        EndRound();
 
         //Testing
         currentPhaseText.text = "";
@@ -120,7 +120,17 @@ public class GameManager : MonoBehaviour
                 if (timer.IsZero())
                 {
                     currentPhase = Phase.Action;
-                    timer.RestartClock();
+
+                    DetermineRoundWinner();
+                    for (int i = 0; i < players.Length; i++)
+                    {
+                        if (roundWinner == null)
+                            animationHandlers[i].SetResult(MatchResult.Tie);
+                        else if (roundWinner == players[i])
+                            animationHandlers[i].SetResult(MatchResult.Win);
+                        else
+                            animationHandlers[i].SetResult(MatchResult.Lose);
+                    }
                 }
 
                 //Testing
@@ -132,29 +142,6 @@ public class GameManager : MonoBehaviour
                 foreach (PlayerController player in players)
                 {
                     player.ActionPhase();
-                }
-
-                if (timer.IsZero())
-                {
-                    RoundOver();
-                    for (int i = 0; i < players.Length; i++)
-                    {
-                        if (roundWinner == null)
-                            animationHandlers[i].SetResult(MatchResult.Tie);
-                        else if (roundWinner == players[i])
-                            animationHandlers[i].SetResult(MatchResult.Win);
-                        else
-                            animationHandlers[i].SetResult(MatchResult.Lose);
-                    }
-
-                    if (HasWonMatch(players[0]) || HasWonMatch(players[1]))
-                    {
-                        currentPhase = Phase.MatchEnd;
-                    }
-                    else
-                    {
-                        ResetRound();
-                    }
                 }
 
                 break;
@@ -172,11 +159,17 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    void ResetRound()
+    public void EndRound()
     {
         //testing
         currentPhaseTextShouldAppear = false;
         roundWinnerTextShouldAppear = true;
+
+        if (HasWonMatch(players[0]) || HasWonMatch(players[1]))
+        {
+            currentPhase = Phase.MatchEnd;
+            return;
+        }
 
         foreach (PlayerController player in players)
         {
@@ -191,7 +184,7 @@ public class GameManager : MonoBehaviour
 
     }
 
-    void RoundOver()
+    void DetermineRoundWinner()
     {
         //Determine Round Winner
         int player1Value = (int)players[0].ChosenAction + ((int)players[1].ChosenAction / 3) * 3 * ((int)players[0].ChosenAction % 2);
@@ -228,9 +221,6 @@ public class GameManager : MonoBehaviour
         loser.playerStamina.LoseStamina(loser.playerStamina.CurrentWager);
         roundWinner = winner;
         roundLoser = loser;
-
-        //Testing
-        roundWinnerTextShouldAppear = true;
     }
 
     void RoundTie()
