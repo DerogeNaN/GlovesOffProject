@@ -12,6 +12,6 @@ EditorBuildSettings:
     path: Assets/Scenes/MainMenu.unity
     guid: bd378b6af67727c449686ccbe81268f0
   - enabled: 1
-    path: Assets/Scenes/Temple_Scene2.unity
+    path: Assets/Scenes/Temple_Scene.unity
     guid: 05bb56c7553acf0438e4bd2bd3800492
   m_configObjects: {}
