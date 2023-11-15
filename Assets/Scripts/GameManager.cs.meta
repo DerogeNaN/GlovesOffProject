@@ -3,7 +3,23 @@ guid: f9f7aba24f245e44297a048aa32f6bf2
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - timer: {instanceID: 0}
+  - countdown: {instanceID: 0}
+  - currentPhaseText: {fileID: 8478003310278424019, guid: cee25eec4eaa9384d91c6539c5cedfc8,
+      type: 3}
+  - player1StaminaText: {fileID: 2647198050942083346, guid: e2b25615d8b71194e998e505b21b9ad7,
+      type: 3}
+  - player2StaminaText: {fileID: 6787141882315431594, guid: 74ba22ee01a457342a7afdb3005c2058,
+      type: 3}
+  - player1WagerText: {fileID: 8551606704862506120, guid: 4bd534466fbfee54880fadf2f94e89f7,
+      type: 3}
+  - player2WagerText: {fileID: 44597767486094012, guid: 609851985acacd54ba53196420d196aa,
+      type: 3}
+  - roundWinnerText: {fileID: 6355069623393173550, guid: a9045f97dba332a499ff18295ad4fcad,
+      type: 3}
+  - matchWinnerText: {fileID: 1976741944343446703, guid: f859c6d882411c943ba0efac3dd74f7d,
+      type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

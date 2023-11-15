@@ -6,7 +6,7 @@ using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
-    PlayerInput playerInput;
+    public PlayerInput playerInput;
     public PlayerStamina playerStamina;
     public enum Actions
     {
