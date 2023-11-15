@@ -40,6 +40,7 @@ public class MenuUI : MonoBehaviour
         mainMenuUI.gameObject.SetActive(false);
         creditsUI.gameObject.SetActive(false);
         optionsMenuUI.gameObject.SetActive(true);
+        levelSelectUI.gameObject.SetActive(false);
     }
 
     public void LoadMainMenu()
@@ -47,6 +48,7 @@ public class MenuUI : MonoBehaviour
         mainMenuUI.gameObject.SetActive(true);
         creditsUI.gameObject.SetActive(false);
         optionsMenuUI.gameObject.SetActive(false);
+        levelSelectUI.gameObject.SetActive(false);
     }
 
     public void LoadCredits()
@@ -54,6 +56,7 @@ public class MenuUI : MonoBehaviour
         mainMenuUI.gameObject.SetActive(false);
         creditsUI.gameObject.SetActive(true);
         optionsMenuUI.gameObject.SetActive(false);
+        levelSelectUI.gameObject.SetActive(false);
     }
 
     public void ReturnToMainMenu()
