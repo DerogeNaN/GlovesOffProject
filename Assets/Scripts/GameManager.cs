@@ -67,6 +67,10 @@ public class GameManager : MonoBehaviour
             players[0].GetComponent<AnimationHandler>(),
             players[1].GetComponent<AnimationHandler>()
         };
+        foreach(AnimationHandler handle in animationHandlers)
+        {
+            handle.EnableAnimationHandler();
+        }
         this.enabled = true;
 
         screenFade = GetComponent<ScreenFade>();

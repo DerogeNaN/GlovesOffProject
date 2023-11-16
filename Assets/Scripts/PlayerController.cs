@@ -27,7 +27,7 @@ public class PlayerController : MonoBehaviour
         playerStamina = GetComponent<PlayerStamina>();
         playerInput = GetComponent<PlayerInput>();
         characterCustomizer = GetComponent<CharacterCustomizer>();
-        spawner = GetComponent<PlayerSpawner>();
+        spawner = FindObjectOfType<PlayerSpawner>();
 
         playerInput.actions.FindAction("Punch").performed += Punch;
         playerInput.actions.FindAction("Kick").performed += Kick;

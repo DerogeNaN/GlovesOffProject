@@ -45,17 +45,19 @@ public class PlayerSpawner : MonoBehaviour
         //    players[playerInput.playerIndex].actions.FindAction("HatSelection").Enable();
         //}
 
-        if (playersReady[0] && playersReady[1] == true)
-        {
-            gameManager.EnableGameManager();
-            inGameOverlay.gameObject.SetActive(true);
-            animationHandler.EnableAnimationHandler();
-        }
+        
     }
 
     public void ReadyUp(PlayerInput playerInput)
     {
         playersReady[playerInput.playerIndex] = true;
         Debug.Log(playerInput.playerIndex + " is ready!");
+
+        if (playersReady[0] && playersReady[1])
+        {
+            gameManager.EnableGameManager();
+            inGameOverlay.gameObject.SetActive(true);
+
+        }
     }
 }
