@@ -1,5 +1,6 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
@@ -31,6 +32,8 @@ public class GameManager : MonoBehaviour
     public PlayerController roundLoser;
 
     AnimationHandler[] animationHandlers;
+
+    [SerializeField] Button mainMenuButton;
 
     public enum Phase
     {
@@ -182,6 +185,7 @@ public class GameManager : MonoBehaviour
                     if (player.playerStamina.CurrentStamina == player.playerStamina.staminaPoints)
                     {
                         MatchWin(player);
+                        mainMenuButton.gameObject.SetActive(true);
                         break;
                     }
                 }
@@ -261,14 +265,10 @@ public class GameManager : MonoBehaviour
         roundWinnerText.text = $"Round Winner: Tie!";
         roundWinner = null;
         roundLoser = null;
-
     }
 
     void MatchWin(PlayerController winner)
     {
-        //todo: Declare the match winner
-        //todo: Go to main menu after a trigger
-
         //testing
         staminaTextShouldAppear = false;
         matchWinnerText.text = $"{winner.name} wins!";

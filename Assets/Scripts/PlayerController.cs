@@ -101,7 +101,7 @@ public class PlayerController : MonoBehaviour
     public void RPSPhase()
     {
         playerInput.actions.FindActionMap("RPS").Enable();
-        playerInput.actions.FindActionMap("HatSelection").Enable();
+        playerInput.actions.FindActionMap("HatSelection").Disable();
     }
     public void WagerPhase()
     {
