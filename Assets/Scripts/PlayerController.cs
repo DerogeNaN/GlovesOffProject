@@ -8,6 +8,9 @@ public class PlayerController : MonoBehaviour
 {
     public PlayerInput playerInput;
     public PlayerStamina playerStamina;
+    CharacterCustomizer characterCustomizer;
+    PlayerSpawner spawner;
+
     public enum Actions
     {
         None,
@@ -23,18 +26,33 @@ public class PlayerController : MonoBehaviour
     {
         playerStamina = GetComponent<PlayerStamina>();
         playerInput = GetComponent<PlayerInput>();
+        characterCustomizer = GetComponent<CharacterCustomizer>();
+        spawner = GetComponent<PlayerSpawner>();
+
         playerInput.actions.FindAction("Punch").performed += Punch;
         playerInput.actions.FindAction("Kick").performed += Kick;
         playerInput.actions.FindAction("Block").performed += Block;
 
         playerInput.actions.FindAction("WagerUp").performed += WagerUp;
         playerInput.actions.FindAction("WagerDown").performed += WagerDown;
+
+        playerInput.actions.FindAction("Ready").performed += Ready;
+        playerInput.actions.FindAction("Left").performed += characterCustomizer.IterateLeft;
+        playerInput.actions.FindAction("Right").performed += characterCustomizer.IterateRight;
+
+        
     }
 
     void Update()
     {
 
     }
+    #region HatSelection
+    public void Ready(InputAction.CallbackContext callback)
+    {
+        spawner.ReadyUp(playerInput);
+    }
+    #endregion
     #region RPS
     void Punch(InputAction.CallbackContext callback)
     {
@@ -76,9 +94,14 @@ public class PlayerController : MonoBehaviour
     }
     #endregion
 
+    public void EnableHatSelectorMap()
+    {
+        playerInput.actions.FindActionMap("HatSelection").Enable();
+    }
     public void RPSPhase()
     {
         playerInput.actions.FindActionMap("RPS").Enable();
+        playerInput.actions.FindActionMap("HatSelection").Enable();
     }
     public void WagerPhase()
     {

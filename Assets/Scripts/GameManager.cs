@@ -10,6 +10,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] Clock timer;
     [SerializeField] Clock countdown;
 
+    ScreenFade screenFade;
     //Testing
     public bool currentPhaseTextShouldAppear = false;
     public TextMeshProUGUI currentPhaseText;
@@ -26,7 +27,7 @@ public class GameManager : MonoBehaviour
     bool matchWinnerTextShouldAppear = false;
     public TextMeshProUGUI matchWinnerText;
 
-    public PlayerController roundWinner;
+    private PlayerController roundWinner;
     public PlayerController roundLoser;
 
     AnimationHandler[] animationHandlers;
@@ -51,10 +52,32 @@ public class GameManager : MonoBehaviour
         Tie
     }
 
+    public void EnableGameManager()
+    {
+        playerSpawner = FindObjectOfType<PlayerSpawner>();
+
+        players = new PlayerController[]
+        {
+            playerSpawner._players[0].GetComponent<PlayerController>(),
+            playerSpawner._players[1].GetComponent<PlayerController>()
+        };
+
+        animationHandlers = new AnimationHandler[]
+        {
+            players[0].GetComponent<AnimationHandler>(),
+            players[1].GetComponent<AnimationHandler>()
+        };
+        this.enabled = true;
+
+        screenFade = GetComponent<ScreenFade>();
+    }
+
     void Start()
     {
+        countdown.RestartClock();
+        timer.ResetClock();
 
-        EndRound();
+        currentPhase = Phase.RPS;
 
         //Testing
         currentPhaseText.text = "";
@@ -119,8 +142,10 @@ public class GameManager : MonoBehaviour
 
                 if (timer.IsZero())
                 {
-                    currentPhase = Phase.Action;
-
+                    foreach (PlayerController player in players)
+                    {
+                        player.playerStamina.PreviousWager = player.playerStamina.CurrentWager;
+                    }
                     DetermineRoundWinner();
                     for (int i = 0; i < players.Length; i++)
                     {
@@ -131,6 +156,7 @@ public class GameManager : MonoBehaviour
                         else
                             animationHandlers[i].SetResult(MatchResult.Lose);
                     }
+                    currentPhase = Phase.Action;
                 }
 
                 //Testing
@@ -161,10 +187,13 @@ public class GameManager : MonoBehaviour
 
     public void EndRound()
     {
+        screenFade.Fade();
+
         //testing
         currentPhaseTextShouldAppear = false;
         roundWinnerTextShouldAppear = true;
 
+        
         if (HasWonMatch(players[0]) || HasWonMatch(players[1]))
         {
             currentPhase = Phase.MatchEnd;
@@ -216,7 +245,7 @@ public class GameManager : MonoBehaviour
         }
     }
     void RoundWin(PlayerController winner, PlayerController loser)
-    {
+    { 
         winner.playerStamina.GainStamina(loser.playerStamina.CurrentWager);
         loser.playerStamina.LoseStamina(loser.playerStamina.CurrentWager);
         roundWinner = winner;
@@ -246,24 +275,6 @@ public class GameManager : MonoBehaviour
     bool HasWonMatch(PlayerController player)
     {
         return player.playerStamina.CurrentStamina == player.playerStamina.staminaPoints;
-    }
-
-    public void EnableGameManager()
-    {
-        playerSpawner = FindObjectOfType<PlayerSpawner>();
-
-        players = new PlayerController[]
-        {
-            playerSpawner._players[0].GetComponent<PlayerController>(),
-            playerSpawner._players[1].GetComponent<PlayerController>()
-        };
-
-        animationHandlers = new AnimationHandler[]
-        {
-            players[0].GetComponent<AnimationHandler>(),
-            players[1].GetComponent<AnimationHandler>()
-        };
-        this.enabled = true;
     }
 
     public void UpdateText()
