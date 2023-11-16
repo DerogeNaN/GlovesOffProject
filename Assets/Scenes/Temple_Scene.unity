@@ -951,7 +951,7 @@ PrefabInstance:
     - target: {fileID: 1102494722342160100, guid: be40409655a770d4c9e2b333076321ef,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.049997926
+      value: 0.7000021
       objectReference: {fileID: 0}
     - target: {fileID: 1102494722342160100, guid: be40409655a770d4c9e2b333076321ef,
         type: 3}
@@ -1026,7 +1026,7 @@ PrefabInstance:
     - target: {fileID: 2128275209290733557, guid: be40409655a770d4c9e2b333076321ef,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1.7499993
+      value: -0.9999993
       objectReference: {fileID: 0}
     - target: {fileID: 2128275209290733557, guid: be40409655a770d4c9e2b333076321ef,
         type: 3}
@@ -1041,17 +1041,27 @@ PrefabInstance:
     - target: {fileID: 2128275209290733557, guid: be40409655a770d4c9e2b333076321ef,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.7071069
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 2128275209290733557, guid: be40409655a770d4c9e2b333076321ef,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2128275209290733557, guid: be40409655a770d4c9e2b333076321ef,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.70710677
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 2128275209290733557, guid: be40409655a770d4c9e2b333076321ef,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2128275209290733557, guid: be40409655a770d4c9e2b333076321ef,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: -90
+      value: 90
       objectReference: {fileID: 0}
     - target: {fileID: 4784917267916278561, guid: be40409655a770d4c9e2b333076321ef,
         type: 3}
@@ -1508,7 +1518,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 0603f8bf3c591cf42a08fcddb8248e9d, type: 2}
+      objectReference: {fileID: 2100000, guid: f272a8a6d92308f4e8c11ce2530bb1e2, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5a5c01c5261af4848bc653941547cac5, type: 3}
 --- !u!114 &1712884704 stripped
@@ -1625,7 +1635,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   screenFadeImage: {fileID: 252536089}
-  transitionTime: 0
+  transitionTime: 2
   delay: 0
 --- !u!114 &2145063369 stripped
 MonoBehaviour:
