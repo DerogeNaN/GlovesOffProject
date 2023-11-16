@@ -15,11 +15,7 @@ public class AnimationHandler : MonoBehaviour
 
     // Start is called before the first frame update
     void Start()
-    {
-        animator = GetComponent<Animator>();
-        gameManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
-        playerController = GetComponent<PlayerController>();
-
+    { 
     }
 
     // Update is called once per frame
@@ -96,6 +92,14 @@ public class AnimationHandler : MonoBehaviour
         }
 
         animator.SetTrigger(animationTrigger.ToString());
+    }
+
+    public void EnableAnimationHandler()
+    {
+        animator = GetComponent<Animator>();
+        gameManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
+        playerController = GetComponent<PlayerController>();
+        this.enabled = true;
     }
 
     void EndRound()
