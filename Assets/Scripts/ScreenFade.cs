@@ -3,60 +3,46 @@ using UnityEngine.UI;
 
 public class ScreenFade : MonoBehaviour
 {
+    [SerializeField] Image screenFadeImage;
+    float alpha;
     bool fadeOut;
     bool fadeIn;
-    bool isCounting;
-    [SerializeField] Image screenFadeImage;
-    float screenFadeAlpha;
 
-    public float transitionTime;
-    public float delay;
-    private float currentTime;
-    // Start is called before the first frame update
+    [SerializeField] float fadeTime;
+    //[SerializeField] float delay;
+
     private void Start()
     {
         
     }
-    void OnEnable()
-    {
-        currentTime = 0;
-        isCounting = true;
-        fadeOut = true;
-    }
-    // Update is called once per frame
+
     void Update()
     {
-        if (!isCounting)
-            return;
-        currentTime += Time.deltaTime;
-
         if (fadeOut)
         {
-            if (currentTime >= transitionTime + delay)
+            for (float currentTime = 0; currentTime <= fadeTime; currentTime += Time.deltaTime)
             {
-                fadeOut = false;
-                fadeIn = true;
-                currentTime = 0;
+                alpha = (currentTime / fadeTime);
+                screenFadeImage.color = new Color(0, 0, 0, alpha);
             }
-            screenFadeAlpha = (currentTime / transitionTime);
-            screenFadeImage.color = new Color( 0, 0, 0, screenFadeAlpha);
         }
-        if (fadeIn)
+
+        else
         {
-            if (currentTime >= transitionTime)
+            for (float currentTime = fadeTime; currentTime >= 0; currentTime -= Time.deltaTime)
             {
-                currentTime = transitionTime;
-                fadeIn = false;
-                isCounting = false;
-                this.enabled = false;
+                alpha = (currentTime / fadeTime);
+                screenFadeImage.color = new Color(0, 0, 0, alpha);
             }
-            screenFadeAlpha = 1 - ((currentTime / transitionTime));
-            screenFadeImage.color = new Color(0, 0, 0, screenFadeAlpha);
         }
     }
 
-    public void Fade()
+    public void FadeOutOfScene()
     {
-        this.enabled = true;
+        fadeOut = true;
+    }
+    public void FadeIntoScene()
+    {
+        fadeIn = true;
     }
 }

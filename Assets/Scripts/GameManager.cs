@@ -34,15 +34,17 @@ public class GameManager : MonoBehaviour
 
     public enum Phase
     {
+        RoundEnd,
         MatchEnd,
         RPS,
         Wager,
         Action
     }
     Phase currentPhase;
-    public Phase GetPhase()
+    public Phase CurrentPhase
     {
-        return currentPhase;
+        get { return currentPhase; }
+        set { currentPhase = value; }
     }
 
     public enum MatchResult
@@ -172,6 +174,11 @@ public class GameManager : MonoBehaviour
 
                 break;
             ///////////////////////////////////////
+            case Phase.RoundEnd:
+                screenFade.FadeOutOfScene();
+                EndRound();
+                break;
+            ///////////////////////////////////////
             case Phase.MatchEnd:
                 foreach (PlayerController player in players)
                 {
@@ -185,15 +192,15 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void EndRound()
+    void EndRound()
     {
-        screenFade.Fade();
+        screenFade.FadeIntoScene();
 
         //testing
         currentPhaseTextShouldAppear = false;
         roundWinnerTextShouldAppear = true;
 
-        
+
         if (HasWonMatch(players[0]) || HasWonMatch(players[1]))
         {
             currentPhase = Phase.MatchEnd;
@@ -245,7 +252,7 @@ public class GameManager : MonoBehaviour
         }
     }
     void RoundWin(PlayerController winner, PlayerController loser)
-    { 
+    {
         winner.playerStamina.GainStamina(loser.playerStamina.CurrentWager);
         loser.playerStamina.LoseStamina(loser.playerStamina.CurrentWager);
         roundWinner = winner;

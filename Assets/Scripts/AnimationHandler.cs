@@ -21,9 +21,9 @@ public class AnimationHandler : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (gameManager.GetPhase() != oldPhase)
+        if (gameManager.CurrentPhase != oldPhase)
         {
-            oldPhase = gameManager.GetPhase();
+            oldPhase = gameManager.CurrentPhase;
             if (oldPhase == GameManager.Phase.Action)
             {
                 animator.SetTrigger("ActionPhaseStart");
@@ -100,10 +100,5 @@ public class AnimationHandler : MonoBehaviour
         gameManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
         playerController = GetComponent<PlayerController>();
         this.enabled = true;
-    }
-
-    void EndRound()
-    {
-        gameManager.EndRound();
     }
 }
