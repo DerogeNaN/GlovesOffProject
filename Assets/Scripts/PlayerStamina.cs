@@ -18,6 +18,8 @@ public class PlayerStamina : MonoBehaviour
 
     private int currentWager;
     public int CurrentWager { get { return currentWager; } }
+    private int previousWager;
+    public int PreviousWager { set { previousWager = value; } }
 
     // Start is called before the first frame update
     void Start()
@@ -43,9 +45,9 @@ public class PlayerStamina : MonoBehaviour
     public void LoseStamina(int staminaLost)
     {
         currentStamina -= staminaLost;
-        //Testing
         if (currentStamina < 0)
             currentStamina = 0;
+        //Testing
         print("Stamina Lost. Current Stamina: " + currentStamina);
     }
 
@@ -67,6 +69,14 @@ public class PlayerStamina : MonoBehaviour
 
     public void increaseWager()
     {
+        if (previousWager == 2 && currentWager == 1)
+        {
+            currentWager += 2;
+        }
+        if (previousWager == 3 && currentWager == 2)
+        {
+            return;
+        }
         if (currentWager < maxWager && currentWager < currentStamina)
         {
             currentWager += 1;
@@ -76,9 +86,19 @@ public class PlayerStamina : MonoBehaviour
     }
     public void decreaseWager()
     {
+        if (previousWager == 2 && currentWager == 3)
+        {
+            currentWager -= 2;
+        }
+        if (previousWager == 1 && currentWager == 2)
+        {
+            return;
+        }
+
         if (currentWager > minWager)
         {
             currentWager -= 1;
+
             //Testing
             print("Decreased Wager. Current Wager: " + currentWager);
         }
@@ -86,7 +106,13 @@ public class PlayerStamina : MonoBehaviour
 
     public void resetWager()
     {
+        if (previousWager == 1)
+        {
+            currentWager = 2;
+            return;
+        }
         currentWager = minWager;
+
         //Testing
         print("Wager Reset. Current Wager: " + currentWager);
     }
