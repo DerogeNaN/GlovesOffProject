@@ -7,7 +7,9 @@ public class ScreenFade : MonoBehaviour
     float alpha;
     bool fadeOut;
     bool fadeIn;
-
+    bool isFading;
+    public bool IsFading { get { return isFading; } }
+    float currentTime;
     [SerializeField] float fadeTime;
     //[SerializeField] float delay;
 
@@ -20,29 +22,41 @@ public class ScreenFade : MonoBehaviour
     {
         if (fadeOut)
         {
-            for (float currentTime = 0; currentTime <= fadeTime; currentTime += Time.deltaTime)
+            if (currentTime <= fadeTime)
             {
+                currentTime += Time.deltaTime;
                 alpha = (currentTime / fadeTime);
                 screenFadeImage.color = new Color(0, 0, 0, alpha);
+                return;
             }
+            currentTime = 0;
+            fadeOut = false;
+            isFading = false;
         }
 
-        else
+        if (fadeIn)
         {
-            for (float currentTime = fadeTime; currentTime >= 0; currentTime -= Time.deltaTime)
+            if (currentTime >= 0)
             {
+                currentTime -= Time.deltaTime;
                 alpha = (currentTime / fadeTime);
                 screenFadeImage.color = new Color(0, 0, 0, alpha);
+                return;
             }
+            currentTime = fadeTime;
+            fadeIn = false;
+            isFading = false;
         }
     }
 
     public void FadeOutOfScene()
     {
         fadeOut = true;
+        isFading = true;
     }
     public void FadeIntoScene()
     {
         fadeIn = true;
+        isFading = true;
     }
 }

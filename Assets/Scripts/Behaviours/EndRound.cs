@@ -5,11 +5,12 @@ using UnityEngine;
 public class EndRound : StateMachineBehaviour
 {
     GameManager gameManager;
+    ScreenFade screenFade;
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         gameManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
-
+        screenFade = GameObject.FindGameObjectWithTag("GameManager").GetComponent<ScreenFade>();
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
@@ -22,6 +23,7 @@ public class EndRound : StateMachineBehaviour
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         gameManager.CurrentPhase = GameManager.Phase.RoundEnd;
+        screenFade.FadeOutOfScene();
     }
 
     // OnStateMove is called right after Animator.OnAnimatorMove()

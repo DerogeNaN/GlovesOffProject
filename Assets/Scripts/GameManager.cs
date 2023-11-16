@@ -179,7 +179,10 @@ public class GameManager : MonoBehaviour
                 break;
             ///////////////////////////////////////
             case Phase.RoundEnd:
-                screenFade.FadeOutOfScene();
+                if (screenFade.IsFading)
+                {
+                    return;
+                }
                 EndRound();
                 break;
             ///////////////////////////////////////
