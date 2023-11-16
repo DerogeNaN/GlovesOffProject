@@ -3,60 +3,60 @@ using UnityEngine.UI;
 
 public class ScreenFade : MonoBehaviour
 {
+    [SerializeField] Image screenFadeImage;
+    float alpha;
     bool fadeOut;
     bool fadeIn;
-    bool isCounting;
-    [SerializeField] Image screenFadeImage;
-    float screenFadeAlpha;
+    bool isFading;
+    public bool IsFading { get { return isFading; } }
+    float currentTime;
+    [SerializeField] float fadeTime;
+    //[SerializeField] float delay;
 
-    public float transitionTime;
-    public float delay;
-    private float currentTime;
-    // Start is called before the first frame update
     private void Start()
     {
         
     }
-    void OnEnable()
-    {
-        currentTime = 0;
-        isCounting = true;
-        fadeOut = true;
-    }
-    // Update is called once per frame
+
     void Update()
     {
-        if (!isCounting)
-            return;
-        currentTime += Time.deltaTime;
-
         if (fadeOut)
         {
-            if (currentTime >= transitionTime + delay)
+            if (currentTime <= fadeTime)
             {
-                fadeOut = false;
-                fadeIn = true;
-                currentTime = 0;
+                currentTime += Time.deltaTime;
+                alpha = (currentTime / fadeTime);
+                screenFadeImage.color = new Color(0, 0, 0, alpha);
+                return;
             }
-            screenFadeAlpha = (currentTime / transitionTime);
-            screenFadeImage.color = new Color( 0, 0, 0, screenFadeAlpha);
+            currentTime = 0;
+            fadeOut = false;
+            isFading = false;
         }
+
         if (fadeIn)
         {
-            if (currentTime >= transitionTime)
+            if (currentTime >= 0)
             {
-                currentTime = transitionTime;
-                fadeIn = false;
-                isCounting = false;
-                this.enabled = false;
+                currentTime -= Time.deltaTime;
+                alpha = (currentTime / fadeTime);
+                screenFadeImage.color = new Color(0, 0, 0, alpha);
+                return;
             }
-            screenFadeAlpha = 1 - ((currentTime / transitionTime));
-            screenFadeImage.color = new Color(0, 0, 0, screenFadeAlpha);
+            currentTime = fadeTime;
+            fadeIn = false;
+            isFading = false;
         }
     }
 
-    public void Fade()
+    public void FadeOutOfScene()
     {
-        this.enabled = true;
+        fadeOut = true;
+        isFading = true;
+    }
+    public void FadeIntoScene()
+    {
+        fadeIn = true;
+        isFading = true;
     }
 }
