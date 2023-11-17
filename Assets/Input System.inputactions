@@ -140,7 +140,7 @@
                 {
                     "name": "",
                     "id": "cad30a05-9c20-4c88-9f83-207def19a668",
-                    "path": "<Keyboard>/w",
+                    "path": "<Keyboard>/e",
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard",
@@ -162,7 +162,7 @@
                 {
                     "name": "",
                     "id": "8f29c863-c3a9-4352-bea8-93735a1ebce5",
-                    "path": "<Keyboard>/s",
+                    "path": "<Keyboard>/q",
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard",
