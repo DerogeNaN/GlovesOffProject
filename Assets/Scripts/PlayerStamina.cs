@@ -69,7 +69,7 @@ public class PlayerStamina : MonoBehaviour
 
     public void increaseWager()
     {
-        if (previousWager == 2 && currentWager == 1)
+        if (previousWager == 2 && currentWager == 1 && currentStamina >= 3)
         {
             currentWager += 2;
         }
