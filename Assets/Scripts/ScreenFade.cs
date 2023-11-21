@@ -29,7 +29,6 @@ public class ScreenFade : MonoBehaviour
                 screenFadeImage.color = new Color(0, 0, 0, alpha);
                 return;
             }
-            currentTime = 0;
             fadeOut = false;
             isFading = false;
         }
@@ -43,7 +42,7 @@ public class ScreenFade : MonoBehaviour
                 screenFadeImage.color = new Color(0, 0, 0, alpha);
                 return;
             }
-            currentTime = fadeTime;
+
             fadeIn = false;
             isFading = false;
         }
@@ -51,11 +50,13 @@ public class ScreenFade : MonoBehaviour
 
     public void FadeOutOfScene()
     {
+        currentTime = 0;
         fadeOut = true;
         isFading = true;
     }
     public void FadeIntoScene()
     {
+        currentTime = fadeTime;
         fadeIn = true;
         isFading = true;
     }
