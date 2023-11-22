@@ -111593,4 +111593,12 @@ AnimationClip:
     script: {fileID: 0}
   m_HasGenericRootTransform: 0
   m_HasMotionFloatCurves: 0
-  m_Events: []
+  m_Events:
+  - time: 4.133333
+    functionName: SFXPlay
+    data: 
+    objectReferenceParameter: {fileID: 8300000, guid: 295ed47405c2bee4c8d504a1aee8af74,
+      type: 3}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0

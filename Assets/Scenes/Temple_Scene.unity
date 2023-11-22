@@ -543,6 +543,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5758382720413472445, guid: b79e31989f550b049b7b8331bc95ebe3,
         type: 3}
+      propertyPath: m_Name
+      value: Player 2 Stamina
+      objectReference: {fileID: 0}
+    - target: {fileID: 5758382720413472445, guid: b79e31989f550b049b7b8331bc95ebe3,
+        type: 3}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
@@ -760,6 +765,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchoredPosition.x
       value: 11.999999
+      objectReference: {fileID: 0}
+    - target: {fileID: 5758382721640065494, guid: b79e31989f550b049b7b8331bc95ebe3,
+        type: 3}
+      propertyPath: m_Name
+      value: Match Winner
       objectReference: {fileID: 0}
     - target: {fileID: 5758382721640065494, guid: b79e31989f550b049b7b8331bc95ebe3,
         type: 3}
@@ -1635,8 +1645,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   screenFadeImage: {fileID: 252536089}
-  transitionTime: 2
-  delay: 0
+  fadeTime: 0
+--- !u!114 &2002949529
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2002949520}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f380f428dece4ce4294a1c9759c09113, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  UICanvas: {fileID: 1785466414}
 --- !u!114 &2145063369 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5758382721017710645, guid: b79e31989f550b049b7b8331bc95ebe3,

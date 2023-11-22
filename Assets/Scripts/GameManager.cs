@@ -1,4 +1,3 @@
-using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -8,46 +7,34 @@ public class GameManager : MonoBehaviour
     PlayerController[] players;
     public PlayerController[] Players { get { return players; } }
 
-    [SerializeField] Clock timer;
-    [SerializeField] Clock countdown;
+    public Clock timer;
+    public Clock countdown;
 
     ScreenFade screenFade;
-    //Testing
-    public bool currentPhaseTextShouldAppear = false;
-    public TextMeshProUGUI currentPhaseText;
 
-    bool staminaTextShouldAppear = true;
-    public TextMeshProUGUI player1StaminaText;
-    public TextMeshProUGUI player2StaminaText;
-    public TextMeshProUGUI player1WagerText;
-    public TextMeshProUGUI player2WagerText;
+    PlayerController roundWinner;
+    public PlayerController RoundWinner { get { return roundWinner; } }
 
-    bool roundWinnerTextShouldAppear = false;
-    public TextMeshProUGUI roundWinnerText;
-
-    bool matchWinnerTextShouldAppear = false;
-    public TextMeshProUGUI matchWinnerText;
-
-    private PlayerController roundWinner;
-    public PlayerController roundLoser;
+    PlayerController matchWinner;
+    public PlayerController MatchWinner { get { return matchWinner; } }
 
     AnimationHandler[] animationHandlers;
 
-    [SerializeField] Button mainMenuButton;
+    //[SerializeField] Button mainMenuButton;
 
     public enum Phase
     {
-        RoundEnd,
-        MatchEnd,
+        RoundStart,
         RPS,
         Wager,
-        Action
+        Action,
+        RoundEnd,
+        MatchEnd
     }
     Phase currentPhase;
     public Phase CurrentPhase
     {
         get { return currentPhase; }
-        set { currentPhase = value; }
     }
 
     public enum MatchResult
@@ -72,7 +59,7 @@ public class GameManager : MonoBehaviour
             players[0].GetComponent<AnimationHandler>(),
             players[1].GetComponent<AnimationHandler>()
         };
-        foreach(AnimationHandler handle in animationHandlers)
+        foreach (AnimationHandler handle in animationHandlers)
         {
             handle.EnableAnimationHandler();
         }
@@ -83,102 +70,72 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        countdown.RestartClock();
-        timer.ResetClock();
-
-        currentPhase = Phase.RPS;
-
-        //Testing
-        currentPhaseText.text = "";
-        roundWinnerText.text = "";
+        GoToRoundStart();
     }
 
     void Update()
     {
-        UpdateText();
-
         switch (currentPhase)
         {
-            ///////////////////////////////////////
-            case Phase.RPS:
+            case Phase.RoundStart:
                 if (!countdown.IsZero())
                 {
                     break;
                 }
-
-                foreach (PlayerController player in players)
-                {
-                    player.RPSPhase();
-                }
-                timer.StartClock();
-
-                //Testing
-                currentPhaseTextShouldAppear = true;
-                roundWinnerTextShouldAppear = false;
-
+                GoToRPS();
+                break;
+            ///////////////////////////////////////
+            case Phase.RPS:
                 if (!timer.IsZero())
                 {
                     break;
                 }
 
-                foreach (PlayerController player in players)
-                {
-                    if (player.ChosenAction == PlayerController.Actions.None)
-                    {
-                        player.RandomiseAction();
-                    }
-                }
                 for (int i = 0; i < players.Length; i++)
                 {
+                    if (players[i].ChosenAction == PlayerController.Actions.None)
+                        players[i].RandomiseAction();
                     animationHandlers[i].SetChoice(players[i].ChosenAction);
-                    animationHandlers[i].SetRPSTie(false);
+                }
+
+                for (int i = 0; i < players.Length; i++)
+                {
                     if (players[0].ChosenAction == players[1].ChosenAction)
                     {
                         animationHandlers[i].SetRPSTie(true);
+                        break;
                     }
+                    animationHandlers[i].SetRPSTie(false);
                 }
 
-                currentPhase = Phase.Wager;
-                timer.RestartClock();
-
+                GoToWager();
                 break;
             ///////////////////////////////////////
             case Phase.Wager:
-                foreach (PlayerController player in players)
+                if (!timer.IsZero())
                 {
-                    player.WagerPhase();
+                    break;
                 }
-
-                if (timer.IsZero())
-                {
-                    foreach (PlayerController player in players)
-                    {
-                        player.playerStamina.PreviousWager = player.playerStamina.CurrentWager;
-                    }
-                    DetermineRoundWinner();
-                    for (int i = 0; i < players.Length; i++)
-                    {
-                        if (roundWinner == null)
-                            animationHandlers[i].SetResult(MatchResult.Tie);
-                        else if (roundWinner == players[i])
-                            animationHandlers[i].SetResult(MatchResult.Win);
-                        else
-                            animationHandlers[i].SetResult(MatchResult.Lose);
-                    }
-                    currentPhase = Phase.Action;
-                }
-
-                //Testing
-                currentPhaseTextShouldAppear = true;
-
+                GoToAction();
                 break;
             ///////////////////////////////////////
             case Phase.Action:
-                foreach (PlayerController player in players)
+                for (int i = 0; i < players.Length; i++)
                 {
-                    player.ActionPhase();
+                    if (roundWinner == null)
+                    {
+                        animationHandlers[i].SetResult(MatchResult.Tie);
+                    }
+                    else if (roundWinner == players[i])
+                    {
+                        animationHandlers[i].SetResult(MatchResult.Win);
+                    }
+                    else
+                    {
+                        animationHandlers[i].SetResult(MatchResult.Lose);
+                    }
+                    players[i].playerStamina.PreviousWager = players[i].playerStamina.CurrentWager;
                 }
-
                 break;
             ///////////////////////////////////////
             case Phase.RoundEnd:
@@ -195,7 +152,7 @@ public class GameManager : MonoBehaviour
                     if (player.playerStamina.CurrentStamina == player.playerStamina.staminaPoints)
                     {
                         MatchWin(player);
-                        mainMenuButton.gameObject.SetActive(true);
+                        //mainMenuButton.gameObject.SetActive(true);
                         break;
                     }
                 }
@@ -206,15 +163,9 @@ public class GameManager : MonoBehaviour
     void EndRound()
     {
         screenFade.FadeIntoScene();
-
-        //testing
-        currentPhaseTextShouldAppear = false;
-        roundWinnerTextShouldAppear = true;
-
-
         if (HasWonMatch(players[0]) || HasWonMatch(players[1]))
         {
-            currentPhase = Phase.MatchEnd;
+            GoToMatchEnd();
             return;
         }
 
@@ -224,16 +175,11 @@ public class GameManager : MonoBehaviour
             player.ResetChosenAction();
         }
 
-        countdown.RestartClock();
-        timer.ResetClock();
-
-        currentPhase = Phase.RPS;
-
+        GoToRoundStart();
     }
 
     void DetermineRoundWinner()
     {
-        //Determine Round Winner
         int player1Value = (int)players[0].ChosenAction + ((int)players[1].ChosenAction / 3) * 3 * ((int)players[0].ChosenAction % 2);
         int player2Value = (int)players[1].ChosenAction + ((int)players[0].ChosenAction / 3) * 3 * ((int)players[1].ChosenAction % 2);
 
@@ -267,23 +213,16 @@ public class GameManager : MonoBehaviour
         winner.playerStamina.GainStamina(loser.playerStamina.CurrentWager);
         loser.playerStamina.LoseStamina(loser.playerStamina.CurrentWager);
         roundWinner = winner;
-        roundLoser = loser;
     }
 
     void RoundTie()
     {
-        roundWinnerText.text = $"Round Winner: Tie!";
         roundWinner = null;
-        roundLoser = null;
     }
 
     void MatchWin(PlayerController winner)
     {
-        //testing
-        staminaTextShouldAppear = false;
-        matchWinnerText.text = $"{winner.name} wins!";
-        currentPhaseTextShouldAppear = false;
-        roundWinnerTextShouldAppear = false;
+        matchWinner = winner;
     }
 
     bool HasWonMatch(PlayerController player)
@@ -291,49 +230,54 @@ public class GameManager : MonoBehaviour
         return player.playerStamina.CurrentStamina == player.playerStamina.staminaPoints;
     }
 
-    public void UpdateText()
-    {
-        if (!staminaTextShouldAppear)
-        {
-            player1StaminaText.text = "";
-            player2StaminaText.text = "";
-            player1WagerText.text = "";
-            player2WagerText.text = "";
-        }
-        else
-        {
-            player1StaminaText.text = $"Player 1 Stamina: {players[0].playerStamina.CurrentStamina}";
-            player2StaminaText.text = $"Player 2 Stamina: {players[1].playerStamina.CurrentStamina}";
-            player1WagerText.text = $"Player 1 Wager: {players[0].playerStamina.CurrentWager}";
-            player2WagerText.text = $"Player 2 Wager: {players[1].playerStamina.CurrentWager}";
-        }
-
-        if (!roundWinnerTextShouldAppear)
-        {
-            roundWinnerText.text = "";
-        }
-        else if (roundWinner != null)
-        {
-            roundWinnerText.text = $"Round Winner: {roundWinner.name}!";
-        }
-
-        if (!currentPhaseTextShouldAppear)
-        {
-            currentPhaseText.text = "";
-        }
-        else
-        {
-            currentPhaseText.text = $"Current Phase: {currentPhase}";
-        }
-
-        if (!matchWinnerTextShouldAppear)
-        {
-            matchWinnerText.text = "";
-        }
-    }
-
     public bool CompareWager(PlayerController player1, PlayerController player2)
     {
         return (player1.playerStamina.CurrentWager > player2.playerStamina.CurrentWager);
     }
+
+    #region Go to phase
+    void GoToRoundStart()
+    {
+        countdown.RestartClock();
+        currentPhase = Phase.RoundStart;
+    }
+    void GoToRPS()
+    {
+        foreach (PlayerController player in players)
+        {
+            player.RPSPhase();
+        }
+        timer.RestartClock();
+        currentPhase = Phase.RPS;
+    }
+    void GoToWager()
+    {
+        foreach (PlayerController player in players)
+        {
+            player.WagerPhase();
+        }
+        timer.RestartClock();
+        currentPhase = Phase.Wager;
+    }
+    void GoToAction()
+    {
+        DetermineRoundWinner();
+        foreach (PlayerController player in players)
+        {
+            player.ActionPhase();
+        }
+        currentPhase = Phase.Action;
+    }
+    public void GoToRoundEnd()
+    {
+        screenFade.FadeOutOfScene();
+        currentPhase = Phase.RoundEnd;
+    }
+    void GoToMatchEnd()
+    {
+        currentPhase = Phase.MatchEnd;
+    }
+    #endregion
+
+
 }
