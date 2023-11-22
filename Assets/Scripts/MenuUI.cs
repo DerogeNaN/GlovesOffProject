@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using UnityEngine.EventSystems;
 
 public class MenuUI : MonoBehaviour
 {
@@ -11,19 +12,13 @@ public class MenuUI : MonoBehaviour
     [SerializeField] Canvas creditsUI = null;
     [SerializeField] Canvas levelSelectUI = null;
 
-    void Start()
-    {
-        
-    }
-
-    
-    void Update()
-    {
-        
-    }
+    [SerializeField] EventSystem eventSystem;
+    [SerializeField] GameObject optionsFirst, creditsFirst, levelSelectFirst, mainMenuFirst;
 
     public void LoadLevelSelect()
     {
+        eventSystem.SetSelectedGameObject(levelSelectFirst);
+
         mainMenuUI.gameObject.SetActive(false);
         creditsUI.gameObject.SetActive(false);
         optionsMenuUI.gameObject.SetActive(false);
@@ -37,6 +32,8 @@ public class MenuUI : MonoBehaviour
 
     public void LoadOptionsMenu()
     {
+        eventSystem.SetSelectedGameObject(optionsFirst);
+
         mainMenuUI.gameObject.SetActive(false);
         creditsUI.gameObject.SetActive(false);
         optionsMenuUI.gameObject.SetActive(true);
@@ -45,6 +42,8 @@ public class MenuUI : MonoBehaviour
 
     public void LoadMainMenu()
     {
+        eventSystem.SetSelectedGameObject(mainMenuFirst);
+
         mainMenuUI.gameObject.SetActive(true);
         creditsUI.gameObject.SetActive(false);
         optionsMenuUI.gameObject.SetActive(false);
@@ -53,6 +52,8 @@ public class MenuUI : MonoBehaviour
 
     public void LoadCredits()
     {
+        eventSystem.SetSelectedGameObject(creditsFirst);
+
         mainMenuUI.gameObject.SetActive(false);
         creditsUI.gameObject.SetActive(true);
         optionsMenuUI.gameObject.SetActive(false);

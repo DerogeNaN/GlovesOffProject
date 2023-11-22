@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
@@ -20,7 +21,7 @@ public class GameManager : MonoBehaviour
 
     AnimationHandler[] animationHandlers;
 
-    //[SerializeField] Button mainMenuButton;
+    [SerializeField] Button mainMenuButton;
 
     public enum Phase
     {
@@ -152,7 +153,7 @@ public class GameManager : MonoBehaviour
                     if (player.playerStamina.CurrentStamina == player.playerStamina.staminaPoints)
                     {
                         MatchWin(player);
-                        //mainMenuButton.gameObject.SetActive(true);
+                        mainMenuButton.gameObject.SetActive(true);
                         break;
                     }
                 }
@@ -279,5 +280,17 @@ public class GameManager : MonoBehaviour
     }
     #endregion
 
+    public void PauseGame(InputAction.CallbackContext callback, PlayerInput p)
+    {
+        Time.timeScale = 0;
+        Debug.Log("The game is paused");
+    }
 
+    public void ResumeGame(InputAction.CallbackContext callback, PlayerInput p)
+    {
+        Time.timeScale = 1;
+        Debug.Log("The game will resume");
+
+        
+    }
 }

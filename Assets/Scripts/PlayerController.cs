@@ -9,6 +9,7 @@ public class PlayerController : MonoBehaviour
     public PlayerInput playerInput;
     public PlayerStamina playerStamina;
     CharacterCustomizer characterCustomizer;
+    [SerializeField] GameManager gameManager;
     PlayerSpawner spawner;
 
     public enum Actions
@@ -27,6 +28,7 @@ public class PlayerController : MonoBehaviour
         playerStamina = GetComponent<PlayerStamina>();
         playerInput = GetComponent<PlayerInput>();
         characterCustomizer = GetComponent<CharacterCustomizer>();
+        gameManager = FindObjectOfType<GameManager>();
         spawner = FindObjectOfType<PlayerSpawner>();
 
         playerInput.actions.FindAction("Punch").performed += Punch;
@@ -40,7 +42,8 @@ public class PlayerController : MonoBehaviour
         playerInput.actions.FindAction("Left").performed += characterCustomizer.IterateLeft;
         playerInput.actions.FindAction("Right").performed += characterCustomizer.IterateRight;
 
-        
+        playerInput.actions.FindAction("Pause").performed += Pause;
+        playerInput.actions.FindAction("Resume").performed += Resume;
     }
 
     void Update()
@@ -94,9 +97,20 @@ public class PlayerController : MonoBehaviour
     }
     #endregion
 
+    private void Pause(InputAction.CallbackContext callback)
+    {
+        gameManager.PauseGame(callback, playerInput);
+    }
+
+    private void Resume(InputAction.CallbackContext callback)
+    {
+        gameManager.ResumeGame(callback, playerInput);
+    }
+
     public void EnableHatSelectorMap()
     {
         playerInput.actions.FindActionMap("HatSelection").Enable();
+        playerInput.actions.FindActionMap("InGame").Enable();
     }
     public void RPSPhase()
     {
