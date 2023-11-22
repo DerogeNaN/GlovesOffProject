@@ -4,15 +4,26 @@ using UnityEngine;
 
 public class PlayerAudioController : MonoBehaviour
 {
-    public enum ReactionSound
+    [SerializeField] AudioSource soundFXSource, vocalSource, miscSource;
+
+    public void SFXPlay(AudioClip soundFXClip)
     {
-        boom,
-        pow
+        soundFXSource.clip = soundFXClip;
+        soundFXSource.Play();
+        Debug.Log("SFX");
     }
 
-    public void PlaySound(ReactionSound animationID)
+    public void VocalPlay(AudioClip vocalClip)
     {
-        Debug.Log("Sound as playd!");
+        vocalSource.clip = vocalClip;
+        vocalSource.Play();
+        Debug.Log("Vocals");
     }
 
+    public void MiscPlay(AudioClip miscClip)
+    {
+        miscSource.clip = miscClip;
+        miscSource.Play();
+        Debug.Log("Misc. Sound");
+    }
 }
