@@ -11,7 +11,13 @@ public class MusicManager : MonoBehaviour
         DontDestroyOnLoad(transform.gameObject);
         _audioSource = GetComponent<AudioSource>();
     }
-    
+
+    private void Start()
+    {
+        if (_audioSource.isPlaying) StopMusic();
+        PlayMusic();
+    }
+
     public void PlayMusic()
     {
         if (_audioSource.isPlaying) return;
