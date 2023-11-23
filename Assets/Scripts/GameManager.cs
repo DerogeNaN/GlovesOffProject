@@ -104,9 +104,11 @@ public class GameManager : MonoBehaviour
                     if (players[0].ChosenAction == players[1].ChosenAction)
                     {
                         animationHandlers[i].SetRPSTie(true);
-                        break;
                     }
-                    animationHandlers[i].SetRPSTie(false);
+                    else
+                    {
+                        animationHandlers[i].SetRPSTie(false);
+                    }
                 }
 
                 GoToWager();
@@ -280,17 +282,39 @@ public class GameManager : MonoBehaviour
     }
     #endregion
 
-    public void PauseGame(InputAction.CallbackContext callback, PlayerInput p)
+    public void PauseGame(InputAction.CallbackContext callback, PlayerController p)
     {
         Time.timeScale = 0;
         Debug.Log("The game is paused");
+        for (int i = 0; i < players.Length; i++)
+        {
+            if (p == players[i])
+            {
+                players[i].playerInput.actions.FindActionMap("UI").Enable();
+            }
+            else if (p != players[i])
+            {
+                players[i].DisablePreviousActionMap();
+                players[i].playerInput.actions.FindActionMap("InGame").Disable();
+            }
+        }
     }
-
-    public void ResumeGame(InputAction.CallbackContext callback, PlayerInput p)
+    public void ResumeGame(InputAction.CallbackContext callback, PlayerController p)
     {
         Time.timeScale = 1;
         Debug.Log("The game will resume");
+        for (int i = 0; i < players.Length; i++)
+        {
+            if (p == players[i])
+            {
+                players[i].playerInput.actions.FindActionMap("UI").Disable();
+            }
+            else if (p != players[i])
+            {
+                players[i].EnablePreviousActionMap();
+                players[i].playerInput.actions.FindActionMap("InGame").Enable();
+            }
+        }
 
-        
     }
 }
