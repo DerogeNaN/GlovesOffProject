@@ -1,5 +1,9 @@
+using System;
+using System.Linq;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class RoundUI : MonoBehaviour
 {
@@ -18,6 +22,16 @@ public class RoundUI : MonoBehaviour
 
     TextMeshProUGUI matchWinner;
 
+    [SerializeField] Sprite blankStamina;
+    [SerializeField] Sprite blueStamina;
+    [SerializeField] Sprite orangeStamina;
+
+    Image[] P1Stamina = new Image[8];
+    Image[] P2Stamina = new Image[8];
+
+    Image[] P1Wager;
+    Image[] P2Wager;
+
     void Awake()
     {
         gameManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
@@ -32,6 +46,15 @@ public class RoundUI : MonoBehaviour
 
         roundWinner = UICanvas.transform.Find("Round Winner").GetComponent<TextMeshProUGUI>();
         matchWinner = UICanvas.transform.Find("Match Winner").GetComponent<TextMeshProUGUI>();
+
+        for (int i = 0; i < 8; i++)
+        {
+            P1Stamina[i] = UICanvas.transform.Find("Player1 Stamina").GetChild(i).GetComponent<Image>();
+        }
+        for (int i = 0; i < 8; i++)
+        {
+            P2Stamina[i] = UICanvas.transform.Find("Player2 Stamina").GetChild(i).GetComponent<Image>();
+        }
     }
 
     void Start()
@@ -55,6 +78,8 @@ public class RoundUI : MonoBehaviour
         {
             return;
         }
+        RenderStamina(P1Stamina, gameManager.Players[0], blueStamina);
+        RenderStamina(P2Stamina, gameManager.Players[1], orangeStamina);
         UpdateText();
         switch (gameManager.CurrentPhase)
         {
@@ -133,5 +158,20 @@ public class RoundUI : MonoBehaviour
             roundWinner.text = $"Round Winner: {gameManager.RoundWinner.name}!";
         }
 
+    }
+
+    void RenderStamina(Image[] playerStamina, PlayerController player, Sprite active)
+    {
+        for (int i = 0; i < playerStamina.Length; i++)
+        {
+            if (player.playerStamina.CurrentStamina > i)
+            {
+                playerStamina[i].sprite = active;
+            }
+            else
+            {
+                playerStamina[i].sprite = blankStamina;
+            }
+        }
     }
 }
