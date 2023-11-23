@@ -5,18 +5,7 @@ using UnityEngine;
 public class AudioManager : MonoBehaviour
 {
     [SerializeField] AudioClip onHover, onClick;
-    [SerializeField] AudioSource menuSFX, musicSource;
-
-    void Start()
-    {
-        
-    }
-
-    
-    void Update()
-    {
-        
-    }
+    [SerializeField] AudioSource menuSFX;
 
     public void HoverSelect()
     {

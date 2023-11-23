@@ -99,23 +99,24 @@ public class PlayerController : MonoBehaviour
 
     private void Pause(InputAction.CallbackContext callback)
     {
-        gameManager.PauseGame(callback, playerInput);
+        gameManager.PauseGame(callback, this);
     }
 
     private void Resume(InputAction.CallbackContext callback)
     {
-        gameManager.ResumeGame(callback, playerInput);
+        gameManager.ResumeGame(callback, this);
     }
 
     public void EnableHatSelectorMap()
     {
         playerInput.actions.FindActionMap("HatSelection").Enable();
-        playerInput.actions.FindActionMap("InGame").Enable();
+        
     }
     public void RPSPhase()
     {
         playerInput.actions.FindActionMap("RPS").Enable();
         playerInput.actions.FindActionMap("HatSelection").Disable();
+        playerInput.actions.FindActionMap("InGame").Enable();
     }
     public void WagerPhase()
     {
