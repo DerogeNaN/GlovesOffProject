@@ -11,6 +11,7 @@ public class PlayerController : MonoBehaviour
     CharacterCustomizer characterCustomizer;
     [SerializeField] GameManager gameManager;
     PlayerSpawner spawner;
+    string previousActionMap;
 
     public enum Actions
     {
@@ -100,33 +101,53 @@ public class PlayerController : MonoBehaviour
     private void Pause(InputAction.CallbackContext callback)
     {
         gameManager.PauseGame(callback, this);
+        DisablePreviousActionMap();
     }
 
     private void Resume(InputAction.CallbackContext callback)
     {
         gameManager.ResumeGame(callback, this);
+        EnablePreviousActionMap(); 
     }
 
     public void EnableHatSelectorMap()
     {
         playerInput.actions.FindActionMap("HatSelection").Enable();
-        
+        playerInput.actions.FindActionMap("InGame").Enable();
     }
     public void RPSPhase()
     {
         playerInput.actions.FindActionMap("RPS").Enable();
         playerInput.actions.FindActionMap("HatSelection").Disable();
-        playerInput.actions.FindActionMap("InGame").Enable();
+        previousActionMap = "RPS";
     }
     public void WagerPhase()
     {
         playerInput.actions.FindActionMap("Wager").Enable();
         playerInput.actions.FindActionMap("RPS").Disable();
+        previousActionMap = "Wager";
     }
     public void ActionPhase()
     {
         playerInput.actions.FindActionMap("Wager").Disable();
         playerInput.actions.FindActionMap("RPS").Disable();
+        previousActionMap = null;
+    }
+
+    public void EnablePreviousActionMap()
+    {
+        if (previousActionMap != null)
+        {
+            playerInput.actions.FindActionMap(previousActionMap).Enable();
+        }
+    }
+
+    public void DisablePreviousActionMap()
+    {
+        if (previousActionMap != null)
+        {
+            playerInput.actions.FindActionMap(previousActionMap).Disable();
+        }
     }
 
     public void ResetChosenAction()
