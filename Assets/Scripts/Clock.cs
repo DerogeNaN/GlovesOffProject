@@ -3,13 +3,13 @@ using UnityEngine;
 
 public class Clock : MonoBehaviour
 {
-    public TextMeshProUGUI clockText;
     /// <summary>
     /// Calculated in seconds
     /// </summary>
     public float totalTime;
 
     private float currentTime;
+    public float CurrentTime { get { return currentTime; } }
     private bool isCounting = false;
     private bool isZero = false;
 
@@ -17,7 +17,6 @@ public class Clock : MonoBehaviour
     {
         isCounting = false;
         currentTime = 0;
-        clockText.text = "";
     }
 
 
@@ -28,12 +27,10 @@ public class Clock : MonoBehaviour
             return;
         }
         currentTime -= Time.deltaTime;
-        UpdateTimerText();
         if (currentTime <= 0.0f)
         {
             currentTime = 0.0f;
             isCounting = false;
-            clockText.text = "";
             isZero = true;
         }
     }
@@ -62,10 +59,5 @@ public class Clock : MonoBehaviour
     public bool IsZero()
     {
         return isZero;
-    }
-
-    private void UpdateTimerText()
-    {
-        clockText.text = ((int)currentTime + 1).ToString();
     }
 }
