@@ -24,6 +24,8 @@ public class PlayerController : MonoBehaviour
 
     public Actions ChosenAction { get { return chosenAction; } }
 
+    public bool newActionChosen;
+
     private void Start()
     {
         playerStamina = GetComponent<PlayerStamina>();
@@ -47,9 +49,8 @@ public class PlayerController : MonoBehaviour
         playerInput.actions.FindAction("Resume").performed += Resume;
     }
 
-    void Update()
+    void LateUpdate()
     {
-
     }
     #region HatSelection
     public void Ready(InputAction.CallbackContext callback)
@@ -61,6 +62,7 @@ public class PlayerController : MonoBehaviour
     void Punch(InputAction.CallbackContext callback)
     {
         chosenAction = Actions.Punch;
+        newActionChosen = true;
         // Testing
         Debug.Log(playerInput.playerIndex.ToString() + " Punch Selected");
     }
@@ -68,6 +70,7 @@ public class PlayerController : MonoBehaviour
     void Kick(InputAction.CallbackContext callback)
     {
         chosenAction = Actions.Kick;
+        newActionChosen = true;
         // Testing
         Debug.Log(playerInput.playerIndex.ToString() + " Kick Selected");
     }
@@ -75,6 +78,7 @@ public class PlayerController : MonoBehaviour
     void Block(InputAction.CallbackContext callback)
     {
         chosenAction = Actions.Block;
+        newActionChosen = true;
         // Testing
         Debug.Log(playerInput.playerIndex.ToString() + " Block Selected");
     }

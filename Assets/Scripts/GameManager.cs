@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
@@ -22,6 +23,9 @@ public class GameManager : MonoBehaviour
     AnimationHandler[] animationHandlers;
 
     [SerializeField] Button mainMenuButton;
+
+    bool paused = false;
+    public bool Paused { get { return paused; } }
 
     public enum Phase
     {
@@ -284,6 +288,7 @@ public class GameManager : MonoBehaviour
 
     public void PauseGame(InputAction.CallbackContext callback, PlayerController p)
     {
+        paused = true;
         Time.timeScale = 0;
         Debug.Log("The game is paused");
         for (int i = 0; i < players.Length; i++)
@@ -301,6 +306,7 @@ public class GameManager : MonoBehaviour
     }
     public void ResumeGame(InputAction.CallbackContext callback, PlayerController p)
     {
+        paused = false;
         Time.timeScale = 1;
         Debug.Log("The game will resume");
         for (int i = 0; i < players.Length; i++)
@@ -316,5 +322,10 @@ public class GameManager : MonoBehaviour
             }
         }
 
+    }
+
+    public void ReturnToMainMenu()
+    {
+        SceneManager.LoadScene(sceneName: "MainMenu");
     }
 }
