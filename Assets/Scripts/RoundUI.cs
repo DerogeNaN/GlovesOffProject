@@ -33,6 +33,8 @@ public class RoundUI : MonoBehaviour
     [SerializeField] Sprite wager;
 
 
+    Image p1StaminaBar;
+    Image p2StaminaBar;
     Image[] p1Stamina = new Image[8];
     Image[] p2Stamina = new Image[8];
 
@@ -63,6 +65,8 @@ public class RoundUI : MonoBehaviour
         p1RPSConfirm = UICanvas.transform.Find("RPS Confirm").Find("P1 RPS Confirm").GetComponent<Image>();
         p2RPSConfirm = UICanvas.transform.Find("RPS Confirm").Find("P2 RPS Confirm").GetComponent<Image>();
 
+        p1StaminaBar = UICanvas.transform.Find("Player1 Stamina").Find("Player 1 Stamina Bar").GetComponent<Image>();
+        p2StaminaBar = UICanvas.transform.Find("Player2 Stamina").Find("Player 2 Stamina Bar").GetComponent<Image>();
         for (int i = 0; i < p1Stamina.Length; i++)
         {
             p1Stamina[i] = UICanvas.transform.Find("Player1 Stamina").GetChild(i).GetComponent<Image>();
@@ -91,6 +95,10 @@ public class RoundUI : MonoBehaviour
 
         p1RPSConfirm.enabled = false;
         p2RPSConfirm.enabled = false;
+
+        p1StaminaBar.enabled = false;
+        p2StaminaBar.enabled = false;
+
         foreach (Image stamina in p1Stamina)
         {
             stamina.enabled = false;
@@ -128,9 +136,13 @@ public class RoundUI : MonoBehaviour
             case GameManager.Phase.RoundStart:
                 countdown.enabled = true;
                 currentPhase.enabled = false;
+
                 RenderStamina(p1Stamina, gameManager.Players[0], orangeStamina);
                 RenderStamina(p2Stamina, gameManager.Players[1], blueStamina);
                 RenderClock(countdown, gameManager.countdown);
+
+                p1StaminaBar.enabled = false;
+                p2StaminaBar.enabled = false;
 
                 foreach (Image stamina in p1Stamina)
                 {
@@ -158,10 +170,14 @@ public class RoundUI : MonoBehaviour
                 countdown.enabled = false;
                 timer.enabled = true;
                 currentPhase.enabled = true;
+
                 p1CurrentTime = RenderActionChosen(p1RPSConfirm, gameManager.Players[0], p1ActionChosenTime, p1CurrentTime);
                 p2CurrentTime = RenderActionChosen(p2RPSConfirm, gameManager.Players[1], p2ActionChosenTime, p2CurrentTime);
                 RenderClock(timer, gameManager.timer);
                 RenderCurrentPhase(rps);
+
+                p1StaminaBar.enabled = true;
+                p2StaminaBar.enabled = true;
 
                 foreach (Image stamina in p1Stamina)
                 {
@@ -212,6 +228,10 @@ public class RoundUI : MonoBehaviour
                 roundWinner.enabled = true;
                 break;
             case GameManager.Phase.MatchEnd:
+
+                p1StaminaBar.enabled = false;
+                p2StaminaBar.enabled = false;
+
                 foreach (Image stamina in p1Stamina)
                 {
                     stamina.enabled = false;

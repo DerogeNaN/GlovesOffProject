@@ -367,13 +367,13 @@ PrefabInstance:
         type: 3}
       propertyPath: blueWager
       value: 
-      objectReference: {fileID: 21300000, guid: 641f766e68d2ac945b7ce57371329a1d,
+      objectReference: {fileID: 21300000, guid: 7dcad1544d91d5145a7b97a51a57092e,
         type: 3}
     - target: {fileID: 7691617686310682592, guid: 1825ca76624375749b4ff78bbcb0ff80,
         type: 3}
       propertyPath: blankWager
       value: 
-      objectReference: {fileID: 21300000, guid: 2117c7aa6cd61b749860152fef7936f8,
+      objectReference: {fileID: 21300000, guid: 34fdbe21379b15342851f04487ab3f0f,
         type: 3}
     - target: {fileID: 7691617686310682592, guid: 1825ca76624375749b4ff78bbcb0ff80,
         type: 3}
@@ -397,7 +397,7 @@ PrefabInstance:
         type: 3}
       propertyPath: yellowWager
       value: 
-      objectReference: {fileID: 21300000, guid: 51436a0f117370f4583c5353aeba5969,
+      objectReference: {fileID: 21300000, guid: b6438bd52997924449c12bd9462f5309,
         type: 3}
     - target: {fileID: 7691617686310682592, guid: 1825ca76624375749b4ff78bbcb0ff80,
         type: 3}
