@@ -11939,7 +11939,7 @@ AnimationClip:
   m_FloatCurves: []
   m_PPtrCurves: []
   m_SampleRate: 30
-  m_WrapMode: 0
+  m_WrapMode: 8
   m_Bounds:
     m_Center: {x: 0, y: 0, z: 0}
     m_Extent: {x: 0, y: 0, z: 0}
@@ -88908,6 +88908,13 @@ AnimationClip:
   m_Events:
   - time: 1.7666667
     functionName: SFXPlay
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 1.8333334
+    functionName: EndRound
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0

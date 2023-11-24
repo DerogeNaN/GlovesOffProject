@@ -14642,7 +14642,7 @@ AnimationClip:
     script: {fileID: 0}
   m_PPtrCurves: []
   m_SampleRate: 30
-  m_WrapMode: 0
+  m_WrapMode: 8
   m_Bounds:
     m_Center: {x: 0, y: 0, z: 0}
     m_Extent: {x: 0, y: 0, z: 0}
@@ -111599,6 +111599,13 @@ AnimationClip:
     data: 
     objectReferenceParameter: {fileID: 8300000, guid: 295ed47405c2bee4c8d504a1aee8af74,
       type: 3}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 4.766667
+    functionName: EndRound
+    data: 
+    objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
