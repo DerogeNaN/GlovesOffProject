@@ -8,11 +8,14 @@ public class PauseUI : MonoBehaviour
     GameManager gameManager;
     Canvas UICanvas;
     Image paused;
+    Image fadeCover;
 
     void Start()
     {
         gameManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
         UICanvas = GameObject.FindObjectOfType<Canvas>();
+        paused = UICanvas.transform.Find("Pause").GetComponent<Image>();
+        fadeCover = UICanvas.transform.Find("Fade Cover").GetComponent<Image>();
     }
 
     void Update()

@@ -125,6 +125,7 @@ GameObject:
   - component: {fileID: 1369692532560960395}
   - component: {fileID: 7691617686310682623}
   - component: {fileID: 7691617686310682592}
+  - component: {fileID: 2526056840070229602}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: GameManager
@@ -240,6 +241,20 @@ MonoBehaviour:
   roundTie: {fileID: 21300000, guid: 9dc5aace06e7ec547801d3f1b382523b, type: 3}
   player1Wins: {fileID: 21300000, guid: 5ae392d582752dd4591898d5b5ca9f01, type: 3}
   player2Wins: {fileID: 21300000, guid: 28d620b08bdca754e917c3c83f9581d2, type: 3}
+  rps: {fileID: 0}
+  wager: {fileID: 0}
+--- !u!114 &2526056840070229602
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7691617686310682618}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 774c25126c0213e488894ac82318e113, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7691617686401398739
 GameObject:
   m_ObjectHideFlags: 0

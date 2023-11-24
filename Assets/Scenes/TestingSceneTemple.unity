@@ -324,6 +324,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7691617686310682592, guid: 1825ca76624375749b4ff78bbcb0ff80,
         type: 3}
+      propertyPath: rps
+      value: 
+      objectReference: {fileID: 21300000, guid: 64932db83f91aeb4d988e2c548e7e297,
+        type: 3}
+    - target: {fileID: 7691617686310682592, guid: 1825ca76624375749b4ff78bbcb0ff80,
+        type: 3}
+      propertyPath: wager
+      value: 
+      objectReference: {fileID: 21300000, guid: b32da79e6b85a5b41adf18891b3f2993,
+        type: 3}
+    - target: {fileID: 7691617686310682592, guid: 1825ca76624375749b4ff78bbcb0ff80,
+        type: 3}
       propertyPath: clock1
       value: 
       objectReference: {fileID: 21300000, guid: 74cd0013440d0c245921441233941f4e,
@@ -349,7 +361,7 @@ PrefabInstance:
         type: 3}
       propertyPath: roundTie
       value: 
-      objectReference: {fileID: 21300000, guid: 9dc5aace06e7ec547801d3f1b382523b,
+      objectReference: {fileID: 21300000, guid: f5bf4346c4db8884cb61e81e3b4ed54e,
         type: 3}
     - target: {fileID: 7691617686310682592, guid: 1825ca76624375749b4ff78bbcb0ff80,
         type: 3}
@@ -799,6 +811,21 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 6409282263434562944, guid: bfcb1d66f68990240b48bb5d06a2c5d5,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6409282263434562944, guid: bfcb1d66f68990240b48bb5d06a2c5d5,
+        type: 3}
+      propertyPath: m_TagString
+      value: Main Menu Button
+      objectReference: {fileID: 0}
+    - target: {fileID: 7154949518739312063, guid: bfcb1d66f68990240b48bb5d06a2c5d5,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7154949518739312063, guid: bfcb1d66f68990240b48bb5d06a2c5d5,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -924,6 +951,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7408435480969592627, guid: bfcb1d66f68990240b48bb5d06a2c5d5,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7408435480969592631, guid: bfcb1d66f68990240b48bb5d06a2c5d5,
         type: 3}
       propertyPath: m_Name
@@ -933,6 +965,31 @@ PrefabInstance:
         type: 3}
       propertyPath: m_TagString
       value: Canvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 7408435482051813235, guid: bfcb1d66f68990240b48bb5d06a2c5d5,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7408435482051813244, guid: bfcb1d66f68990240b48bb5d06a2c5d5,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 7408435482051813244, guid: bfcb1d66f68990240b48bb5d06a2c5d5,
+        type: 3}
+      propertyPath: m_Color.a
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7408435482051813244, guid: bfcb1d66f68990240b48bb5d06a2c5d5,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8804593831024382191, guid: bfcb1d66f68990240b48bb5d06a2c5d5,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bfcb1d66f68990240b48bb5d06a2c5d5, type: 3}

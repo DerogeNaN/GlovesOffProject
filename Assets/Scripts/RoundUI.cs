@@ -60,8 +60,8 @@ public class RoundUI : MonoBehaviour
         roundWinner = UICanvas.transform.Find("Round Winner").GetComponent<Image>();
         matchWinner = UICanvas.transform.Find("Match Winner").GetComponent<Image>();
 
-        p1RPSConfirm = UICanvas.transform.Find("P1 RPS Confirm").GetComponent<Image>();
-        p2RPSConfirm = UICanvas.transform.Find("P2 RPS Confirm").GetComponent<Image>();
+        p1RPSConfirm = UICanvas.transform.Find("RPS Confirm").Find("P1 RPS Confirm").GetComponent<Image>();
+        p2RPSConfirm = UICanvas.transform.Find("RPS Confirm").Find("P2 RPS Confirm").GetComponent<Image>();
 
         for (int i = 0; i < p1Stamina.Length; i++)
         {
@@ -81,8 +81,8 @@ public class RoundUI : MonoBehaviour
             p2Wager[i] = UICanvas.transform.Find("Player2 Wager").GetChild(i).GetComponent<Image>();
         }
 
-        timer = UICanvas.transform.Find("Timer").GetComponent<Image>();
-        countdown = UICanvas.transform.Find("Countdown").GetComponent<Image>();
+        timer = UICanvas.transform.Find("Clocks").Find("Timer").GetComponent<Image>();
+        countdown = UICanvas.transform.Find("Clocks").Find("Countdown").GetComponent<Image>();
     }
 
     void Start()
