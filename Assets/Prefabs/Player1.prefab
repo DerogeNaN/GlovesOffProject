@@ -1590,6 +1590,7 @@ MonoBehaviour:
   playerInput: {fileID: -8639709902629518325}
   playerStamina: {fileID: -3605157747377985059}
   gameManager: {fileID: 0}
+  newActionChosen: 0
 --- !u!114 &-8639709902629518325
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5897,7 +5898,7 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: c149b5031a14e1b4c86ff0ab1e8fef6a, type: 2}
+  - {fileID: 2100000, guid: a112cc39f508894428aa3c8df67ef595, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
