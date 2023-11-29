@@ -8433,6 +8433,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerInput: {fileID: 7166518094029509937}
   playerStamina: {fileID: 2175142541482158005}
+  gameManager: {fileID: 0}
+  newActionChosen: 0
 --- !u!114 &7166518094029509937
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8489,7 +8491,7 @@ Animator:
   m_GameObject: {fileID: 7853635762508955107}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 5f75b81cffcb3874baf8ed0471f5f843, type: 2}
+  m_Controller: {fileID: 9100000, guid: da1ed9803ffb9aa40bf72fcdf07ee222, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
