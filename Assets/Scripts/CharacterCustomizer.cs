@@ -6,7 +6,7 @@ using UnityEngine.InputSystem;
 
 public class CharacterCustomizer : MonoBehaviour
 {
-    [SerializeField] GameObject[] hatArray = new GameObject[5];
+    [SerializeField] GameObject[] hatArray = new GameObject[4];
     PlayerController playerController;
     int curHatIndex = 0;
 

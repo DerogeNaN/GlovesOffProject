@@ -1849,7 +1849,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 987102595}
         m_TargetAssemblyTypeName: MenuUI, Assembly-CSharp
-        m_MethodName: LoadCharacterSelect
+        m_MethodName: LoadTempleScene
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3995,11 +3995,16 @@ MonoBehaviour:
   optionsMenuUI: {fileID: 568131498}
   creditsUI: {fileID: 730761470}
   levelSelectUI: {fileID: 420610803}
+  controllerUI: {fileID: 0}
+  keyboardUI: {fileID: 0}
   eventSystem: {fileID: 1452436711}
   optionsFirst: {fileID: 63078760}
   creditsFirst: {fileID: 831161131}
   levelSelectFirst: {fileID: 488630862}
   mainMenuFirst: {fileID: 897456030}
+  controllerFirst: {fileID: 0}
+  keyboardFirst: {fileID: 0}
+  screenText: {fileID: 0}
 --- !u!224 &987102596
 RectTransform:
   m_ObjectHideFlags: 0
