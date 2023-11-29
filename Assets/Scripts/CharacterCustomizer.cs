@@ -31,7 +31,6 @@ public class CharacterCustomizer : MonoBehaviour
             curHatIndex--;
             hatArray[curHatIndex].gameObject.SetActive(true);
         }
-        Debug.Log("IterateLeft");
     }
 
     public void IterateRight(InputAction.CallbackContext callback)
@@ -48,6 +47,5 @@ public class CharacterCustomizer : MonoBehaviour
             curHatIndex++;
             hatArray[curHatIndex].gameObject.SetActive(true);
         }
-        Debug.Log("IterateRight");
     }
 }
