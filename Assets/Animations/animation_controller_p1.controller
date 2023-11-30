@@ -395,7 +395,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Punch_Punch_T_1
+  m_Name: Punch_Punch_T1
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
@@ -877,7 +877,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Kick_Kick_T_1
+  m_Name: Kick_Kick_T1
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
@@ -1199,7 +1199,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Block_Block_T_1
+  m_Name: Block_Block_T1
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
