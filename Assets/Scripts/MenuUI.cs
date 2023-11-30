@@ -27,7 +27,7 @@ public class MenuUI : MonoBehaviour
 
     public void LoadCharacterSelect()
     {
-        SceneManager.LoadScene(sceneName: "Temple_Scene");
+        SceneManager.LoadScene(sceneName: "TestingSceneTemple");
     }
 
     public void LoadOptionsMenu()
