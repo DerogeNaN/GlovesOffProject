@@ -6,7 +6,7 @@ using UnityEngine.InputSystem;
 
 public class CharacterCustomizer : MonoBehaviour
 {
-    [SerializeField] GameObject[] hatArray = new GameObject[5];
+    [SerializeField] GameObject[] hatArray = new GameObject[4];
     PlayerController playerController;
     int curHatIndex = 0;
 
@@ -31,7 +31,6 @@ public class CharacterCustomizer : MonoBehaviour
             curHatIndex--;
             hatArray[curHatIndex].gameObject.SetActive(true);
         }
-        Debug.Log("IterateLeft");
     }
 
     public void IterateRight(InputAction.CallbackContext callback)
@@ -48,6 +47,5 @@ public class CharacterCustomizer : MonoBehaviour
             curHatIndex++;
             hatArray[curHatIndex].gameObject.SetActive(true);
         }
-        Debug.Log("IterateRight");
     }
 }

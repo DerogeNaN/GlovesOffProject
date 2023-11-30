@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
@@ -301,19 +302,21 @@ public class GameManager : MonoBehaviour
 
     public void PauseGame(InputAction.CallbackContext callback, PlayerController p)
     {
+        if (players == null) return;
+
         paused = true;
         Time.timeScale = 0;
-        Debug.Log("The game is paused");
-        for (int i = 0; i < players.Length; i++)
+
+        for (int i = 0; i < Players.Length; i++)
         {
-            if (p == players[i])
+            if (p == Players[i])
             {
-                players[i].playerInput.actions.FindActionMap("UI").Enable();
+                Players[i].playerInput.actions.FindActionMap("UI").Enable();
             }
-            else if (p != players[i])
+            else if (p != Players[i])
             {
-                players[i].DisablePreviousActionMap();
-                players[i].playerInput.actions.FindActionMap("InGame").Disable();
+                Players[i].DisablePreviousActionMap();
+                Players[i].playerInput.actions.FindActionMap("InGame").Disable();
             }
         }
     }
@@ -322,16 +325,16 @@ public class GameManager : MonoBehaviour
         paused = false;
         Time.timeScale = 1;
         Debug.Log("The game will resume");
-        for (int i = 0; i < players.Length; i++)
+        for (int i = 0; i < Players.Length; i++)
         {
-            if (p == players[i])
+            if (p == Players[i])
             {
-                players[i].playerInput.actions.FindActionMap("UI").Disable();
+                Players[i].playerInput.actions.FindActionMap("UI").Disable();
             }
-            else if (p != players[i])
+            else if (p != Players[i])
             {
-                players[i].EnablePreviousActionMap();
-                players[i].playerInput.actions.FindActionMap("InGame").Enable();
+                Players[i].EnablePreviousActionMap();
+                Players[i].playerInput.actions.FindActionMap("InGame").Enable();
             }
         }
 

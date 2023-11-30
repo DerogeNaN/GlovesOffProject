@@ -13,24 +13,24 @@ public class RoundUI : MonoBehaviour
     Image p1RPSConfirm;
     Image p2RPSConfirm;
 
-    [SerializeField] Sprite blankStamina;
-    [SerializeField] Sprite blueStamina;
-    [SerializeField] Sprite orangeStamina;
+    [SerializeField] Sprite blankStaminaSprite;
+    [SerializeField] Sprite p1StaminaSprite;
+    [SerializeField] Sprite p2StaminaSprite;
 
-    [SerializeField] Sprite blankWager;
-    [SerializeField] Sprite blueWager;
-    [SerializeField] Sprite yellowWager;
+    [SerializeField] Sprite blankWagerSprite;
+    [SerializeField] Sprite p1WagerSprite;
+    [SerializeField] Sprite p2WagerSprite;
 
-    [SerializeField] Sprite clock3;
-    [SerializeField] Sprite clock2;
-    [SerializeField] Sprite clock1;
+    [SerializeField] Sprite clock1Sprite;
+    [SerializeField] Sprite clock2Sprite;
+    [SerializeField] Sprite clock3Sprite;
 
-    [SerializeField] Sprite roundTie;
-    [SerializeField] Sprite player1Wins;
-    [SerializeField] Sprite player2Wins;
+    [SerializeField] Sprite roundTieSprite;
+    [SerializeField] Sprite player1WinsSprite;
+    [SerializeField] Sprite player2WinsSprite;
 
-    [SerializeField] Sprite rps;
-    [SerializeField] Sprite wager;
+    [SerializeField] Sprite rpsSprite;
+    [SerializeField] Sprite wagerSprite;
 
 
     Image p1StaminaBar;
@@ -137,8 +137,8 @@ public class RoundUI : MonoBehaviour
                 countdown.enabled = true;
                 currentPhase.enabled = false;
 
-                RenderStamina(p1Stamina, gameManager.Players[0], orangeStamina);
-                RenderStamina(p2Stamina, gameManager.Players[1], blueStamina);
+                RenderStamina(p1Stamina, gameManager.Players[0], p1StaminaSprite);
+                RenderStamina(p2Stamina, gameManager.Players[1], p2StaminaSprite);
                 RenderClock(countdown, gameManager.countdown);
 
                 p1StaminaBar.enabled = false;
@@ -174,7 +174,7 @@ public class RoundUI : MonoBehaviour
                 p1CurrentTime = RenderActionChosen(p1RPSConfirm, gameManager.Players[0], p1ActionChosenTime, p1CurrentTime);
                 p2CurrentTime = RenderActionChosen(p2RPSConfirm, gameManager.Players[1], p2ActionChosenTime, p2CurrentTime);
                 RenderClock(timer, gameManager.timer);
-                RenderCurrentPhase(rps);
+                RenderCurrentPhase(rpsSprite);
 
                 p1StaminaBar.enabled = true;
                 p2StaminaBar.enabled = true;
@@ -203,10 +203,10 @@ public class RoundUI : MonoBehaviour
                 {
                     wager.enabled = true;
                 }
-                RenderCurrentPhase(wager);
+                RenderCurrentPhase(wagerSprite);
                 RenderClock(timer, gameManager.timer);
-                RenderWager(p1Wager, gameManager.Players[0], yellowWager);
-                RenderWager(p2Wager, gameManager.Players[1], blueWager);
+                RenderWager(p1Wager, gameManager.Players[0], p1WagerSprite);
+                RenderWager(p2Wager, gameManager.Players[1], p2WagerSprite);
                 break;
             case GameManager.Phase.Action:
                 timer.enabled = false;
@@ -222,8 +222,8 @@ public class RoundUI : MonoBehaviour
                 }
                 break;
             case GameManager.Phase.RoundEnd:
-                RenderStamina(p1Stamina, gameManager.Players[0], orangeStamina);
-                RenderStamina(p2Stamina, gameManager.Players[1], blueStamina);
+                RenderStamina(p1Stamina, gameManager.Players[0], p1StaminaSprite);
+                RenderStamina(p2Stamina, gameManager.Players[1], p2StaminaSprite);
                 RenderRoundWinner();
                 roundWinner.enabled = true;
                 break;
@@ -265,7 +265,7 @@ public class RoundUI : MonoBehaviour
             }
             else
             {
-                playerStamina[i].sprite = blankStamina;
+                playerStamina[i].sprite = blankStaminaSprite;
             }
         }
     }
@@ -279,7 +279,7 @@ public class RoundUI : MonoBehaviour
             }
             else
             {
-                playerWager[i].sprite = blankWager;
+                playerWager[i].sprite = blankWagerSprite;
             }
         }
     }
@@ -309,15 +309,15 @@ public class RoundUI : MonoBehaviour
         }
         if (clock.CurrentTime <= 3 && clock.CurrentTime > 2)
         {
-            clockImage.sprite = clock3;
+            clockImage.sprite = clock3Sprite;
         }
         else if (clock.CurrentTime <= 2 && clock.CurrentTime > 1)
         {
-            clockImage.sprite = clock2;
+            clockImage.sprite = clock2Sprite;
         }
         else if (clock.CurrentTime <= 1 && clock.CurrentTime > 0)
         {
-            clockImage.sprite = clock1;
+            clockImage.sprite = clock1Sprite;
         }
     }
     
@@ -325,26 +325,26 @@ public class RoundUI : MonoBehaviour
     {
         if (gameManager.RoundWinner == null)
         {
-            roundWinner.sprite = roundTie;
+            roundWinner.sprite = roundTieSprite;
         }
         else if (gameManager.RoundWinner == gameManager.Players[0])
         {
-            roundWinner.sprite = player1Wins;
+            roundWinner.sprite = player1WinsSprite;
         }
         else if (gameManager.RoundWinner == gameManager.Players[1])
         {
-            roundWinner.sprite = player2Wins;
+            roundWinner.sprite = player2WinsSprite;
         }
     }
     void RenderMatchWinner()
     {
         if (gameManager.MatchWinner == gameManager.Players[0])
         {
-            matchWinner.sprite = player1Wins;
+            matchWinner.sprite = player1WinsSprite;
         }
         else if (gameManager.MatchWinner == gameManager.Players[1])
         {
-            matchWinner.sprite = player2Wins;
+            matchWinner.sprite = player2WinsSprite;
         }
     }
     void RenderCurrentPhase(Sprite phase)

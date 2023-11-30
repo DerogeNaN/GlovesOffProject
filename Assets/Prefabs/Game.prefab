@@ -79,7 +79,7 @@ MonoBehaviour:
       m_SingletonActionBindings: []
       m_Flags: 0
     m_Reference: {fileID: 0}
-  m_PlayerPrefab: {fileID: 1939994019594473380, guid: b73211623c97e0b4f8c141f9fd1e5a72,
+  m_PlayerPrefab: {fileID: 5837395368123727262, guid: 52765c7ab91c7d94c9a4d8ee5d52f767,
     type: 3}
   m_SplitScreen: 0
   m_MaintainAspectRatioInSplitScreen: 0
@@ -103,8 +103,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerPrefabs:
-  - {fileID: 7853635762508955107, guid: ee974e26a17436b45811b263befefe68, type: 3}
-  - {fileID: 7853635762508955107, guid: ee974e26a17436b45811b263befefe68, type: 3}
+  - {fileID: 5837395368123727262, guid: 07a9d394a2147d2469ab629f8cbaf6ff, type: 3}
+  - {fileID: 5837395368123727262, guid: 07a9d394a2147d2469ab629f8cbaf6ff, type: 3}
   spawnPoints:
   - {fileID: 7691617686401398740}
   - {fileID: 7691617687480939617}
@@ -229,20 +229,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f380f428dece4ce4294a1c9759c09113, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  blankStamina: {fileID: 21300000, guid: 89e897a7cc6505f42ae3b4625c921008, type: 3}
-  blueStamina: {fileID: 21300000, guid: e2a9ed330de04c748884252435a14d44, type: 3}
-  orangeStamina: {fileID: 21300000, guid: ce59cb562ea70f448b688993d44bb7d4, type: 3}
-  blankWager: {fileID: 21300000, guid: 2117c7aa6cd61b749860152fef7936f8, type: 3}
-  blueWager: {fileID: 21300000, guid: 641f766e68d2ac945b7ce57371329a1d, type: 3}
-  yellowWager: {fileID: 21300000, guid: 51436a0f117370f4583c5353aeba5969, type: 3}
-  clock3: {fileID: 21300000, guid: 4be309504b8f74c4bac23fa948eae868, type: 3}
-  clock2: {fileID: 21300000, guid: 2afacd7b288f7f7458c0d07f19293472, type: 3}
-  clock1: {fileID: 21300000, guid: 74cd0013440d0c245921441233941f4e, type: 3}
-  roundTie: {fileID: 21300000, guid: 9dc5aace06e7ec547801d3f1b382523b, type: 3}
-  player1Wins: {fileID: 21300000, guid: 5ae392d582752dd4591898d5b5ca9f01, type: 3}
-  player2Wins: {fileID: 21300000, guid: 28d620b08bdca754e917c3c83f9581d2, type: 3}
-  rps: {fileID: 0}
-  wager: {fileID: 0}
+  blankStaminaSprite: {fileID: 0}
+  p1StaminaSprite: {fileID: 0}
+  p2StaminaSprite: {fileID: 0}
+  blankWagerSprite: {fileID: 0}
+  p1WagerSprite: {fileID: 0}
+  p2WagerSprite: {fileID: 0}
+  clock1Sprite: {fileID: 0}
+  clock2Sprite: {fileID: 0}
+  clock3Sprite: {fileID: 0}
+  roundTieSprite: {fileID: 0}
+  player1WinsSprite: {fileID: 0}
+  player2WinsSprite: {fileID: 0}
+  rpsSprite: {fileID: 0}
+  wagerSprite: {fileID: 0}
 --- !u!114 &2526056840070229602
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -279,7 +279,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7691617686401398739}
   m_LocalRotation: {x: -0, y: 0.7071068, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: -0.026699748, y: -0.0665559, z: 10.001997}
+  m_LocalPosition: {x: 0, y: 0, z: 10.001997}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -378,7 +378,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7691617687480939616}
   m_LocalRotation: {x: -0, y: 0.7071068, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 1.6733003, y: -0.0665559, z: 10.001997}
+  m_LocalPosition: {x: 0, y: 0, z: 10.001997}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
