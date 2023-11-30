@@ -7,18 +7,11 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-<<<<<<< HEAD:Assets/Materials/Gorilla/MAT_Gorilla.mat
-  m_Name: MAT_Gorilla
-  m_Shader: {fileID: -6465566751694194690, guid: c4d8e12fed8704440a753f9a98ab5491,
-    type: 3}
-  m_ValidKeywords: []
-=======
   m_Name: MAT_Blue_Gorg
   m_Shader: {fileID: 4800000, guid: 933532a4fcc9baf4fa0491de14d08ed7, type: 3}
   m_ValidKeywords:
   - _METALLICSPECGLOSSMAP
   - _NORMALMAP
->>>>>>> 0b93686c8b4359b0c89b6701ece7477a6fbd4544:Assets/Materials/Gorilla/MAT_Blue_Gorg.mat
   m_InvalidKeywords: []
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
