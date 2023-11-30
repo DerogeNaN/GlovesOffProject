@@ -5,6 +5,8 @@ TagManager:
   serializedVersion: 2
   tags:
   - GameManager
+  - Canvas
+  - Main Menu Button
   layers:
   - Default
   - TransparentFX
@@ -39,6 +41,9 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: Fade
+    uniqueID: 542376709
+    locked: 0
   - name: Default
     uniqueID: 0
     locked: 0

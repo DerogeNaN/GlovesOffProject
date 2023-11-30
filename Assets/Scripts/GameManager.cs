@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
@@ -10,6 +11,7 @@ public class GameManager : MonoBehaviour
 
     public Clock timer;
     public Clock countdown;
+    public Clock roundBuffer;
 
     ScreenFade screenFade;
 
@@ -23,8 +25,12 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] Button mainMenuButton;
 
+    bool paused = false;
+    public bool Paused { get { return paused; } }
+
     public enum Phase
     {
+        RoundBuffer,
         RoundStart,
         RPS,
         Wager,
@@ -123,22 +129,6 @@ public class GameManager : MonoBehaviour
                 break;
             ///////////////////////////////////////
             case Phase.Action:
-                for (int i = 0; i < players.Length; i++)
-                {
-                    if (roundWinner == null)
-                    {
-                        animationHandlers[i].SetResult(MatchResult.Tie);
-                    }
-                    else if (roundWinner == players[i])
-                    {
-                        animationHandlers[i].SetResult(MatchResult.Win);
-                    }
-                    else
-                    {
-                        animationHandlers[i].SetResult(MatchResult.Lose);
-                    }
-                    players[i].playerStamina.PreviousWager = players[i].playerStamina.CurrentWager;
-                }
                 break;
             ///////////////////////////////////////
             case Phase.RoundEnd:
@@ -146,7 +136,7 @@ public class GameManager : MonoBehaviour
                 {
                     return;
                 }
-                EndRound();
+                GoToRoundBuffer();
                 break;
             ///////////////////////////////////////
             case Phase.MatchEnd:
@@ -158,6 +148,12 @@ public class GameManager : MonoBehaviour
                         mainMenuButton.gameObject.SetActive(true);
                         break;
                     }
+                }
+                break;
+            case Phase.RoundBuffer:
+                if (roundBuffer.IsZero())
+                {
+                    EndRound();
                 }
                 break;
         }
@@ -265,6 +261,22 @@ public class GameManager : MonoBehaviour
     void GoToAction()
     {
         DetermineRoundWinner();
+        for (int i = 0; i < players.Length; i++)
+        {
+            if (roundWinner == null)
+            {
+                animationHandlers[i].SetResult(MatchResult.Tie);
+            }
+            else if (roundWinner == players[i])
+            {
+                animationHandlers[i].SetResult(MatchResult.Win);
+            }
+            else
+            {
+                animationHandlers[i].SetResult(MatchResult.Lose);
+            }
+            players[i].playerStamina.PreviousWager = players[i].playerStamina.CurrentWager;
+        }
         foreach (PlayerController player in players)
         {
             player.ActionPhase();
@@ -280,10 +292,16 @@ public class GameManager : MonoBehaviour
     {
         currentPhase = Phase.MatchEnd;
     }
+    void GoToRoundBuffer()
+    {
+        roundBuffer.RestartClock();
+        currentPhase = Phase.RoundBuffer;
+    }
     #endregion
 
     public void PauseGame(InputAction.CallbackContext callback, PlayerController p)
     {
+        paused = true;
         Time.timeScale = 0;
         Debug.Log("The game is paused");
         for (int i = 0; i < players.Length; i++)
@@ -301,6 +319,7 @@ public class GameManager : MonoBehaviour
     }
     public void ResumeGame(InputAction.CallbackContext callback, PlayerController p)
     {
+        paused = false;
         Time.timeScale = 1;
         Debug.Log("The game will resume");
         for (int i = 0; i < players.Length; i++)
@@ -316,5 +335,10 @@ public class GameManager : MonoBehaviour
             }
         }
 
+    }
+
+    public void ReturnToMainMenu()
+    {
+        SceneManager.LoadScene(sceneName: "MainMenu");
     }
 }

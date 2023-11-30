@@ -1,74 +1,119 @@
-using System;
-using System.Linq;
+using System.Diagnostics.Tracing;
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class RoundUI : MonoBehaviour
 {
     GameManager gameManager;
-    [SerializeField] Canvas UICanvas;
+    Canvas UICanvas;
 
-    TextMeshProUGUI currentPhase;
+    Image currentPhase;
 
-    TextMeshProUGUI player1Stamina;
-    TextMeshProUGUI player2Stamina;
-
-    TextMeshProUGUI player1Wager;
-    TextMeshProUGUI player2Wager;
-
-    TextMeshProUGUI roundWinner;
-
-    TextMeshProUGUI matchWinner;
+    Image p1RPSConfirm;
+    Image p2RPSConfirm;
 
     [SerializeField] Sprite blankStamina;
     [SerializeField] Sprite blueStamina;
     [SerializeField] Sprite orangeStamina;
 
-    Image[] P1Stamina = new Image[8];
-    Image[] P2Stamina = new Image[8];
+    [SerializeField] Sprite blankWager;
+    [SerializeField] Sprite blueWager;
+    [SerializeField] Sprite yellowWager;
 
-    Image[] P1Wager;
-    Image[] P2Wager;
+    [SerializeField] Sprite clock3;
+    [SerializeField] Sprite clock2;
+    [SerializeField] Sprite clock1;
+
+    [SerializeField] Sprite roundTie;
+    [SerializeField] Sprite player1Wins;
+    [SerializeField] Sprite player2Wins;
+
+    [SerializeField] Sprite rps;
+    [SerializeField] Sprite wager;
+
+
+    Image[] p1Stamina = new Image[8];
+    Image[] p2Stamina = new Image[8];
+
+    Image[] p1Wager = new Image[3];
+    Image[] p2Wager = new Image[3];
+
+    Image timer;
+    Image countdown;
+
+    Image roundWinner;
+    Image matchWinner;
+
+    float p1ActionChosenTime = 0.3f;
+    float p1CurrentTime = 0;
+
+    float p2ActionChosenTime = 0.3f;
+    float p2CurrentTime = 0;
 
     void Awake()
     {
         gameManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
+        UICanvas = GameObject.FindObjectOfType<Canvas>();
+        currentPhase = UICanvas.transform.Find("Current Phase").GetComponent<Image>();
 
-        currentPhase = UICanvas.transform.Find("Current Phase").GetComponent<TextMeshProUGUI>();
+        roundWinner = UICanvas.transform.Find("Round Winner").GetComponent<Image>();
+        matchWinner = UICanvas.transform.Find("Match Winner").GetComponent<Image>();
 
-        player1Stamina = UICanvas.transform.Find("Player 1 Stamina").GetComponent<TextMeshProUGUI>();
-        player2Stamina = UICanvas.transform.Find("Player 2 Stamina").GetComponent<TextMeshProUGUI>();
+        p1RPSConfirm = UICanvas.transform.Find("RPS Confirm").Find("P1 RPS Confirm").GetComponent<Image>();
+        p2RPSConfirm = UICanvas.transform.Find("RPS Confirm").Find("P2 RPS Confirm").GetComponent<Image>();
 
-        player1Wager = UICanvas.transform.Find("Player 1 Wager").GetComponent<TextMeshProUGUI>();
-        player2Wager = UICanvas.transform.Find("Player 2 Wager").GetComponent<TextMeshProUGUI>();
-
-        roundWinner = UICanvas.transform.Find("Round Winner").GetComponent<TextMeshProUGUI>();
-        matchWinner = UICanvas.transform.Find("Match Winner").GetComponent<TextMeshProUGUI>();
-
-        for (int i = 0; i < 8; i++)
+        for (int i = 0; i < p1Stamina.Length; i++)
         {
-            P1Stamina[i] = UICanvas.transform.Find("Player1 Stamina").GetChild(i).GetComponent<Image>();
+            p1Stamina[i] = UICanvas.transform.Find("Player1 Stamina").GetChild(i).GetComponent<Image>();
         }
-        for (int i = 0; i < 8; i++)
+        for (int i = 0; i < p2Stamina.Length; i++)
         {
-            P2Stamina[i] = UICanvas.transform.Find("Player2 Stamina").GetChild(i).GetComponent<Image>();
+            p2Stamina[i] = UICanvas.transform.Find("Player2 Stamina").GetChild(i).GetComponent<Image>();
         }
+
+        for (int i = 0; i < p1Wager.Length; i++)
+        {
+            p1Wager[i] = UICanvas.transform.Find("Player1 Wager").GetChild(i).GetComponent<Image>();
+        }
+        for (int i = 0; i < p2Wager.Length; i++)
+        {
+            p2Wager[i] = UICanvas.transform.Find("Player2 Wager").GetChild(i).GetComponent<Image>();
+        }
+
+        timer = UICanvas.transform.Find("Clocks").Find("Timer").GetComponent<Image>();
+        countdown = UICanvas.transform.Find("Clocks").Find("Countdown").GetComponent<Image>();
     }
 
     void Start()
     {
         currentPhase.enabled = false;
 
-        player1Stamina.enabled = false;
-        player2Stamina.enabled = false;
+        p1RPSConfirm.enabled = false;
+        p2RPSConfirm.enabled = false;
+        foreach (Image stamina in p1Stamina)
+        {
+            stamina.enabled = false;
+        }
+        foreach (Image stamina in p2Stamina)
+        {
+            stamina.enabled = false;
+        }
 
-        player1Wager.enabled = false;
-        player2Wager.enabled = false;
+        foreach (Image wager in p1Wager)
+        {
+            wager.enabled = false;
+        }
+        foreach (Image wager in p2Wager)
+        {
+            wager.enabled = false;
+        }
 
         roundWinner.enabled = false;
         matchWinner.enabled = false;
+
+        countdown.enabled = false;
+        timer.enabled = false;
     }
 
     // Update is called once per frame
@@ -78,86 +123,116 @@ public class RoundUI : MonoBehaviour
         {
             return;
         }
-        RenderStamina(P1Stamina, gameManager.Players[0], blueStamina);
-        RenderStamina(P2Stamina, gameManager.Players[1], orangeStamina);
-        UpdateText();
         switch (gameManager.CurrentPhase)
         {
             case GameManager.Phase.RoundStart:
+                countdown.enabled = true;
                 currentPhase.enabled = false;
+                RenderStamina(p1Stamina, gameManager.Players[0], orangeStamina);
+                RenderStamina(p2Stamina, gameManager.Players[1], blueStamina);
+                RenderClock(countdown, gameManager.countdown);
 
-                player1Stamina.enabled = false;
-                player2Stamina.enabled = false;
+                foreach (Image stamina in p1Stamina)
+                {
+                    stamina.enabled = false;
+                }
+                foreach (Image stamina in p2Stamina)
+                {
+                    stamina.enabled = false;
+                }
 
-                player1Wager.enabled = false;
-                player2Wager.enabled = false;
+                foreach (Image wager in p1Wager)
+                {
+                    wager.enabled = false;
+                }
+                foreach (Image wager in p2Wager)
+                {
+                    wager.enabled = false;
+                }
 
                 roundWinner.enabled = false;
                 matchWinner.enabled = false;
                 break;
 
             case GameManager.Phase.RPS:
-                roundWinner.enabled = false;
-
-                player1Stamina.enabled = true;
-                player2Stamina.enabled = true;
-
+                countdown.enabled = false;
+                timer.enabled = true;
                 currentPhase.enabled = true;
+                p1CurrentTime = RenderActionChosen(p1RPSConfirm, gameManager.Players[0], p1ActionChosenTime, p1CurrentTime);
+                p2CurrentTime = RenderActionChosen(p2RPSConfirm, gameManager.Players[1], p2ActionChosenTime, p2CurrentTime);
+                RenderClock(timer, gameManager.timer);
+                RenderCurrentPhase(rps);
+
+                foreach (Image stamina in p1Stamina)
+                {
+                    stamina.enabled = true;
+                }
+                foreach (Image stamina in p2Stamina)
+                {
+                    stamina.enabled = true;
+                }
+
+                roundWinner.enabled = false;
                 break;
             case GameManager.Phase.Wager:
-                player1Wager.enabled = true;
-                player2Wager.enabled = true;
+                timer.enabled = true;
+                p1RPSConfirm.enabled = false;
+                p2RPSConfirm.enabled = false;
+
+                foreach (Image wager in p1Wager)
+                {
+                    wager.enabled = true;
+                }
+                foreach (Image wager in p2Wager)
+                {
+                    wager.enabled = true;
+                }
+                RenderCurrentPhase(wager);
+                RenderClock(timer, gameManager.timer);
+                RenderWager(p1Wager, gameManager.Players[0], yellowWager);
+                RenderWager(p2Wager, gameManager.Players[1], blueWager);
                 break;
             case GameManager.Phase.Action:
+                timer.enabled = false;
                 currentPhase.enabled = false;
-                player1Stamina.enabled = false;
-                player2Stamina.enabled = false;
 
-                player1Wager.enabled = false;
-                player2Wager.enabled = false;
+                foreach (Image wager in p1Wager)
+                {
+                    wager.enabled = false;
+                }
+                foreach (Image wager in p2Wager)
+                {
+                    wager.enabled = false;
+                }
                 break;
             case GameManager.Phase.RoundEnd:
+                RenderStamina(p1Stamina, gameManager.Players[0], orangeStamina);
+                RenderStamina(p2Stamina, gameManager.Players[1], blueStamina);
+                RenderRoundWinner();
                 roundWinner.enabled = true;
                 break;
             case GameManager.Phase.MatchEnd:
-                player1Stamina.enabled = false;
-                player2Stamina.enabled = false;
+                foreach (Image stamina in p1Stamina)
+                {
+                    stamina.enabled = false;
+                }
+                foreach (Image stamina in p2Stamina)
+                {
+                    stamina.enabled = false;
+                }
 
+                RenderMatchWinner();
                 currentPhase.enabled = false;
                 roundWinner.enabled = false;
 
                 matchWinner.enabled = true;
                 break;
+            case GameManager.Phase.RoundBuffer:
+                roundWinner.enabled = false;
+                break;
             default:
                 break;
         }
-    }
-
-    void UpdateText()
-    {
-        currentPhase.text = $"Current Phase: {gameManager.CurrentPhase}";
-
-
-        player1Stamina.text = $"Player 1 Stamina: {gameManager.Players[0].playerStamina.CurrentStamina}";
-        player2Stamina.text = $"Player 2 Stamina: {gameManager.Players[1].playerStamina.CurrentStamina}";
-
-        player1Wager.text = $"Player 1 Wager: {gameManager.Players[0].playerStamina.CurrentWager}";
-        player2Wager.text = $"Player 2 Wager: {gameManager.Players[1].playerStamina.CurrentWager}";
-
-        if (gameManager.MatchWinner != null)
-        {
-            matchWinner.text = $"{gameManager.MatchWinner.name} wins!";
-        }
-
-        if (gameManager.RoundWinner == null)
-        {
-            roundWinner.text = $"Tie!";
-        }
-        else
-        {
-            roundWinner.text = $"Round Winner: {gameManager.RoundWinner.name}!";
-        }
-
     }
 
     void RenderStamina(Image[] playerStamina, PlayerController player, Sprite active)
@@ -174,4 +249,87 @@ public class RoundUI : MonoBehaviour
             }
         }
     }
+    void RenderWager(Image[] playerWager, PlayerController player, Sprite active)
+    {
+        for (int i = 0; i < playerWager.Length; i++)
+        {
+            if (player.playerStamina.CurrentWager > i)
+            {
+                playerWager[i].sprite = active;
+            }
+            else
+            {
+                playerWager[i].sprite = blankWager;
+            }
+        }
+    }
+
+    float RenderActionChosen(Image actionChosen, PlayerController player, float actionChosenTime, float currentTime)
+    {
+        if (player.newActionChosen)
+        {
+            currentTime = actionChosenTime;
+            player.newActionChosen = false;
+        }
+        if (currentTime > 0)
+        {
+            currentTime -= Time.deltaTime;
+            actionChosen.enabled = true;
+            return currentTime;
+        }
+        actionChosen.enabled = false;
+        return 0;
+    }
+
+    void RenderClock(Image clockImage, Clock clock)
+    {
+        if (clock.IsZero())
+        {
+            clockImage.enabled = false;
+        }
+        if (clock.CurrentTime <= 3 && clock.CurrentTime > 2)
+        {
+            clockImage.sprite = clock3;
+        }
+        else if (clock.CurrentTime <= 2 && clock.CurrentTime > 1)
+        {
+            clockImage.sprite = clock2;
+        }
+        else if (clock.CurrentTime <= 1 && clock.CurrentTime > 0)
+        {
+            clockImage.sprite = clock1;
+        }
+    }
+    
+    void RenderRoundWinner()
+    {
+        if (gameManager.RoundWinner == null)
+        {
+            roundWinner.sprite = roundTie;
+        }
+        else if (gameManager.RoundWinner == gameManager.Players[0])
+        {
+            roundWinner.sprite = player1Wins;
+        }
+        else if (gameManager.RoundWinner == gameManager.Players[1])
+        {
+            roundWinner.sprite = player2Wins;
+        }
+    }
+    void RenderMatchWinner()
+    {
+        if (gameManager.MatchWinner == gameManager.Players[0])
+        {
+            matchWinner.sprite = player1Wins;
+        }
+        else if (gameManager.MatchWinner == gameManager.Players[1])
+        {
+            matchWinner.sprite = player2Wins;
+        }
+    }
+    void RenderCurrentPhase(Sprite phase)
+    {
+        currentPhase.sprite = phase;
+    }
 }
+

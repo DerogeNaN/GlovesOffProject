@@ -28,6 +28,10 @@ public class AnimationHandler : MonoBehaviour
             {
                 animator.SetTrigger("ActionPhaseStart");
             }
+            if (oldPhase == GameManager.Phase.RoundBuffer)
+            {
+                animator.SetTrigger("RoundRestart");
+            }
         }
     }
 
@@ -100,5 +104,9 @@ public class AnimationHandler : MonoBehaviour
         gameManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
         playerController = GetComponent<PlayerController>();
         this.enabled = true;
+    }
+    void EndRound()
+    {
+        gameManager.GoToRoundEnd();
     }
 }

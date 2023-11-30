@@ -13,13 +13,14 @@ public class PlayerSpawner : MonoBehaviour
 
     public GameManager gameManager;
     [SerializeField] AnimationHandler animationHandler;
-    [SerializeField] Canvas inGameOverlay;
+    Canvas inGameOverlay;
     PlayerInputManager curPlayerInputManager;
 
     bool[] playersReady = {false, false};
 
     void Start()
     {
+        inGameOverlay = GameObject.FindObjectOfType<Canvas>();
         curPlayerInputManager = GetComponent<PlayerInputManager>();
         animationHandler = GetComponent<AnimationHandler>();
         curPlayerInputManager.onPlayerJoined += OnPlayerJoined;

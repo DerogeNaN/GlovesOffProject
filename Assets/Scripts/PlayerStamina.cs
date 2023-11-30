@@ -106,7 +106,7 @@ public class PlayerStamina : MonoBehaviour
 
     public void resetWager()
     {
-        if (previousWager == 1)
+        if (previousWager == 1 && CurrentStamina > 1)
         {
             currentWager = 2;
             return;
