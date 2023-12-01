@@ -4,21 +4,30 @@ using UnityEngine.UI;
 
 public class AnimationHandler : MonoBehaviour
 {
-    private Animator animator;
-    private GameManager gameManager;
-    private PlayerController playerController;
-    private PlayerController.Actions actionChoice = PlayerController.Actions.None;
-    private bool rpsTie;
+    Animator animator;
+    GameManager gameManager;
+    CameraZoom cameraZoom;
+    CameraShake cameraShake;
+    PlayerController playerController;
+    PlayerController.Actions actionChoice = PlayerController.Actions.None;
+    bool rpsTie;
 
+    GameManager.Phase oldPhase;
 
-    private GameManager.Phase oldPhase;
-
-    // Start is called before the first frame update
-    void Start()
-    { 
+    public void EnableAnimationHandler()
+    {
+        enabled = true;
     }
 
-    // Update is called once per frame
+    void Awake()
+    {
+        animator = GetComponent<Animator>();
+        gameManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
+        cameraZoom = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<CameraZoom>();
+        cameraShake = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<CameraShake>();
+        playerController = GetComponent<PlayerController>();
+    }
+
     void Update()
     {
         if (gameManager.CurrentPhase != oldPhase)
@@ -98,15 +107,21 @@ public class AnimationHandler : MonoBehaviour
         animator.SetTrigger(animationTrigger.ToString());
     }
 
-    public void EnableAnimationHandler()
-    {
-        animator = GetComponent<Animator>();
-        gameManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
-        playerController = GetComponent<PlayerController>();
-        this.enabled = true;
-    }
     void EndRound()
     {
         gameManager.GoToRoundEnd();
+    }
+    public void ImpactEffect()
+    {
+        float impactEffectTime = 0.5f;
+        cameraZoom.zoomTime = impactEffectTime;
+        cameraZoom.ZoomIn();
+        cameraShake.Shake(impactEffectTime);
+        animator.speed = 0;
+        Invoke(nameof(ResumeAnimation), impactEffectTime);
+    }
+    public void ResumeAnimation()
+    {
+        animator.speed = 1;
     }
 }

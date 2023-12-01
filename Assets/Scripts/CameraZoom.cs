@@ -15,7 +15,7 @@ public class CameraZoom : MonoBehaviour
 
 
     float currentTime;
-    [SerializeField] float zoomTime;
+    public float zoomTime;
 
     void Awake()
     {
@@ -30,11 +30,6 @@ public class CameraZoom : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKey(KeyCode.Space))
-        {
-            zoomIn = true;
-        }
-
         if (zoomIn)
         {
             if (currentTime <= zoomTime)

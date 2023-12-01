@@ -23,18 +23,15 @@ public class CameraShake : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKey(KeyCode.Space))
-        {
-            Shake();
-        }
         if (shakeTimer.IsZero())
         {
             StopShake();
         }
     }
 
-    public void Shake()
+    public void Shake(float totalTime)
     {
+        shakeTimer.totalTime = totalTime;
         cBMCP.m_AmplitudeGain = shakeIntensity;
         shakeTimer.RestartClock();
     }

@@ -123,18 +123,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!114 &55715072 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7154949518739312063, guid: bfcb1d66f68990240b48bb5d06a2c5d5,
-    type: 3}
-  m_PrefabInstance: {fileID: 2028169977}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &203844586
 GameObject:
   m_ObjectHideFlags: 0
@@ -265,7 +253,7 @@ GameObject:
   - component: {fileID: 272920162}
   m_Layer: 0
   m_Name: CM vcam1
-  m_TagString: Untagged
+  m_TagString: MainCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -349,7 +337,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 752b5ce05ac85c44e8f8936f7382e28f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  totalTime: 2
+  totalTime: 0.5
 --- !u!114 &272920162
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -364,7 +352,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   minFOV: 20
   zoomSpeed: 1
-  zoomTime: 2
+  zoomTime: 0.5
 --- !u!1001 &757853969
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -625,7 +613,7 @@ PrefabInstance:
         type: 3}
       propertyPath: mainMenuButton
       value: 
-      objectReference: {fileID: 55715072}
+      objectReference: {fileID: 0}
     - target: {fileID: 7691617686310682620, guid: 1825ca76624375749b4ff78bbcb0ff80,
         type: 3}
       propertyPath: clockText
