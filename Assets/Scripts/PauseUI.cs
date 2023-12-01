@@ -7,8 +7,7 @@ public class PauseUI : MonoBehaviour
 {
     GameManager gameManager;
     Canvas UICanvas;
-    Image paused;
-    Image fadeCover;
+    Image paused, fadeCover;
 
     void Start()
     {

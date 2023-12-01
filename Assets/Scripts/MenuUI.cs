@@ -7,11 +7,7 @@ using UnityEngine.EventSystems;
 
 public class MenuUI : MonoBehaviour
 {
-    [SerializeField] Canvas mainMenuUI = null;
-    [SerializeField] Canvas optionsMenuUI = null;
-    [SerializeField] Canvas creditsUI = null;
-    [SerializeField] Canvas levelSelectUI = null;
-
+    [SerializeField] Canvas mainMenuUI = null, optionsMenuUI = null, creditsUI = null, levelSelectUI = null;
     [SerializeField] EventSystem eventSystem;
     [SerializeField] GameObject optionsFirst, creditsFirst, levelSelectFirst, mainMenuFirst;
 
