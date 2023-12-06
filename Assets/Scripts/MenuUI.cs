@@ -4,12 +4,14 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using UnityEngine.EventSystems;
+using TMPro;
 
 public class MenuUI : MonoBehaviour
 {
     [SerializeField] Canvas mainMenuUI = null, optionsMenuUI = null, creditsUI = null, levelSelectUI = null;
     [SerializeField] EventSystem eventSystem;
     [SerializeField] GameObject optionsFirst, creditsFirst, levelSelectFirst, mainMenuFirst;
+    [SerializeField] TextMeshProUGUI windowMode;
 
     public void LoadLevelSelect()
     {
@@ -59,6 +61,18 @@ public class MenuUI : MonoBehaviour
     public void ReturnToMainMenu()
     {
         SceneManager.LoadScene(sceneName: "MainMenu");
+    }
+
+    public void EnableFullscreen()
+    {
+        Screen.fullScreenMode = FullScreenMode.ExclusiveFullScreen;
+        windowMode.text = "FULLSCREEN";
+    }
+
+    public void EnableWindowed()
+    {
+        Screen.fullScreenMode = FullScreenMode.Windowed;
+        windowMode.text = "WINDOWED";
     }
 
     public void ExitButton()
