@@ -16,7 +16,10 @@ public class PlayerSpawner : MonoBehaviour
     Canvas inGameOverlay;
     PlayerInputManager curPlayerInputManager;
 
-    bool[] playersReady = {false, false};
+    public bool[] playersReady = {false, false};
+
+    RoundUI roundUI;
+    int playerNumber = 0;
 
     void Start()
     {
@@ -24,6 +27,7 @@ public class PlayerSpawner : MonoBehaviour
         curPlayerInputManager = GetComponent<PlayerInputManager>();
         animationHandler = GetComponent<AnimationHandler>();
         curPlayerInputManager.onPlayerJoined += OnPlayerJoined;
+        roundUI = GameObject.FindGameObjectWithTag("GameManager").GetComponent<RoundUI>();
     }
 
     void Update()
@@ -33,6 +37,9 @@ public class PlayerSpawner : MonoBehaviour
 
     void OnPlayerJoined(PlayerInput playerInput)
     {
+        playerNumber += 1;
+        roundUI.OnJoin(playerInput, playerNumber);
+        playerInput.GetComponent<PlayerController>().controlSchemeKeyboard = playerInput.GetDevice<Keyboard>() != null;
         Debug.Log(playerInput.playerIndex);
         curPlayerInputManager.playerPrefab = playerPrefabs[playerInput.playerIndex];
         players[playerInput.playerIndex] = playerInput;
@@ -53,6 +60,7 @@ public class PlayerSpawner : MonoBehaviour
     {
         playersReady[playerInput.playerIndex] = true;
         Debug.Log(playerInput.playerIndex + " is ready!");
+        roundUI.OnReady(playerInput.playerIndex);
 
         if (playersReady[0] && playersReady[1])
         {

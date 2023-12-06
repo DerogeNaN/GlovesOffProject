@@ -10,7 +10,6 @@ public class AutoAddPlayerToVcamTargets : MonoBehaviour
 
     public CinemachineTargetGroup targetGroup;
 
-    // Update is called once per frame
     void Update()
     {
         var targetGroup = GetComponent<CinemachineTargetGroup>();

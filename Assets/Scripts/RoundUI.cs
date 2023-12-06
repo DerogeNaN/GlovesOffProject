@@ -1,6 +1,7 @@
 using System.Diagnostics.Tracing;
 using TMPro;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
 public class RoundUI : MonoBehaviour
@@ -32,6 +33,14 @@ public class RoundUI : MonoBehaviour
     [SerializeField] Sprite rpsSprite;
     [SerializeField] Sprite wagerSprite;
 
+    [SerializeField] Sprite dPadLeft;
+    [SerializeField] Sprite dPadRight;
+
+    [SerializeField] Sprite aButton;
+
+    [SerializeField] Sprite pkbKeyboard;
+    [SerializeField] Sprite pkbController;
+
 
     Image p1StaminaBar;
     Image p2StaminaBar;
@@ -46,6 +55,20 @@ public class RoundUI : MonoBehaviour
 
     Image roundWinner;
     Image matchWinner;
+
+    Image player1DPadLeft;
+    Image player1DPadRight;
+    Image player2DPadLeft;
+    Image player2DPadRight;
+
+    GameObject player1JoinButton;
+    GameObject player2JoinButton;
+
+    TextMeshProUGUI player1JoinButtonText;
+    TextMeshProUGUI player2JoinButtonText;
+
+    Image player1ActionLayout;
+    Image player2ActionLayout;
 
     float p1ActionChosenTime = 0.3f;
     float p1CurrentTime = 0;
@@ -87,6 +110,21 @@ public class RoundUI : MonoBehaviour
 
         timer = UICanvas.transform.Find("Clocks").Find("Timer").GetComponent<Image>();
         countdown = UICanvas.transform.Find("Clocks").Find("Countdown").GetComponent<Image>();
+
+        player1DPadLeft = UICanvas.transform.Find("Player1 D-Pad").Find("D-Pad Left").GetComponent<Image>();
+        player1DPadRight = UICanvas.transform.Find("Player1 D-Pad").Find("D-Pad Right").GetComponent<Image>();
+        player2DPadLeft = UICanvas.transform.Find("Player2 D-Pad").Find("D-Pad Left").GetComponent<Image>();
+        player2DPadRight = UICanvas.transform.Find("Player2 D-Pad").Find("D-Pad Right").GetComponent<Image>();
+
+        player1ActionLayout = UICanvas.transform.Find("Player1 Action Layout").GetComponent<Image>();
+        player2ActionLayout = UICanvas.transform.Find("Player2 Action Layout").GetComponent<Image>();
+
+        player1JoinButton = UICanvas.transform.Find("Player1 Join Button").gameObject;
+        player2JoinButton = UICanvas.transform.Find("Player2 Join Button").gameObject;
+
+        player1JoinButtonText = player1JoinButton.transform.Find("Text").GetComponent<TextMeshProUGUI>();
+        player2JoinButtonText = player2JoinButton.transform.Find("Text").GetComponent<TextMeshProUGUI>();
+
     }
 
     void Start()
@@ -122,6 +160,14 @@ public class RoundUI : MonoBehaviour
 
         countdown.enabled = false;
         timer.enabled = false;
+
+        player1DPadLeft.enabled = false;
+        player1DPadRight.enabled = false;
+        player2DPadLeft.enabled = false;
+        player2DPadRight.enabled = false;
+
+        player1ActionLayout.enabled = false;
+        player2ActionLayout.enabled = false;
     }
 
     // Update is called once per frame
@@ -175,6 +221,10 @@ public class RoundUI : MonoBehaviour
                 p2CurrentTime = RenderActionChosen(p2RPSConfirm, gameManager.Players[1], p2ActionChosenTime, p2CurrentTime);
                 RenderClock(timer, gameManager.timer);
                 RenderCurrentPhase(rpsSprite);
+                
+                RenderActionLayout();
+                player1ActionLayout.enabled = true;
+                player2ActionLayout.enabled = true;
 
                 p1StaminaBar.enabled = true;
                 p2StaminaBar.enabled = true;
@@ -211,6 +261,9 @@ public class RoundUI : MonoBehaviour
             case GameManager.Phase.Action:
                 timer.enabled = false;
                 currentPhase.enabled = false;
+
+                player1ActionLayout.enabled = false;
+                player2ActionLayout.enabled = false;
 
                 foreach (Image wager in p1Wager)
                 {
@@ -350,6 +403,58 @@ public class RoundUI : MonoBehaviour
     void RenderCurrentPhase(Sprite phase)
     {
         currentPhase.sprite = phase;
+    }
+
+    void RenderActionLayout()
+    {
+        if (gameManager.Players[0].controlSchemeKeyboard)
+        {
+            player1ActionLayout.sprite = pkbKeyboard;
+        }
+        else
+        {
+            player1ActionLayout.sprite = pkbController;
+        }
+        if (gameManager.Players[1].controlSchemeKeyboard)
+        {
+            player2ActionLayout.sprite = pkbKeyboard;
+        }
+        else
+        {
+            player2ActionLayout.sprite = pkbController;
+        }
+    }
+    public void OnJoin(PlayerInput player, int playerNumber)
+    {
+        if (playerNumber == 1)
+        {
+            player1JoinButtonText.text = "READY";
+            player1DPadLeft.enabled = true;
+            player1DPadRight.enabled = true;
+        }
+        if (playerNumber == 2)
+        {
+            player2JoinButtonText.text = "READY";
+            player2DPadLeft.enabled = true;
+            player2DPadRight.enabled = true;
+        }
+    }
+
+    public void OnReady(int playerIndex)
+    {
+        if (playerIndex == 0)
+        {
+            player1JoinButton.SetActive(false);
+            player1DPadLeft.enabled = false;
+            player1DPadRight.enabled = false;
+        }
+        if (playerIndex == 1)
+        {
+            player2JoinButton.SetActive(false);
+            player2DPadLeft.enabled = false;
+            player2DPadRight.enabled = false;
+        }
+
     }
 }
 
