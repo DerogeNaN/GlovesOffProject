@@ -89711,6 +89711,37 @@ AnimationClip:
   m_HasGenericRootTransform: 0
   m_HasMotionFloatCurves: 0
   m_Events:
+  - time: 0.033333335
+    functionName: ChangeGorillaVolume
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0.6
+    intParameter: 0
+    messageOptions: 0
+  - time: 0.6666667
+    functionName: VocalPlay
+    data: 
+    objectReferenceParameter: {fileID: 8300000, guid: c76bfdd2421bb6d49950f871982e3234,
+      type: 3}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 1.1
+    functionName: MiscPlay
+    data: 
+    objectReferenceParameter: {fileID: 8300000, guid: dbf08fabdb9c0b9498657eea8389afe2,
+      type: 3}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 3.1666667
+    functionName: VocalPlay
+    data: 
+    objectReferenceParameter: {fileID: 8300000, guid: e276e9e8d905d4244a6d9b365dc391ec,
+      type: 3}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
   - time: 4.3
     functionName: EndRound
     data: 
