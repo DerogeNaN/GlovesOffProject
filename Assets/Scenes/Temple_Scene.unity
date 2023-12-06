@@ -455,6 +455,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2415327111287528528, guid: facd75303b9f4d744abcf51865f0bcb5,
         type: 3}
+    - target: {fileID: 7691617686205036380, guid: 1825ca76624375749b4ff78bbcb0ff80,
+        type: 3}
+      propertyPath: m_MaxPlayerCount
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 7691617686310682592, guid: 1825ca76624375749b4ff78bbcb0ff80,
         type: 3}
       propertyPath: rps
