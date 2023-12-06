@@ -6006,6 +6006,10 @@ MonoBehaviour:
   soundFXSource: {fileID: 6649967075618835779}
   vocalSource: {fileID: 3174747851149899453}
   miscSource: {fileID: 8092058124487730087}
+  soundVolume: 1
+  oog1: {fileID: 8300000, guid: e63c7dbce02044042999735e453ab63c, type: 3}
+  oog2: {fileID: 8300000, guid: 05001fad6f763574fae8603bbb61c9db, type: 3}
+  oog3: {fileID: 8300000, guid: bfa86ca0e978bc144afaf29226160dc8, type: 3}
 --- !u!82 &6649967075618835779
 AudioSource:
   m_ObjectHideFlags: 0
