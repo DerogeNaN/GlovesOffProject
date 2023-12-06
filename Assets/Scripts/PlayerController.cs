@@ -12,6 +12,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] GameManager gameManager;
     PlayerSpawner spawner;
     string previousActionMap;
+    public bool controlSchemeKeyboard;
 
     public enum Actions
     {

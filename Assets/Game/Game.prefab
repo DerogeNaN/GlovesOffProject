@@ -229,20 +229,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f380f428dece4ce4294a1c9759c09113, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  blankStaminaSprite: {fileID: 0}
-  p1StaminaSprite: {fileID: 0}
-  p2StaminaSprite: {fileID: 0}
-  blankWagerSprite: {fileID: 0}
-  p1WagerSprite: {fileID: 0}
-  p2WagerSprite: {fileID: 0}
-  clock1Sprite: {fileID: 0}
-  clock2Sprite: {fileID: 0}
-  clock3Sprite: {fileID: 0}
-  roundTieSprite: {fileID: 0}
-  player1WinsSprite: {fileID: 0}
-  player2WinsSprite: {fileID: 0}
-  rpsSprite: {fileID: 0}
-  wagerSprite: {fileID: 0}
+  blankStaminaSprite: {fileID: 21300000, guid: 0e54a3b993660794280b05bee4948447, type: 3}
+  p1StaminaSprite: {fileID: 21300000, guid: b1942b09dde5f5544a43c8d6b4653639, type: 3}
+  p2StaminaSprite: {fileID: 21300000, guid: fd09e8bb14f7dfd4bb8e625ecabd4a06, type: 3}
+  blankWagerSprite: {fileID: 21300000, guid: 34fdbe21379b15342851f04487ab3f0f, type: 3}
+  p1WagerSprite: {fileID: 21300000, guid: b6438bd52997924449c12bd9462f5309, type: 3}
+  p2WagerSprite: {fileID: 21300000, guid: 7dcad1544d91d5145a7b97a51a57092e, type: 3}
+  clock1Sprite: {fileID: 21300000, guid: 74cd0013440d0c245921441233941f4e, type: 3}
+  clock2Sprite: {fileID: 21300000, guid: 2afacd7b288f7f7458c0d07f19293472, type: 3}
+  clock3Sprite: {fileID: 21300000, guid: 4be309504b8f74c4bac23fa948eae868, type: 3}
+  roundTieSprite: {fileID: 21300000, guid: f5bf4346c4db8884cb61e81e3b4ed54e, type: 3}
+  player1WinsSprite: {fileID: 21300000, guid: 5ae392d582752dd4591898d5b5ca9f01, type: 3}
+  player2WinsSprite: {fileID: 21300000, guid: 28d620b08bdca754e917c3c83f9581d2, type: 3}
+  rpsSprite: {fileID: 21300000, guid: 64932db83f91aeb4d988e2c548e7e297, type: 3}
+  wagerSprite: {fileID: 21300000, guid: b32da79e6b85a5b41adf18891b3f2993, type: 3}
+  dPadLeft: {fileID: 21300000, guid: 174abecaae1c8434cb725b4456c03558, type: 3}
+  dPadRight: {fileID: 21300000, guid: 7e57c29e08e0f1f4db9ca83c53f81796, type: 3}
+  aButton: {fileID: 21300000, guid: 555be4b604d92844a94c4eb5572e57a6, type: 3}
+  pkbKeyboard: {fileID: 21300000, guid: 2b362a87dbe642648bccc198ddb7fabf, type: 3}
+  pkbController: {fileID: 21300000, guid: 7f1ad595e10bf524cb35ffa3e1b8e142, type: 3}
 --- !u!114 &2526056840070229602
 MonoBehaviour:
   m_ObjectHideFlags: 0

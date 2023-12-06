@@ -10,8 +10,8 @@ public class CameraZoom : MonoBehaviour
     bool zoomOut;
 
     float defaultFOV;
-    [SerializeField] float minFOV;
-    [SerializeField] float zoomSpeed;
+    public float minFOV;
+    public float zoomSpeed;
 
 
     float currentTime;

@@ -111,11 +111,32 @@ public class AnimationHandler : MonoBehaviour
     {
         gameManager.GoToRoundEnd();
     }
-    public void ImpactEffect()
+    public void SmallImpactEffect()
     {
         float impactEffectTime = 0.5f;
+
+        cameraZoom.minFOV = 50;
+        cameraZoom.zoomSpeed = 1;
+
         cameraZoom.zoomTime = impactEffectTime;
         cameraZoom.ZoomIn();
+
+        cameraShake.shakeIntensity = 1.0f;
+        cameraShake.Shake(impactEffectTime);
+        animator.speed = 0;
+        Invoke(nameof(ResumeAnimation), impactEffectTime);
+    }
+    public void BigImpactEffect()
+    {
+        float impactEffectTime = 1.5f;
+
+        cameraZoom.minFOV = 35;
+        cameraZoom.zoomSpeed = 2;
+
+        cameraZoom.zoomTime = impactEffectTime;
+        cameraZoom.ZoomIn();
+
+        cameraShake.shakeIntensity = 4.0f;
         cameraShake.Shake(impactEffectTime);
         animator.speed = 0;
         Invoke(nameof(ResumeAnimation), impactEffectTime);
