@@ -7,7 +7,7 @@ public class CameraShake : MonoBehaviour
 {
     [SerializeField] Clock shakeTimer;
     CinemachineVirtualCamera cinemachineVirtualCamera;
-    float shakeIntensity = 1f;
+    public float shakeIntensity = 1f;
     CinemachineBasicMultiChannelPerlin cBMCP;
 
     void Awake()

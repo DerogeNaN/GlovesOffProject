@@ -1,3 +1,4 @@
+using Cinemachine;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -20,6 +21,7 @@ public class PlayerSpawner : MonoBehaviour
 
     RoundUI roundUI;
     int playerNumber = 0;
+    CinemachineTargetGroup targetGroup;
 
     void Start()
     {
@@ -28,6 +30,7 @@ public class PlayerSpawner : MonoBehaviour
         animationHandler = GetComponent<AnimationHandler>();
         curPlayerInputManager.onPlayerJoined += OnPlayerJoined;
         roundUI = GameObject.FindGameObjectWithTag("GameManager").GetComponent<RoundUI>();
+        targetGroup = GameObject.Find("TargetGroup1").GetComponent<CinemachineTargetGroup>();
     }
 
     void Update()
@@ -66,7 +69,8 @@ public class PlayerSpawner : MonoBehaviour
         {
             gameManager.EnableGameManager();
             inGameOverlay.gameObject.SetActive(true);
-
+            targetGroup.m_Targets[0].target = players[0].transform.Find("JNT_Root");
+            targetGroup.m_Targets[1].target = players[1].transform.Find("JNT_Root");
         }
     }
 }
