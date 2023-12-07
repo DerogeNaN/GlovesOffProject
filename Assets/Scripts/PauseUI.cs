@@ -1,29 +1,34 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class PauseUI : MonoBehaviour
 {
     GameManager gameManager;
-    Canvas UICanvas;
-    Image paused, fadeCover;
+    [SerializeField] Canvas UICanvas;
+    [SerializeField] GameObject returnToMenu;
+    [SerializeField] EventSystem eventSystem;
+    Image pauseImage;
 
     void Start()
     {
         gameManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
-        UICanvas = GameObject.FindObjectOfType<Canvas>();
-        paused = UICanvas.transform.Find("Pause").GetComponent<Image>();
-        fadeCover = UICanvas.transform.Find("Fade Cover").GetComponent<Image>();
+        pauseImage = GameObject.FindGameObjectWithTag("PauseCanvas").GetComponent<Image>();
+        pauseImage.enabled = false;
     }
 
-    void Update()
+    public void OnGamePause()
     {
         if (gameManager.Paused)
         {
-            paused.enabled = true;
+            pauseImage.enabled = true;
+            returnToMenu.gameObject.SetActive(true);
+            eventSystem.SetSelectedGameObject(returnToMenu);
             return;
         }
-        paused.enabled = false;
+        pauseImage.enabled = false;
+        returnToMenu.gameObject.SetActive(false);
     }
 }

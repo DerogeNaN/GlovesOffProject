@@ -1,6 +1,7 @@
 using Unity.VisualScripting;
 using Unity.VisualScripting.Dependencies.Sqlite;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -28,6 +29,10 @@ public class GameManager : MonoBehaviour
     [SerializeField] Button mainMenuButton;
 
     private VFXManager[] vfxManagers;
+
+    private PauseUI pauseUI;
+
+    [SerializeField] EventSystem eventSystem;
 
     bool paused = false;
     public bool Paused { get { return paused; } }
@@ -83,6 +88,11 @@ public class GameManager : MonoBehaviour
             players[0].GetComponent<VFXManager>(),
             players[1].GetComponent<VFXManager>()
         };
+    }
+
+    private void Awake()
+    {
+        pauseUI = GetComponent<PauseUI>();
     }
 
     void Start()
@@ -156,6 +166,7 @@ public class GameManager : MonoBehaviour
                     {
                         MatchWin(player);
                         mainMenuButton.gameObject.SetActive(true);
+                        eventSystem.SetSelectedGameObject(mainMenuButton.gameObject);
                         break;
                     }
                 }
@@ -318,10 +329,13 @@ public class GameManager : MonoBehaviour
         paused = true;
         Time.timeScale = 0;
 
+        pauseUI.OnGamePause();
         for (int i = 0; i < Players.Length; i++)
         {
             if (p == Players[i])
             {
+                Players[i].playerInput.actions.FindActionMap("HatSelection").Disable();
+                Players[i].playerInput.actions.FindActionMap("UIPause").Enable();
                 Players[i].playerInput.actions.FindActionMap("UI").Enable();
             }
             else if (p != Players[i])
@@ -335,11 +349,13 @@ public class GameManager : MonoBehaviour
     {
         paused = false;
         Time.timeScale = 1;
-        Debug.Log("The game will resume");
+
+        pauseUI.OnGamePause();
         for (int i = 0; i < Players.Length; i++)
         {
             if (p == Players[i])
             {
+                Players[i].playerInput.actions.FindActionMap("UIPause").Disable();
                 Players[i].playerInput.actions.FindActionMap("UI").Disable();
             }
             else if (p != Players[i])

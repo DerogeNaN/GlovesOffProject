@@ -7,6 +7,8 @@ TagManager:
   - GameManager
   - Canvas
   - Singleplayer
+  - Main Menu Button
+  - PauseCanvas
   layers:
   - Default
   - TransparentFX
