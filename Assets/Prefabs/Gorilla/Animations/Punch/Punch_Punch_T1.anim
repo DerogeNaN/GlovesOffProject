@@ -114034,6 +114034,36 @@ AnimationClip:
   m_HasGenericRootTransform: 0
   m_HasMotionFloatCurves: 0
   m_Events:
+  - time: 0
+    functionName: ChangeGorillaVolume
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0.6
+    intParameter: 0
+    messageOptions: 0
+  - time: 0.76666665
+    functionName: SFXPlay
+    data: 
+    objectReferenceParameter: {fileID: 8300000, guid: de20012c12f014e4cb6aa4314ead7e0c,
+      type: 3}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 0.76666665
+    functionName: SFXPlay
+    data: 
+    objectReferenceParameter: {fileID: 8300000, guid: 0f55878d377381441964fd2e7b9d2dc4,
+      type: 3}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 0.76666665
+    functionName: SmallImpactEffect
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
   - time: 3.9666667
     functionName: EndRound
     data: 

@@ -14,4 +14,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Temple_Scene.unity
     guid: 925542b38f245af4b9822798cbf3fd0d
+  - enabled: 1
+    path: Assets/Scenes/Egypt_Scene.unity
+    guid: 3a42f47428fb7074baed7151a0e52312
   m_configObjects: {}

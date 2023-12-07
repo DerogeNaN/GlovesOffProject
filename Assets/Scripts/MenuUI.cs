@@ -35,7 +35,7 @@ public class MenuUI : MonoBehaviour
 
     public void LoadDesert()
     {
-        SceneManager.LoadScene(sceneName: "Temple_Scene");
+        SceneManager.LoadScene(sceneName: "Egypt_Scene");
     }
 
     public void LoadOptionsMenu()
