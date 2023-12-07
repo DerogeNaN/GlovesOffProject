@@ -127221,7 +127221,7 @@ AnimationClip:
     floatParameter: 0.6
     intParameter: 0
     messageOptions: 0
-  - time: 1.9333333
+  - time: 2.0333333
     functionName: SFXPlay
     data: 
     objectReferenceParameter: {fileID: 8300000, guid: de20012c12f014e4cb6aa4314ead7e0c,
@@ -127229,19 +127229,47 @@ AnimationClip:
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 3.0333333
+  - time: 2.0333333
+    functionName: SmallImpactEffect
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 2.6
     functionName: SFXPlay
     data: 
-    objectReferenceParameter: {fileID: 8300000, guid: 84b42790494c700469a23ab8453f7d99,
+    objectReferenceParameter: {fileID: 8300000, guid: e276e9e8d905d4244a6d9b365dc391ec,
       type: 3}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 3.9333334
+  - time: 4.0333333
     functionName: SFXPlay
     data: 
     objectReferenceParameter: {fileID: 8300000, guid: 0f55878d377381441964fd2e7b9d2dc4,
       type: 3}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 4.266667
+    functionName: BigImpactEffect
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 4.3
+    functionName: FastAnimation
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 7.266667
+    functionName: ResumeAnimation
+    data: 
+    objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0

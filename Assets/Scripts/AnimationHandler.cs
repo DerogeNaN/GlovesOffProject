@@ -145,4 +145,9 @@ public class AnimationHandler : MonoBehaviour
     {
         animator.speed = 1;
     }
+    
+    public void FastAnimation()
+    {
+        animator.speed = 6;
+    }
 }
