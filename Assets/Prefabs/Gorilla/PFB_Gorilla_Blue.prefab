@@ -6008,6 +6008,10 @@ MonoBehaviour:
   soundFXSource: {fileID: 6649967075618835779}
   vocalSource: {fileID: 3174747851149899453}
   miscSource: {fileID: 8092058124487730087}
+  soundVolume: 1
+  oog1: {fileID: 0}
+  oog2: {fileID: 0}
+  oog3: {fileID: 0}
 --- !u!114 &-2537672064750917486
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6020,13 +6024,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 65b87413cfa3c404a86dc3a4e9b90566, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  chargeUp: {fileID: 0}
-  cloudsScrolling: {fileID: 0}
-  dizzy: {fileID: 0}
-  fireTrail: {fileID: 0}
-  fire: {fileID: 0}
-  impactFist: {fileID: 0}
-  impactFoot: {fileID: 0}
+  vfx:
+  - {fileID: 7246133049593151544, guid: dc3e489e48535a34a8c3a8ec8e68561c, type: 3}
+  - {fileID: 6013763452202509991, guid: 0c9078c5e9beff64b9233610bd860846, type: 3}
+  - {fileID: 6844081830239022148, guid: 4713acae7f33a434696c4cbf6ab95450, type: 3}
+  head: {fileID: 4054247033016752483}
+  fistR: {fileID: 3619212849902966708}
+  fistL: {fileID: 163978601965220401}
+  footR: {fileID: 2873076278956808615}
+  footL: {fileID: 3003599409468550928}
 --- !u!82 &6649967075618835779
 AudioSource:
   m_ObjectHideFlags: 0

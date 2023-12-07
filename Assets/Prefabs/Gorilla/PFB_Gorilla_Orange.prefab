@@ -2001,6 +2001,7 @@ GameObject:
   - component: {fileID: 4064106081211522338}
   - component: {fileID: 1874684399083236798}
   - component: {fileID: 2810993293737149668}
+  - component: {fileID: 2217597231704366932}
   - component: {fileID: 3712466428309947198}
   m_Layer: 0
   m_Name: PFB_Gorilla_Orange
@@ -2065,6 +2066,7 @@ MonoBehaviour:
   playerInput: {fileID: 0}
   playerStamina: {fileID: 0}
   gameManager: {fileID: 0}
+  controlSchemeKeyboard: 0
   newActionChosen: 0
 --- !u!114 &2680910582007019170
 MonoBehaviour:
@@ -2161,6 +2163,27 @@ MonoBehaviour:
   oog1: {fileID: 8300000, guid: e63c7dbce02044042999735e453ab63c, type: 3}
   oog2: {fileID: 8300000, guid: 05001fad6f763574fae8603bbb61c9db, type: 3}
   oog3: {fileID: 8300000, guid: bfa86ca0e978bc144afaf29226160dc8, type: 3}
+--- !u!114 &2217597231704366932
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2415327111287528528}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 65b87413cfa3c404a86dc3a4e9b90566, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  vfx:
+  - {fileID: 7246133049593151544, guid: dc3e489e48535a34a8c3a8ec8e68561c, type: 3}
+  - {fileID: 6013763452202509991, guid: 0c9078c5e9beff64b9233610bd860846, type: 3}
+  - {fileID: 6844081830239022148, guid: 4713acae7f33a434696c4cbf6ab95450, type: 3}
+  head: {fileID: 5243873520903698605}
+  fistR: {fileID: 4808835000878331514}
+  fistL: {fileID: 8268888974945768447}
+  footR: {fileID: 6294159511959500905}
+  footL: {fileID: 6424528504747822814}
 --- !u!82 &3712466428309947198
 AudioSource:
   m_ObjectHideFlags: 0

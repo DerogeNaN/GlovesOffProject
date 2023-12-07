@@ -130,17 +130,17 @@ PrefabInstance:
     - target: {fileID: 6072118394347573622, guid: 4ea0125ce540d894b92a21eb82f7370e,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -8.44
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6072118394347573622, guid: 4ea0125ce540d894b92a21eb82f7370e,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.01
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6072118394347573622, guid: 4ea0125ce540d894b92a21eb82f7370e,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 9.29
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6072118394347573622, guid: 4ea0125ce540d894b92a21eb82f7370e,
         type: 3}
@@ -180,7 +180,7 @@ PrefabInstance:
     - target: {fileID: 6182420108330245289, guid: 4ea0125ce540d894b92a21eb82f7370e,
         type: 3}
       propertyPath: m_Name
-      value: Fire Trail VFX_MT (1)
+      value: Fire Trail VFX_MT (1) Variant
       objectReference: {fileID: 0}
     - target: {fileID: 7950474008926305526, guid: 4ea0125ce540d894b92a21eb82f7370e,
         type: 3}

@@ -100,7 +100,7 @@ PrefabInstance:
     - target: {fileID: 7697741334102850582, guid: a5cc6867038b0cd4b94e8b06fc163e76,
         type: 3}
       propertyPath: m_Name
-      value: Fire Trail VFX_MT (1)
+      value: Fire Trail VFX_MT (1) Variant 1
       objectReference: {fileID: 0}
     - target: {fileID: 7736057309393646025, guid: a5cc6867038b0cd4b94e8b06fc163e76,
         type: 3}
@@ -110,17 +110,17 @@ PrefabInstance:
     - target: {fileID: 7736057309393646025, guid: a5cc6867038b0cd4b94e8b06fc163e76,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -8.44
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7736057309393646025, guid: a5cc6867038b0cd4b94e8b06fc163e76,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.01
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7736057309393646025, guid: a5cc6867038b0cd4b94e8b06fc163e76,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 9.29
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7736057309393646025, guid: a5cc6867038b0cd4b94e8b06fc163e76,
         type: 3}

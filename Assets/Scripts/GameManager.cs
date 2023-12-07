@@ -1,4 +1,5 @@
 using Unity.VisualScripting;
+using Unity.VisualScripting.Dependencies.Sqlite;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
@@ -25,6 +26,8 @@ public class GameManager : MonoBehaviour
     AnimationHandler[] animationHandlers;
 
     [SerializeField] Button mainMenuButton;
+
+    private VFXManager[] vfxManagers;
 
     bool paused = false;
     public bool Paused { get { return paused; } }
@@ -74,6 +77,12 @@ public class GameManager : MonoBehaviour
         this.enabled = true;
 
         screenFade = GetComponent<ScreenFade>();
+
+        vfxManagers = new VFXManager[]
+        {
+            players[0].GetComponent<VFXManager>(),
+            players[1].GetComponent<VFXManager>()
+        };
     }
 
     void Start()
@@ -297,6 +306,8 @@ public class GameManager : MonoBehaviour
     {
         roundBuffer.RestartClock();
         currentPhase = Phase.RoundBuffer;
+        vfxManagers[0].ClearVFX();
+        vfxManagers[1].ClearVFX();
     }
     #endregion
 

@@ -5,38 +5,39 @@ using UnityEngine;
 
 public class VFXManager : MonoBehaviour
 {
-    [SerializeField] GameObject dizzy, impactFist, impactFoot;
+    [SerializeField] GameObject[] vfx = new GameObject[3];
     [SerializeField] Transform head, fistR, fistL, footR, footL;
-    //GameObject[] instances = new GameObject[2];
-    
+    private GameObject tempDizzy, tempPunch, tempKick;
 
-
-    //public void OnPunch(int playerIndex, Vector3 position)
-    //{
-    //    instances[playerIndex] = Instantiate(impactFist, position, Quaternion.identity);
-    //    ParticleSystem[] particleSystems = instances[playerIndex].GetComponentsInChildren<ParticleSystem>();
-    //    foreach (var sys in particleSystems)
-    //    {
-    //        sys.Play();
-    //    }
-    //}
-
-    public void PlayDizzyFX(Transform position)
+    public void PlayDizzyFX()
     {
-        Instantiate(dizzy, position);
-        ParticleSystem[] particleFX = dizzy.GetComponentsInChildren<ParticleSystem>();
-        foreach(var particle in particleFX)
-        {
-            particle.Play();
-        }
+        tempDizzy = Instantiate(vfx[0], head);
     }
 
-    //public void ClearParticles()
-    //{
-    //    for (int i = 0; i < instances.Length; i++)
-    //    {
-    //        Destroy(instances[i]);
-    //        instances[i] = null;
-    //    }
-    //}
+    public void PlayPunchLeftFX()
+    {
+        tempPunch = Instantiate(vfx[1], fistL);
+    }
+
+    public void PlayPunchRightFX()
+    {
+        tempPunch = Instantiate(vfx[1], fistR);
+    }
+
+    public void PlayKickLeftFX()
+    {
+        tempKick = Instantiate(vfx[2], footL);
+    }
+
+    public void PlayKickRightFX()
+    {
+        tempKick = Instantiate(vfx[2], footR);
+    }
+
+    public void ClearVFX()
+    {
+        Destroy(tempDizzy);
+        Destroy(tempPunch);
+        Destroy(tempKick);
+    }
 }

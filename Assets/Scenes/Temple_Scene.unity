@@ -635,6 +635,18 @@ PrefabInstance:
         type: 3}
     - target: {fileID: 7691617686310682619, guid: 1825ca76624375749b4ff78bbcb0ff80,
         type: 3}
+      propertyPath: vfxBlue
+      value: 
+      objectReference: {fileID: -2537672064750917486, guid: 07a9d394a2147d2469ab629f8cbaf6ff,
+        type: 3}
+    - target: {fileID: 7691617686310682619, guid: 1825ca76624375749b4ff78bbcb0ff80,
+        type: 3}
+      propertyPath: vfxOrange
+      value: 
+      objectReference: {fileID: 2217597231704366932, guid: facd75303b9f4d744abcf51865f0bcb5,
+        type: 3}
+    - target: {fileID: 7691617686310682619, guid: 1825ca76624375749b4ff78bbcb0ff80,
+        type: 3}
       propertyPath: mainMenuButton
       value: 
       objectReference: {fileID: 1689487245}
