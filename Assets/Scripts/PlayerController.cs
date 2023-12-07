@@ -14,6 +14,8 @@ public class PlayerController : MonoBehaviour
     string previousActionMap;
     public bool controlSchemeKeyboard;
 
+    Singleplayer singleplayer;
+
     public enum Actions
     {
         None,
@@ -34,6 +36,11 @@ public class PlayerController : MonoBehaviour
         characterCustomizer = GetComponent<CharacterCustomizer>();
         gameManager = FindObjectOfType<GameManager>();
         spawner = FindObjectOfType<PlayerSpawner>();
+        singleplayer = FindObjectOfType<Singleplayer>();
+        if (spawner._players[0] != null && spawner._players[0] != gameObject && singleplayer.singleplayer)
+        {
+            return;
+        }
 
         playerInput.actions.FindAction("Punch").performed += Punch;
         playerInput.actions.FindAction("Kick").performed += Kick;
@@ -56,7 +63,7 @@ public class PlayerController : MonoBehaviour
     #region HatSelection
     public void Ready(InputAction.CallbackContext callback)
     {
-        spawner.ReadyUp(playerInput);
+        spawner.ReadyUp(playerInput.playerIndex);
     }
     #endregion
     #region RPS

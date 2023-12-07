@@ -6,7 +6,7 @@ TagManager:
   tags:
   - GameManager
   - Canvas
-  - Main Menu Button
+  - Singleplayer
   layers:
   - Default
   - TransparentFX

@@ -424,7 +424,7 @@ public class RoundUI : MonoBehaviour
             player2ActionLayout.sprite = pkbController;
         }
     }
-    public void OnJoin(PlayerInput player, int playerNumber)
+    public void OnJoin(int playerNumber)
     {
         if (playerNumber == 1)
         {
