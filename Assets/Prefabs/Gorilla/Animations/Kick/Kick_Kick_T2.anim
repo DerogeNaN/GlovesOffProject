@@ -107819,11 +107819,18 @@ AnimationClip:
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 3.2
+  - time: 3.4666667
     functionName: SFXPlay
     data: 
     objectReferenceParameter: {fileID: 8300000, guid: b6c792a3e2b655644be96c0d88720b57,
       type: 3}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 3.4666667
+    functionName: SmallImpactEffect
+    data: 
+    objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
@@ -107832,6 +107839,13 @@ AnimationClip:
     data: 
     objectReferenceParameter: {fileID: 8300000, guid: fe2054829d8fa5847a4d8b3d147e52dd,
       type: 3}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 4.1666665
+    functionName: BigImpactEffect
+    data: 
+    objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0

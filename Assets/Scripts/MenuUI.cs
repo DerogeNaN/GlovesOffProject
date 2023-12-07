@@ -23,7 +23,17 @@ public class MenuUI : MonoBehaviour
         levelSelectUI.gameObject.SetActive(true);
     }
 
-    public void LoadCharacterSelect()
+    public void LoadTemple()
+    {
+        SceneManager.LoadScene(sceneName: "Temple_Scene");
+    }
+
+    public void LoadShip()
+    {
+        SceneManager.LoadScene(sceneName: "Ship_Scene");
+    }
+
+    public void LoadDesert()
     {
         SceneManager.LoadScene(sceneName: "Temple_Scene");
     }

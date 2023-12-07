@@ -106493,11 +106493,19 @@ AnimationClip:
   - time: 0.1
     functionName: VocalPlay
     data: 
+    objectReferenceParameter: {fileID: 8300000, guid: 89435b6fa42ab4e4db5597ba42a5d36f,
+      type: 3}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 1.6666666
+    functionName: SmallImpactEffect
+    data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 1.9
+  - time: 1.8333334
     functionName: VocalPlay
     data: 
     objectReferenceParameter: {fileID: 8300000, guid: 295ed47405c2bee4c8d504a1aee8af74,
@@ -106505,7 +106513,7 @@ AnimationClip:
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 1.9
+  - time: 1.8333334
     functionName: SFXPlay
     data: 
     objectReferenceParameter: {fileID: 8300000, guid: fe2054829d8fa5847a4d8b3d147e52dd,
