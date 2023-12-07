@@ -5,25 +5,38 @@ using UnityEngine;
 
 public class VFXManager : MonoBehaviour
 {
-    [SerializeField] GameObject chargeUp, cloudsScrolling, dizzy, fireTrail, fire, impactFist, impactFoot;
-    GameObject[] instances = new GameObject[2];
+    [SerializeField] GameObject dizzy, impactFist, impactFoot;
+    [SerializeField] Transform head, fistR, fistL, footR, footL;
+    //GameObject[] instances = new GameObject[2];
+    
 
-    public void OnPunch(int playerIndex, Vector3 position)
+
+    //public void OnPunch(int playerIndex, Vector3 position)
+    //{
+    //    instances[playerIndex] = Instantiate(impactFist, position, Quaternion.identity);
+    //    ParticleSystem[] particleSystems = instances[playerIndex].GetComponentsInChildren<ParticleSystem>();
+    //    foreach (var sys in particleSystems)
+    //    {
+    //        sys.Play();
+    //    }
+    //}
+
+    public void PlayDizzyFX(Transform position)
     {
-        instances[playerIndex] = Instantiate(impactFist, position, Quaternion.identity);
-        ParticleSystem[] particleSystems = instances[playerIndex].GetComponentsInChildren<ParticleSystem>();
-        foreach (var sys in particleSystems)
+        Instantiate(dizzy, position);
+        ParticleSystem[] particleFX = dizzy.GetComponentsInChildren<ParticleSystem>();
+        foreach(var particle in particleFX)
         {
-            sys.Play();
+            particle.Play();
         }
     }
 
-    public void ClearParticles()
-    {
-        for (int i = 0; i < instances.Length; i++)
-        {
-            Destroy(instances[i]);
-            instances[i] = null;
-        }
-    }
+    //public void ClearParticles()
+    //{
+    //    for (int i = 0; i < instances.Length; i++)
+    //    {
+    //        Destroy(instances[i]);
+    //        instances[i] = null;
+    //    }
+    //}
 }

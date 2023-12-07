@@ -5848,6 +5848,7 @@ GameObject:
   - component: {fileID: 4292561730898684539}
   - component: {fileID: 2185581279958441676}
   - component: {fileID: 8713713319946740016}
+  - component: {fileID: -2537672064750917486}
   - component: {fileID: 6649967075618835779}
   - component: {fileID: 3174747851149899453}
   - component: {fileID: 8092058124487730087}
@@ -5914,6 +5915,7 @@ MonoBehaviour:
   playerInput: {fileID: 821860599682754972}
   playerStamina: {fileID: 5598830470199119626}
   gameManager: {fileID: 0}
+  controlSchemeKeyboard: 0
   newActionChosen: 0
 --- !u!114 &821860599682754972
 MonoBehaviour:
@@ -6006,6 +6008,25 @@ MonoBehaviour:
   soundFXSource: {fileID: 6649967075618835779}
   vocalSource: {fileID: 3174747851149899453}
   miscSource: {fileID: 8092058124487730087}
+--- !u!114 &-2537672064750917486
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5837395368123727262}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 65b87413cfa3c404a86dc3a4e9b90566, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  chargeUp: {fileID: 0}
+  cloudsScrolling: {fileID: 0}
+  dizzy: {fileID: 0}
+  fireTrail: {fileID: 0}
+  fire: {fileID: 0}
+  impactFist: {fileID: 0}
+  impactFoot: {fileID: 0}
 --- !u!82 &6649967075618835779
 AudioSource:
   m_ObjectHideFlags: 0
