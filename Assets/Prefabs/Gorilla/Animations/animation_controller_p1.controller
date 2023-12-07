@@ -274,7 +274,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Idle_2
+  m_Name: Idle_1
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
@@ -395,7 +395,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Punch_Punch_T_2
+  m_Name: Punch_Punch_T1
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
@@ -409,7 +409,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 2bad589c7b18a424d99becd6b0daff87, type: 2}
+  m_Motion: {fileID: 7400000, guid: a92b1937aeff0ff48af78db8c811578d, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -501,7 +501,7 @@ AnimatorController:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: animation_controller_p2
+  m_Name: animation_controller_p1
   serializedVersion: 5
   m_AnimatorParameters:
   - m_Name: ActionPhaseStart
@@ -877,7 +877,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Kick_Kick_T_2
+  m_Name: Kick_Kick_T1
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
@@ -891,7 +891,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: b89c626999d5a4a408a2b9306b779824, type: 2}
+  m_Motion: {fileID: 7400000, guid: c03c80b6d2d896842844284c6a830cb5, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -1054,7 +1054,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 8452d37842ea9f24ebeb4753194a0f75, type: 2}
+  m_Motion: {fileID: 7400000, guid: 6072273a59a6d8f44afa7b62f57fdd2c, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -1199,7 +1199,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Block_Block_T_2
+  m_Name: Block_Block_T1
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
@@ -1213,7 +1213,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 1eabb0f2df8a0724abe5c0f8a7e6a3ad, type: 2}
+  m_Motion: {fileID: 7400000, guid: 0f1845d5765eec5489a01fae806d1d00, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -1391,7 +1391,7 @@ AnimatorStateTransition:
     m_ConditionEvent: ActionPhaseStart
     m_EventTreshold: 0
   - m_ConditionMode: 1
-    m_ConditionEvent: PunchLose
+    m_ConditionEvent: PunchSameActionLose
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 6074881995943805885}
