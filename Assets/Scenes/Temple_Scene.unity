@@ -793,6 +793,12 @@ PrefabInstance:
         type: 3}
     - target: {fileID: 7691617686310682592, guid: 1825ca76624375749b4ff78bbcb0ff80,
         type: 3}
+      propertyPath: pkbController
+      value: 
+      objectReference: {fileID: 21300000, guid: 2b362a87dbe642648bccc198ddb7fabf,
+        type: 3}
+    - target: {fileID: 7691617686310682592, guid: 1825ca76624375749b4ff78bbcb0ff80,
+        type: 3}
       propertyPath: roundTieSprite
       value: 
       objectReference: {fileID: 21300000, guid: f5bf4346c4db8884cb61e81e3b4ed54e,

@@ -102833,6 +102833,14 @@ AnimationClip:
     floatParameter: 0.6
     intParameter: 0
     messageOptions: 0
+  - time: 0.9
+    functionName: VocalPlay
+    data: 
+    objectReferenceParameter: {fileID: 8300000, guid: 56f60eb584640754a965681010e066eb,
+      type: 3}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
   - time: 1.2
     functionName: SFXPlay
     data: 
@@ -102848,6 +102856,20 @@ AnimationClip:
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
+  - time: 1.2666667
+    functionName: PlayPunchRightFX
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 1.4666667
+    functionName: ChangeGorillaVolume
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 1
+    intParameter: 0
+    messageOptions: 0
   - time: 1.5
     functionName: VocalPlay
     data: 
@@ -102856,10 +102878,17 @@ AnimationClip:
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
+  - time: 2.2666667
+    functionName: ChangeGorillaVolume
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0.6
+    intParameter: 0
+    messageOptions: 0
   - time: 2.4
     functionName: VocalPlay
     data: 
-    objectReferenceParameter: {fileID: 8300000, guid: c76bfdd2421bb6d49950f871982e3234,
+    objectReferenceParameter: {fileID: 8300000, guid: eacad8efe13b7b44b9614b807c68a916,
       type: 3}
     floatParameter: 0
     intParameter: 0
@@ -102883,6 +102912,14 @@ AnimationClip:
     functionName: PlayPunchLeftFX
     data: 
     objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 2.9
+    functionName: VocalPlay
+    data: 
+    objectReferenceParameter: {fileID: 8300000, guid: 0092d9560d0756046b88ca7a8fc803c1,
+      type: 3}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0

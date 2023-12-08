@@ -127221,10 +127221,18 @@ AnimationClip:
     floatParameter: 0.6
     intParameter: 0
     messageOptions: 0
+  - time: 1.5
+    functionName: SFXPlay
+    data: 
+    objectReferenceParameter: {fileID: 8300000, guid: eacad8efe13b7b44b9614b807c68a916,
+      type: 3}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
   - time: 2.0333333
     functionName: SFXPlay
     data: 
-    objectReferenceParameter: {fileID: 8300000, guid: de20012c12f014e4cb6aa4314ead7e0c,
+    objectReferenceParameter: {fileID: 8300000, guid: 0f55878d377381441964fd2e7b9d2dc4,
       type: 3}
     floatParameter: 0
     intParameter: 0
@@ -127233,6 +127241,14 @@ AnimationClip:
     functionName: SmallImpactEffect
     data: 
     objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 2.5
+    functionName: SFXPlay
+    data: 
+    objectReferenceParameter: {fileID: 8300000, guid: fee75f61342f0b546a60ab2982e486e6,
+      type: 3}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
@@ -127263,6 +127279,21 @@ AnimationClip:
     functionName: FastAnimation
     data: 
     objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 4.3
+    functionName: PlayPunchRightFX
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 5.2
+    functionName: VocalPlay
+    data: 
+    objectReferenceParameter: {fileID: 8300000, guid: cddbefb5079fc404aa030428febf8719,
+      type: 3}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
