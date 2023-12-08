@@ -29,6 +29,22 @@ public class PlayerController : MonoBehaviour
 
     public bool newActionChosen;
 
+    private void OnDisable()
+    {
+        playerInput.actions.FindAction("Punch").performed -= Punch;
+        playerInput.actions.FindAction("Kick").performed -= Kick;
+        playerInput.actions.FindAction("Block").performed -= Block;
+
+        playerInput.actions.FindAction("WagerUp").performed -= WagerUp;
+        playerInput.actions.FindAction("WagerDown").performed -= WagerDown;
+
+        playerInput.actions.FindAction("Ready").performed -= Ready;
+        playerInput.actions.FindAction("Left").performed -= characterCustomizer.IterateLeft;
+        playerInput.actions.FindAction("Right").performed -= characterCustomizer.IterateRight;
+
+        playerInput.actions.FindAction("Pause").performed -= Pause;
+        playerInput.actions.FindAction("Resume").performed -= Resume;
+    }
     private void Start()
     {
         playerStamina = GetComponent<PlayerStamina>();

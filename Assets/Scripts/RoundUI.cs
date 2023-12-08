@@ -41,6 +41,11 @@ public class RoundUI : MonoBehaviour
     [SerializeField] Sprite pkbKeyboard;
     [SerializeField] Sprite pkbController;
 
+    [SerializeField] Sprite wagerUpKeyboard;
+    [SerializeField] Sprite wagerDownKeyboard;
+    [SerializeField] Sprite wagerUpController;
+    [SerializeField] Sprite wagerDownController;
+
 
     Image p1StaminaBar;
     Image p2StaminaBar;
@@ -69,6 +74,11 @@ public class RoundUI : MonoBehaviour
 
     Image player1ActionLayout;
     Image player2ActionLayout;
+
+    Image player1WagerUp;
+    Image player1WagerDown;
+    Image player2WagerUp;
+    Image player2WagerDown;
 
     float p1ActionChosenTime = 0.3f;
     float p1CurrentTime = 0;
@@ -119,6 +129,11 @@ public class RoundUI : MonoBehaviour
         player1ActionLayout = UICanvas.transform.Find("Player1 Action Layout").GetComponent<Image>();
         player2ActionLayout = UICanvas.transform.Find("Player2 Action Layout").GetComponent<Image>();
 
+        player1WagerUp = UICanvas.transform.Find("Player1 Wager Layout").Find("Wager Up").GetComponent<Image>();
+        player1WagerDown = UICanvas.transform.Find("Player1 Wager Layout").Find("Wager Down").GetComponent<Image>();
+        player2WagerUp = UICanvas.transform.Find("Player2 Wager Layout").Find("Wager Up").GetComponent<Image>();
+        player2WagerDown = UICanvas.transform.Find("Player2 Wager Layout").Find("Wager Down").GetComponent<Image>();
+
         player1JoinButton = UICanvas.transform.Find("Player1 Join Button").gameObject;
         player2JoinButton = UICanvas.transform.Find("Player2 Join Button").gameObject;
 
@@ -168,6 +183,11 @@ public class RoundUI : MonoBehaviour
 
         player1ActionLayout.enabled = false;
         player2ActionLayout.enabled = false;
+
+        player1WagerUp.enabled = false;
+        player1WagerDown.enabled = false;
+        player2WagerUp.enabled = false;
+        player2WagerDown.enabled = false;
     }
 
     // Update is called once per frame
@@ -257,13 +277,24 @@ public class RoundUI : MonoBehaviour
                 RenderClock(timer, gameManager.timer);
                 RenderWager(p1Wager, gameManager.Players[0], p1WagerSprite);
                 RenderWager(p2Wager, gameManager.Players[1], p2WagerSprite);
+
+                RenderWagerLayout();
+                player1WagerUp.enabled = true;
+                player1WagerDown.enabled = true;
+                player2WagerUp.enabled = true;
+                player2WagerDown.enabled = true;
+
+                player1ActionLayout.enabled = false;
+                player2ActionLayout.enabled = false;
                 break;
             case GameManager.Phase.Action:
                 timer.enabled = false;
                 currentPhase.enabled = false;
 
-                player1ActionLayout.enabled = false;
-                player2ActionLayout.enabled = false;
+                player1WagerUp.enabled = false;
+                player1WagerDown.enabled = false;
+                player2WagerUp.enabled = false;
+                player2WagerDown.enabled = false;
 
                 foreach (Image wager in p1Wager)
                 {
@@ -424,6 +455,31 @@ public class RoundUI : MonoBehaviour
             player2ActionLayout.sprite = pkbController;
         }
     }
+
+    void RenderWagerLayout()
+    {
+        if (gameManager.Players[0].controlSchemeKeyboard)
+        {
+            player1WagerUp.sprite = wagerUpKeyboard;
+            player1WagerDown.sprite = wagerDownKeyboard;
+        }
+        else
+        {
+            player1WagerUp.sprite = wagerUpController;
+            player1WagerDown.sprite = wagerDownController;
+        }
+        if (gameManager.Players[1].controlSchemeKeyboard)
+        {
+            player2WagerUp.sprite = wagerUpKeyboard;
+            player2WagerDown.sprite = wagerDownKeyboard;
+        }
+        else
+        {
+            player2WagerUp.sprite = wagerUpController;
+            player2WagerDown.sprite = wagerDownController;
+        }
+    }
+
     public void OnJoin(int playerNumber)
     {
         if (playerNumber == 1)

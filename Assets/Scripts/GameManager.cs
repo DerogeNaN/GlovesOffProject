@@ -34,6 +34,9 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] EventSystem eventSystem;
 
+    Singleplayer singleplayer;
+    MusicManager musicManager;
+
     bool paused = false;
     public bool Paused { get { return paused; } }
 
@@ -88,6 +91,9 @@ public class GameManager : MonoBehaviour
             players[0].GetComponent<VFXManager>(),
             players[1].GetComponent<VFXManager>()
         };
+
+        singleplayer = GameObject.FindGameObjectWithTag("Singleplayer").GetComponent<Singleplayer>();
+        musicManager = GameObject.FindGameObjectWithTag("Music Manager").GetComponent<MusicManager>();
     }
 
     private void Awake()
@@ -380,6 +386,9 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 1;
         players[0].playerInput.actions.Disable();
         players[1].playerInput.actions.Disable();
+        singleplayer.singleplayer = false;
+        Destroy(singleplayer.gameObject);
+        Destroy(musicManager.gameObject);
         SceneManager.LoadScene(sceneName: "MainMenu");
     }
 }

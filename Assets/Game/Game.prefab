@@ -237,19 +237,24 @@ MonoBehaviour:
   blankWagerSprite: {fileID: 21300000, guid: 34fdbe21379b15342851f04487ab3f0f, type: 3}
   p1WagerSprite: {fileID: 21300000, guid: b6438bd52997924449c12bd9462f5309, type: 3}
   p2WagerSprite: {fileID: 21300000, guid: 7dcad1544d91d5145a7b97a51a57092e, type: 3}
-  clock1Sprite: {fileID: 21300000, guid: 2ac5db3dc05593d4a8afed7cfe4bedc9, type: 3}
-  clock2Sprite: {fileID: 21300000, guid: 3723a6b9b785faa49b7fb2c1a00eee93, type: 3}
-  clock3Sprite: {fileID: 21300000, guid: c14fe9225b260c14e8b08b03c3ab4205, type: 3}
-  roundTieSprite: {fileID: 21300000, guid: b59be075645dbd849bddaa6723c78bf6, type: 3}
-  player1WinsSprite: {fileID: 21300000, guid: 8bd1ccd5d743d284887fc046cccc0665, type: 3}
-  player2WinsSprite: {fileID: 21300000, guid: 28d620b08bdca754e917c3c83f9581d2, type: 3}
-  rpsSprite: {fileID: 21300000, guid: 4ae0d916d5d43cf43956b40c1831e0d6, type: 3}
-  wagerSprite: {fileID: 21300000, guid: 60f447401dae69c4fb66d175e7fff1ec, type: 3}
+  clock1Sprite: {fileID: 21300000, guid: ad6042324d4fc1d469897f4a1d908d1b, type: 3}
+  clock2Sprite: {fileID: 21300000, guid: bae51b4fca8d16a4c8ed0547b921f449, type: 3}
+  clock3Sprite: {fileID: 21300000, guid: e5dd94fe4b5707549a85d2d76ec7eaae, type: 3}
+  roundTieSprite: {fileID: 21300000, guid: 84bbc69499bce254e8a4ad881d322673, type: 3}
+  player1WinsSprite: {fileID: 21300000, guid: eb67591bd72017c42813db4143ec08b6, type: 3}
+  player2WinsSprite: {fileID: 21300000, guid: 76ac6dc525fffe1498e6ef628a3e3b2c, type: 3}
+  rpsSprite: {fileID: 21300000, guid: 8b637b949498cc148aa642ab0eae09ff, type: 3}
+  wagerSprite: {fileID: 21300000, guid: 3d6a3ebef3ac2454890cba28bf7d9095, type: 3}
   dPadLeft: {fileID: 21300000, guid: 174abecaae1c8434cb725b4456c03558, type: 3}
   dPadRight: {fileID: 21300000, guid: 7e57c29e08e0f1f4db9ca83c53f81796, type: 3}
   aButton: {fileID: 21300000, guid: 555be4b604d92844a94c4eb5572e57a6, type: 3}
-  pkbKeyboard: {fileID: 21300000, guid: 7336d75f4748f6b4b83c04b61bfe2c21, type: 3}
-  pkbController: {fileID: 21300000, guid: 7f1ad595e10bf524cb35ffa3e1b8e142, type: 3}
+  pkbKeyboard: {fileID: 21300000, guid: 389ff356a2a375946ac0cf8b7122cbe9, type: 3}
+  pkbController: {fileID: 21300000, guid: 2b362a87dbe642648bccc198ddb7fabf, type: 3}
+  wagerUpKeyboard: {fileID: 21300000, guid: 26f3521e0091cfc448161bd900f9c21c, type: 3}
+  wagerDownKeyboard: {fileID: 21300000, guid: 6dc275e6960f820469afdd7008555823, type: 3}
+  wagerUpController: {fileID: 21300000, guid: 88f6cc21f8cb3c34a93fac05bba4dd12, type: 3}
+  wagerDownController: {fileID: 21300000, guid: f00df29d5d25a5746892a0abd84e0e04,
+    type: 3}
 --- !u!114 &2526056840070229602
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -264,7 +269,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   UICanvas: {fileID: 0}
   returnToMenu: {fileID: 0}
-  eventSystem: {fileID: 0}
+  eventSystem: {fileID: 7691617686742220835}
+  pauseCover: {fileID: 0}
 --- !u!1 &7691617686401398739
 GameObject:
   m_ObjectHideFlags: 0

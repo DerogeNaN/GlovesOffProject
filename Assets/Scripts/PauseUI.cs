@@ -11,12 +11,15 @@ public class PauseUI : MonoBehaviour
     [SerializeField] GameObject returnToMenu;
     [SerializeField] EventSystem eventSystem;
     Image pauseImage;
+    [SerializeField] Image pauseCover;
 
     void Start()
     {
         gameManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
         pauseImage = GameObject.FindGameObjectWithTag("PauseCanvas").GetComponent<Image>();
+        pauseImage = GameObject.FindGameObjectWithTag("PauseCanvas").GetComponent<Image>();
         pauseImage.enabled = false;
+        pauseCover.enabled = false;
     }
 
     public void OnGamePause()
@@ -24,11 +27,13 @@ public class PauseUI : MonoBehaviour
         if (gameManager.Paused)
         {
             pauseImage.enabled = true;
+            pauseCover.enabled = true;
             returnToMenu.gameObject.SetActive(true);
             eventSystem.SetSelectedGameObject(returnToMenu);
             return;
         }
         pauseImage.enabled = false;
+        pauseCover.enabled = false;
         returnToMenu.gameObject.SetActive(false);
     }
 }

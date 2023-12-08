@@ -53,6 +53,7 @@ public class PlayerSpawner : MonoBehaviour
         playerInput.transform.position = spawnPoints[playerInput.playerIndex].position;
         playerInput.transform.rotation = spawnPoints[playerInput.playerIndex].rotation;
         playerInput.name = "Player " + (playerInput.playerIndex + 1).ToString();
+        Debug.Log("Player Index:" + playerInput.playerIndex);
 
         if (singleplayer.singleplayer == true)
         {
@@ -78,7 +79,6 @@ public class PlayerSpawner : MonoBehaviour
     public void ReadyUp(int playerIndex)
     {
         playersReady[playerIndex] = true;
-        Debug.Log(playerIndex + " is ready!");
         roundUI.OnReady(playerIndex);
 
         if (playersReady[0] && playersReady[1]) 

@@ -9,6 +9,7 @@ TagManager:
   - Singleplayer
   - Main Menu Button
   - PauseCanvas
+  - Music Manager
   layers:
   - Default
   - TransparentFX
