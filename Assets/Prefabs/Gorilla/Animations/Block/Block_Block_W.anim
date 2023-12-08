@@ -109170,30 +109170,37 @@ AnimationClip:
   - time: 0.06666666
     functionName: VocalPlay
     data: 
-    objectReferenceParameter: {fileID: 8300000, guid: 89435b6fa42ab4e4db5597ba42a5d36f,
+    objectReferenceParameter: {fileID: 8300000, guid: 9fa44e87891dab44089e7929b6cee7cd,
       type: 3}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 1.6333333
+  - time: 1.7333333
     functionName: SmallImpactEffect
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 1.8000001
-    functionName: VocalPlay
+  - time: 1.7333333
+    functionName: SFXPlay
     data: 
-    objectReferenceParameter: {fileID: 8300000, guid: 295ed47405c2bee4c8d504a1aee8af74,
+    objectReferenceParameter: {fileID: 8300000, guid: fe2054829d8fa5847a4d8b3d147e52dd,
       type: 3}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 1.8000001
-    functionName: SFXPlay
+  - time: 1.7333333
+    functionName: PlayPunchRightFX
     data: 
-    objectReferenceParameter: {fileID: 8300000, guid: fe2054829d8fa5847a4d8b3d147e52dd,
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 1.8
+    functionName: VocalPlay
+    data: 
+    objectReferenceParameter: {fileID: 8300000, guid: cddbefb5079fc404aa030428febf8719,
       type: 3}
     floatParameter: 0
     intParameter: 0

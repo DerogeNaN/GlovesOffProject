@@ -526,6 +526,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Canvas
       objectReference: {fileID: 0}
+    - target: {fileID: 7408435480969592631, guid: bfcb1d66f68990240b48bb5d06a2c5d5,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7408435482051813235, guid: bfcb1d66f68990240b48bb5d06a2c5d5,
         type: 3}
       propertyPath: m_SizeDelta.x
@@ -1337,6 +1342,26 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: EgyptLevel
+      objectReference: {fileID: 0}
+    - target: {fileID: 6822581762024316168, guid: 77873ebfc442649459ca40b6614c02c3,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 24.43
+      objectReference: {fileID: 0}
+    - target: {fileID: 6822581762024316168, guid: 77873ebfc442649459ca40b6614c02c3,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 127.11
+      objectReference: {fileID: 0}
+    - target: {fileID: 6822581763760429312, guid: 77873ebfc442649459ca40b6614c02c3,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.91
+      objectReference: {fileID: 0}
+    - target: {fileID: 6822581763760429312, guid: 77873ebfc442649459ca40b6614c02c3,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 127.11
       objectReference: {fileID: 0}
     - target: {fileID: 8281375912988193224, guid: 77873ebfc442649459ca40b6614c02c3,
         type: 3}
