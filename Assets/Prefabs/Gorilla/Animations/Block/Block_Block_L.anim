@@ -106483,37 +106483,29 @@ AnimationClip:
   m_HasGenericRootTransform: 0
   m_HasMotionFloatCurves: 0
   m_Events:
-  - time: 0.033333335
+  - time: 0
     functionName: ChangeGorillaVolume
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0.6
     intParameter: 0
     messageOptions: 0
-  - time: 0.1
+  - time: 0.06666666
     functionName: VocalPlay
     data: 
-    objectReferenceParameter: {fileID: 8300000, guid: 89435b6fa42ab4e4db5597ba42a5d36f,
+    objectReferenceParameter: {fileID: 8300000, guid: 9fa44e87891dab44089e7929b6cee7cd,
       type: 3}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 1.6666666
+  - time: 1.7333333
     functionName: SmallImpactEffect
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 1.8333334
-    functionName: VocalPlay
-    data: 
-    objectReferenceParameter: {fileID: 8300000, guid: 295ed47405c2bee4c8d504a1aee8af74,
-      type: 3}
-    floatParameter: 0
-    intParameter: 0
-    messageOptions: 0
-  - time: 1.8333334
+  - time: 1.7333333
     functionName: SFXPlay
     data: 
     objectReferenceParameter: {fileID: 8300000, guid: fe2054829d8fa5847a4d8b3d147e52dd,
@@ -106521,10 +106513,18 @@ AnimationClip:
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 2.7333333
+  - time: 1.8
     functionName: PlayDizzyFX
     data: 
     objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 1.8
+    functionName: VocalPlay
+    data: 
+    objectReferenceParameter: {fileID: 8300000, guid: cddbefb5079fc404aa030428febf8719,
+      type: 3}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
