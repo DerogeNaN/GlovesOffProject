@@ -548,7 +548,7 @@ PrefabInstance:
         type: 3}
       propertyPath: eventSystem
       value: 
-      objectReference: {fileID: 757853972}
+      objectReference: {fileID: 757853970}
     - target: {fileID: 2526056840070229602, guid: 1825ca76624375749b4ff78bbcb0ff80,
         type: 3}
       propertyPath: pauseCanvas
@@ -563,11 +563,16 @@ PrefabInstance:
         type: 3}
       propertyPath: firstPauseSelect
       value: 
-      objectReference: {fileID: 757853972}
+      objectReference: {fileID: 0}
     - target: {fileID: 2526056840070229602, guid: 1825ca76624375749b4ff78bbcb0ff80,
         type: 3}
       propertyPath: firstSelectedOption
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 3317021802553756626, guid: 1825ca76624375749b4ff78bbcb0ff80,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3317021802553756626, guid: 1825ca76624375749b4ff78bbcb0ff80,
         type: 3}
@@ -844,7 +849,7 @@ PrefabInstance:
         type: 3}
       propertyPath: eventSystem
       value: 
-      objectReference: {fileID: 757853972}
+      objectReference: {fileID: 757853970}
     - target: {fileID: 7691617686310682619, guid: 1825ca76624375749b4ff78bbcb0ff80,
         type: 3}
       propertyPath: mainMenuButton
@@ -981,9 +986,9 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents:
-    - {fileID: 7691617686742220834, guid: 1825ca76624375749b4ff78bbcb0ff80, type: 3}
+    - {fileID: 0}
   m_SourcePrefab: {fileID: 100100000, guid: 1825ca76624375749b4ff78bbcb0ff80, type: 3}
---- !u!114 &757853972 stripped
+--- !u!114 &757853970 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7691617686742220835, guid: 1825ca76624375749b4ff78bbcb0ff80,
     type: 3}
@@ -1721,6 +1726,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_TagString
       value: PauseCanvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 3112729772945154098, guid: bfcb1d66f68990240b48bb5d06a2c5d5,
+        type: 3}
+      propertyPath: m_Colors.m_PressedColor.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3112729772945154098, guid: bfcb1d66f68990240b48bb5d06a2c5d5,
+        type: 3}
+      propertyPath: m_Colors.m_PressedColor.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3112729772945154098, guid: bfcb1d66f68990240b48bb5d06a2c5d5,
+        type: 3}
+      propertyPath: m_Colors.m_PressedColor.r
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3112729772945154098, guid: bfcb1d66f68990240b48bb5d06a2c5d5,
         type: 3}

@@ -3,6 +3,7 @@ using Unity.VisualScripting.Dependencies.Sqlite;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.UI;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
@@ -260,6 +261,8 @@ public class GameManager : MonoBehaviour
     {
         countdown.RestartClock();
         currentPhase = Phase.RoundStart;
+        players[0].playerInput.actions.FindActionMap("HatSelection").Disable();
+        players[1].playerInput.actions.FindActionMap("HatSelection").Disable();
     }
     void GoToRPS()
     {
@@ -337,11 +340,15 @@ public class GameManager : MonoBehaviour
                 Players[i].playerInput.actions.FindActionMap("HatSelection").Disable();
                 Players[i].playerInput.actions.FindActionMap("UIPause").Enable();
                 Players[i].playerInput.actions.FindActionMap("UI").Enable();
+                eventSystem.GetComponent<InputSystemUIInputModule>().actionsAsset = p.playerInput.actions;
             }
             else if (p != Players[i])
             {
                 Players[i].DisablePreviousActionMap();
                 Players[i].playerInput.actions.FindActionMap("InGame").Disable();
+                Players[i].playerInput.actions.FindActionMap("UIPause").Disable();
+                Players[i].playerInput.actions.FindActionMap("UI").Disable();
+                Players[i].playerInput.actions.FindActionMap("HatSelection").Disable();
             }
         }
     }
@@ -369,8 +376,11 @@ public class GameManager : MonoBehaviour
 
     public void ReturnToMainMenu()
     {
+        Debug.Log("Assumed");
         paused = false;
         Time.timeScale = 1;
+        players[0].playerInput.actions.Disable();
+        players[1].playerInput.actions.Disable();
         SceneManager.LoadScene(sceneName: "MainMenu");
     }
 }
