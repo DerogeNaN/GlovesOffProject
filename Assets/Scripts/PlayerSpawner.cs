@@ -37,11 +37,6 @@ public class PlayerSpawner : MonoBehaviour
         singleplayer = GameObject.FindGameObjectWithTag("Singleplayer").GetComponent<Singleplayer>();
     }
 
-    void Update()
-    {
-        
-    }
-
     void OnPlayerJoined(PlayerInput playerInput)
     {
         if (players[0] != null && players[1] != null)
@@ -52,7 +47,6 @@ public class PlayerSpawner : MonoBehaviour
         playerNumber += 1;
         roundUI.OnJoin(playerNumber);
         playerInput.GetComponent<PlayerController>().controlSchemeKeyboard = playerInput.GetDevice<Keyboard>() != null;
-        Debug.Log(playerInput.playerIndex);
         curPlayerInputManager.playerPrefab = playerPrefabs[playerInput.playerIndex];
         players[playerInput.playerIndex] = playerInput.gameObject;
 
@@ -60,7 +54,7 @@ public class PlayerSpawner : MonoBehaviour
         playerInput.transform.rotation = spawnPoints[playerInput.playerIndex].rotation;
         playerInput.name = "Player " + (playerInput.playerIndex + 1).ToString();
 
-        if (singleplayer.singleplayer)
+        if (singleplayer.singleplayer == true)
         {
             OnBotJoined();
         }
