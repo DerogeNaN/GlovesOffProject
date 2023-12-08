@@ -369,6 +369,8 @@ public class GameManager : MonoBehaviour
 
     public void ReturnToMainMenu()
     {
+        paused = false;
+        Time.timeScale = 1;
         SceneManager.LoadScene(sceneName: "MainMenu");
     }
 }

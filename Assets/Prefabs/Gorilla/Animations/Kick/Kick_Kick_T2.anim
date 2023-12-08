@@ -107814,7 +107814,15 @@ AnimationClip:
   - time: 0.5
     functionName: VocalPlay
     data: 
-    objectReferenceParameter: {fileID: 8300000, guid: 89435b6fa42ab4e4db5597ba42a5d36f,
+    objectReferenceParameter: {fileID: 8300000, guid: e138fc3be4ee13d439d10c4f9f645c97,
+      type: 3}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 2.8333333
+    functionName: VocalPlay
+    data: 
+    objectReferenceParameter: {fileID: 8300000, guid: 679eb560771121f4ca148c0a1ff47633,
       type: 3}
     floatParameter: 0
     intParameter: 0
@@ -107829,6 +107837,29 @@ AnimationClip:
     messageOptions: 0
   - time: 3.4666667
     functionName: SmallImpactEffect
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 3.4666667
+    functionName: VocalPlay
+    data: 
+    objectReferenceParameter: {fileID: 8300000, guid: 1b78bbf4f4fc93a4aaa5a6eeaedaabd8,
+      type: 3}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 3.9
+    functionName: VocalPlay
+    data: 
+    objectReferenceParameter: {fileID: 8300000, guid: 56f60eb584640754a965681010e066eb,
+      type: 3}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 4.0666666
+    functionName: PlayKickLeftFX
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0

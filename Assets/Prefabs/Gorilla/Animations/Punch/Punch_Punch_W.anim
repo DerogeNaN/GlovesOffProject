@@ -130164,11 +130164,42 @@ AnimationClip:
     floatParameter: 0.6
     intParameter: 0
     messageOptions: 0
-  - time: 1.7333333
+  - time: 1
     functionName: VocalPlay
+    data: 
+    objectReferenceParameter: {fileID: 8300000, guid: 67567ca2d9881104ea71d5ffcfc2bce9,
+      type: 3}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 1.7333333
+    functionName: MiscPlay
     data: 
     objectReferenceParameter: {fileID: 8300000, guid: e276e9e8d905d4244a6d9b365dc391ec,
       type: 3}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 1.7333333
+    functionName: VocalPlay
+    data: 
+    objectReferenceParameter: {fileID: 8300000, guid: fee75f61342f0b546a60ab2982e486e6,
+      type: 3}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 3.5
+    functionName: VocalPlay
+    data: 
+    objectReferenceParameter: {fileID: 8300000, guid: 679eb560771121f4ca148c0a1ff47633,
+      type: 3}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 4.5
+    functionName: PlayPunchRightFX
+    data: 
+    objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
