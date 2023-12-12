@@ -1,10 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class MusicManager : MonoBehaviour
 {
     private AudioSource _audioSource;
+    [SerializeField] Slider volume;
 
     private void Awake()
     {
@@ -27,5 +29,10 @@ public class MusicManager : MonoBehaviour
     public void StopMusic()
     {
         _audioSource.Stop();
+    }
+
+    public void ChangeVolume()
+    {
+        _audioSource.volume = volume.value;
     }
 }

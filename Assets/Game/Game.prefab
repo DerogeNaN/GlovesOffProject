@@ -255,6 +255,8 @@ MonoBehaviour:
   wagerUpController: {fileID: 21300000, guid: 88f6cc21f8cb3c34a93fac05bba4dd12, type: 3}
   wagerDownController: {fileID: 21300000, guid: f00df29d5d25a5746892a0abd84e0e04,
     type: 3}
+  player1MatchWin: {fileID: 21300000, guid: e5de9c4074035544986457e1f7aca90c, type: 3}
+  player2MatchWin: {fileID: 21300000, guid: dd77da7d803d7dc47af3ab0648e9fc5a, type: 3}
 --- !u!114 &2526056840070229602
 MonoBehaviour:
   m_ObjectHideFlags: 0

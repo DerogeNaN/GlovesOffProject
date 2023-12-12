@@ -46,6 +46,9 @@ public class RoundUI : MonoBehaviour
     [SerializeField] Sprite wagerUpController;
     [SerializeField] Sprite wagerDownController;
 
+    [SerializeField] Sprite player1MatchWin;
+    [SerializeField] Sprite player2MatchWin;
+
 
     Image p1StaminaBar;
     Image p2StaminaBar;
@@ -424,11 +427,11 @@ public class RoundUI : MonoBehaviour
     {
         if (gameManager.MatchWinner == gameManager.Players[0])
         {
-            matchWinner.sprite = player1WinsSprite;
+            matchWinner.sprite = player1MatchWin;
         }
         else if (gameManager.MatchWinner == gameManager.Players[1])
         {
-            matchWinner.sprite = player2WinsSprite;
+            matchWinner.sprite = player2MatchWin;
         }
     }
     void RenderCurrentPhase(Sprite phase)

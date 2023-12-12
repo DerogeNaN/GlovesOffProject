@@ -624,7 +624,6 @@ GameObject:
   - component: {fileID: 212950963}
   - component: {fileID: 212950962}
   - component: {fileID: 212950961}
-  - component: {fileID: 212950960}
   m_Layer: 0
   m_Name: CM vcam1
   m_TagString: MainCamera
@@ -632,23 +631,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &212950960
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 212950959}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a2fba25a5cd15594e8f050a11e386c80, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_ConfineMode: 0
-  m_BoundingVolume: {fileID: 0}
-  m_BoundingShape2D: {fileID: 0}
-  m_ConfineScreenEdges: 1
-  m_Damping: 0
 --- !u!114 &212950961
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11822,6 +11804,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1006258348 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3112729772945154098, guid: bfcb1d66f68990240b48bb5d06a2c5d5,
+    type: 3}
+  m_PrefabInstance: {fileID: 1006258344}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1006258346}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1019003077
 GameObject:
   m_ObjectHideFlags: 0
@@ -12911,7 +12905,7 @@ PrefabInstance:
         type: 3}
       propertyPath: mainMenuButton
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1006258348}
     - target: {fileID: 7691617686310682620, guid: 1825ca76624375749b4ff78bbcb0ff80,
         type: 3}
       propertyPath: clockText
