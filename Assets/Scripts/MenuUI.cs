@@ -8,9 +8,9 @@ using TMPro;
 
 public class MenuUI : MonoBehaviour
 {
-    [SerializeField] Canvas mainMenuUI = null, optionsMenuUI = null, creditsUI = null, levelSelectUI = null;
+    [SerializeField] Canvas mainMenuUI, optionsMenuUI, creditsUI, levelSelectUI, keyboardUI = null, controllerUI = null;
     [SerializeField] EventSystem eventSystem;
-    [SerializeField] GameObject optionsFirst, creditsFirst, levelSelectFirst, mainMenuFirst;
+    [SerializeField] GameObject optionsFirst, creditsFirst, levelSelectFirst, mainMenuFirst, controllerFirst = null, keyboardFirst = null;
     [SerializeField] TextMeshProUGUI windowMode;
 
     public void LoadLevelSelect()
@@ -21,6 +21,10 @@ public class MenuUI : MonoBehaviour
         creditsUI.gameObject.SetActive(false);
         optionsMenuUI.gameObject.SetActive(false);
         levelSelectUI.gameObject.SetActive(true);
+
+        creditsUI.gameObject.SetActive(false);
+        keyboardUI.gameObject.SetActive(false);
+        controllerUI.gameObject.SetActive(false);
     }
 
     public void LoadTemple()
@@ -38,6 +42,22 @@ public class MenuUI : MonoBehaviour
         SceneManager.LoadScene(sceneName: "Egypt_Scene");
     }
 
+    public void LoadControllerUI()
+    {
+        eventSystem.SetSelectedGameObject(controllerFirst);
+        
+        controllerUI.gameObject.SetActive(true);
+        optionsMenuUI.gameObject.SetActive(false);
+    }
+
+    public void LoadKeyboardUI()
+    {
+        eventSystem.SetSelectedGameObject(keyboardFirst);
+
+        keyboardUI.gameObject.SetActive(true);
+        optionsMenuUI.gameObject.SetActive(false);
+    }
+
     public void LoadOptionsMenu()
     {
         eventSystem.SetSelectedGameObject(optionsFirst);
@@ -46,6 +66,8 @@ public class MenuUI : MonoBehaviour
         creditsUI.gameObject.SetActive(false);
         optionsMenuUI.gameObject.SetActive(true);
         levelSelectUI.gameObject.SetActive(false);
+        keyboardUI.gameObject.SetActive(false);
+        controllerUI.gameObject.SetActive(false);
     }
 
     public void LoadMainMenu()
