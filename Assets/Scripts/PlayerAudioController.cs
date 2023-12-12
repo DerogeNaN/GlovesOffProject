@@ -8,14 +8,25 @@ public class PlayerAudioController : MonoBehaviour
     [SerializeField] AudioSource soundFXSource, vocalSource, miscSource;
     [SerializeField] float soundVolume = 1f;
     [SerializeField] AudioClip oog1, oog2, oog3;
+    [SerializeField] MusicManager musicManager;
     int getRandomSound;
+
+    public void Start()
+    {
+        musicManager = GameObject.FindGameObjectWithTag("Music Manager").GetComponent<MusicManager>();
+    }
+
+    public void Update()
+    {
+        soundVolume = musicManager.volume.value;
+    }
 
     public void ChangeGorillaVolume(float getSoundVolume)
     {
         soundFXSource.Stop();
         vocalSource.Stop();
         miscSource.Stop();
-        soundVolume = getSoundVolume;
+        soundVolume *= getSoundVolume;
     }
 
     public void RandomOgg()
@@ -44,7 +55,9 @@ public class PlayerAudioController : MonoBehaviour
     public void SFXPlay(AudioClip soundFXClip)
     {
         soundFXSource.clip = soundFXClip;
+        soundFXSource.volume = soundVolume;
         vocalSource.volume = soundVolume;
+        miscSource.volume = soundVolume;
         soundFXSource.Play();
         Debug.Log("SFX");
     }
@@ -52,7 +65,9 @@ public class PlayerAudioController : MonoBehaviour
     public void VocalPlay(AudioClip vocalClip)
     {
         vocalSource.clip = vocalClip;
+        soundFXSource.volume = soundVolume;
         vocalSource.volume = soundVolume;
+        miscSource.volume = soundVolume;
         vocalSource.Play();
         Debug.Log("Vocals");
     }
@@ -60,7 +75,9 @@ public class PlayerAudioController : MonoBehaviour
     public void MiscPlay(AudioClip miscClip)
     {
         miscSource.clip = miscClip;
+        soundFXSource.volume = soundVolume;
         vocalSource.volume = soundVolume;
+        miscSource.volume = soundVolume;
         miscSource.Play();
         Debug.Log("Misc. Sound");
     }

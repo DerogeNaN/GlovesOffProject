@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class MusicManager : MonoBehaviour
 {
     private AudioSource _audioSource;
-    [SerializeField] Slider volume;
+    public Slider volume;
 
     private void Awake()
     {
